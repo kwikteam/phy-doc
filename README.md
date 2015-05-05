@@ -1,6 +1,6 @@
 # phy documentation
 
-**phy** is a new electrophysiological data analysis package for high-density multi-electrode arrays containing tens, hundreds, or thousands of recording sites.
+**phy** is an open source electrophysiological data analysis package for neuronal recordings made with high-density multielectrode arrays containing tens, hundreds, or thousands of channels.
 
 
 ## Overview
