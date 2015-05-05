@@ -14,6 +14,9 @@ phy 0.1.0 requires you to provide these files. You can use the [`klusta`](https:
 
 phy 0.2.0 will integrate the entire toolchain to go from raw data to Kwik files, and you won't need to use the external `klusta` program anymore.
 
+> Currently, the `klusta` program may complete in minutes to hours, days, or even weeks for the largest datasets. We will make this process considerably faster (notably using parallelization) in phy 0.2.0 and later.
+
+
 ### Opening a dataset
 
 

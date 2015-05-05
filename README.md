@@ -1,6 +1,6 @@
 # phy documentation
 
-**phy** is an open source electrophysiological data analysis package for neuronal recordings made with high-density multielectrode arrays containing tens, hundreds, or thousands of channels.
+* [**phy**](https://github.com/kwikteam/phy) is an open source electrophysiological data analysis package for neuronal recordings made with high-density multielectrode arrays containing tens, hundreds, or thousands of channels.
 
 
 ## Overview
@@ -13,7 +13,7 @@ The current 0.1.0 release implements the following features:
     * multi-dimensional features
     * raw traces with clusters and spikes
 * Some basic cluster statistics, mainly auto- and cross-correlograms.
-* Manual clustering functionality: merging, splitting.
+* Manual clustering functionality: merging, splitting, undo stack.
 * A semi-automatic assistant for the manual clustering step. This assistant guides you through clusters that are candidates for merging, and allows you to quickly make decisions through a streamlined graphical interface.
 
 The 0.2.0 release (~Summer 2015) will be the first release of phy to implement a complete spike sorting toolchain, from raw data to spike trains:
@@ -28,8 +28,8 @@ The 0.3.0 release (~Fall 2015) will bring further improvements and optimizations
 
 * [Installation](install.md)
 * [Working with Kwik files](kwik-model.md)
-* Interactive plotting
-* Manual clustering
+* [Interactive plotting](plot.md)
+* [Manual clustering](cluster-manual.md)
 
 
 ## Contact
