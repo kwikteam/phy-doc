@@ -12,12 +12,14 @@ There are several dependencies:
 * PyQt4 (for the graphical interfaces)
 * matplotlib (optional, for plotting)
 * IPython and its notebook (optional, but recommended for interactive use)
+* requests (for downloading test data)
 
 Here are further dependencies useful for development (advanced users):
 
 * py.test (for testing)
 * coverage (for code coverage)
 * flake8 (for testing code quality)
+* responses (for testing downloading functionality)
 
 **It is highly recommended to use the free Miniconda distribution**. This software comes with a package manager that lets you easily install, update, and remove Python packages.
 
