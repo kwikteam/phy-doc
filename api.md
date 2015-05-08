@@ -4,14 +4,66 @@ phy is an open source electrophysiological data analysis package in Python
 for neuronal recordings made with high-density multielectrode arrays
 containing tens, hundreds, or thousands of channels.
 
-Here is the list of subpackages:
+## Table of contents
 
-* [phy.cluster.manual](#phyclustermanual)
-* [phy.electrode](#phyelectrode)
-* [phy.io](#phyio)
-* [phy.plot](#phyplot)
-* [phy.stats](#phystats)
-* [phy.utils](#phyutils)
+### [phy.cluster.manual](#phyclustermanual)
+
+* [phy.cluster.manual.ClusterStore](#phyclustermanualclusterstore)
+* [phy.cluster.manual.Clustering](#phyclustermanualclustering)
+* [phy.cluster.manual.Session](#phyclustermanualsession)
+* [phy.cluster.manual.StoreItem](#phyclustermanualstoreitem)
+* [phy.cluster.manual.Wizard](#phyclustermanualwizard)
+
+
+### [phy.electrode](#phyelectrode)
+
+* [phy.electrode.MEA](#phyelectrodemea)
+
+
+### [phy.io](#phyio)
+
+* [phy.io.open_h5](#phyioopen_h5filename-modenone)
+* [phy.io.File](#phyiofile)
+* [phy.io.KwikModel](#phyiokwikmodel)
+
+
+### [phy.plot](#phyplot)
+
+* [phy.plot.BaseSpikeCanvas](#phyplotbasespikecanvas)
+* [phy.plot.BaseSpikeVisual](#phyplotbasespikevisual)
+* [phy.plot.CorrelogramView](#phyplotcorrelogramview)
+* [phy.plot.FeatureView](#phyplotfeatureview)
+* [phy.plot.FeatureVisual](#phyplotfeaturevisual)
+* [phy.plot.PanZoom](#phyplotpanzoom)
+* [phy.plot.PanZoomGrid](#phyplotpanzoomgrid)
+* [phy.plot.TraceView](#phyplottraceview)
+* [phy.plot.WaveformView](#phyplotwaveformview)
+* [phy.plot.WaveformVisual](#phyplotwaveformvisual)
+
+
+### [phy.stats](#phystats)
+
+* [phy.stats.pairwise_correlograms](#phystatspairwise_correlogramsspike_samples-spike_clusters-binsizenone-winsize_binsnone)
+
+
+### [phy.utils](#phyutils)
+
+* [phy.utils.debug](#phyutilsdebugmsg)
+* [phy.utils.download_file](#phyutilsdownload_fileurl-outputnone-checksumnone)
+* [phy.utils.download_test_data](#phyutilsdownload_test_dataname-outputnone)
+* [phy.utils.info](#phyutilsinfomsg)
+* [phy.utils.qt_app](#phyutilsqt_appargs-kwds)
+* [phy.utils.register](#phyutilsregisterlogger)
+* [phy.utils.run_qt_app](#phyutilsrun_qt_app)
+* [phy.utils.set_level](#phyutilsset_levellevel)
+* [phy.utils.start_qt_app](#phyutilsstart_qt_app)
+* [phy.utils.unregister](#phyutilsunregisterlogger)
+* [phy.utils.warn](#phyutilswarnmsg)
+* [phy.utils.DockWindow](#phyutilsdockwindow)
+* [phy.utils.EventEmitter](#phyutilseventemitter)
+* [phy.utils.ProgressReporter](#phyutilsprogressreporter)
+
+
 
 
 ## phy.cluster.manual
@@ -799,7 +851,7 @@ Channel positions.
 
 Input/output.
 
-##### `phy.io.h5.open_h5(filename, mode=None)`
+##### `phy.io.open_h5(filename, mode=None)`
 
 Open an HDF5 file and return a File instance.
 
@@ -1709,7 +1761,7 @@ This is a `(n_spikes, n_samples, n_channels)` array.
 
 Statistics
 
-##### `phy.stats.ccg.pairwise_correlograms(spike_samples, spike_clusters, binsize=None, winsize_bins=None)`
+##### `phy.stats.pairwise_correlograms(spike_samples, spike_clusters, binsize=None, winsize_bins=None)`
 
 Compute all pairwise correlograms in a set of neurons.
 
@@ -1719,35 +1771,35 @@ TODO: improve interface and documentation.
 
 Utilities.
 
-##### `phy.utils.logging.debug(*msg)`
+##### `phy.utils.debug(*msg)`
 
 Generate a debug message.
 
-##### `phy.utils.datasets.download_file(url, output=None, checksum=None)`
+##### `phy.utils.download_file(url, output=None, checksum=None)`
 
 Download a binary file from an URL.
 
-##### `phy.utils.datasets.download_test_data(name, output=None)`
+##### `phy.utils.download_test_data(name, output=None)`
 
 Download a test dataset.
 
-##### `phy.utils.logging.info(*msg)`
+##### `phy.utils.info(*msg)`
 
 Generate an info message.
 
-##### `phy.utils.dock.qt_app(*args, **kwds)`
+##### `phy.utils.qt_app(*args, **kwds)`
 
 Context manager to ensure that a Qt app is running.
 
-##### `phy.utils.logging.register(logger)`
+##### `phy.utils.register(logger)`
 
 Register a logger.
 
-##### `phy.utils.dock.run_qt_app()`
+##### `phy.utils.run_qt_app()`
 
 Start the Qt application's event loop.
 
-##### `phy.utils.logging.set_level(level)`
+##### `phy.utils.set_level(level)`
 
 Set the level of all registered loggers.
 
@@ -1758,18 +1810,18 @@ Set the level of all registered loggers.
 
     Can be `warn`, `info`, or `debug`.
 
-##### `phy.utils.dock.start_qt_app()`
+##### `phy.utils.start_qt_app()`
 
 Start a Qt application if necessary.
 
 If a new Qt application is created, this function returns it.
 If no new application is created, the function returns None.
 
-##### `phy.utils.logging.unregister(logger)`
+##### `phy.utils.unregister(logger)`
 
 Unregister a logger.
 
-##### `phy.utils.logging.warn(*msg)`
+##### `phy.utils.warn(*msg)`
 
 Generate a warning.
 
