@@ -42,6 +42,14 @@ Here is the intended workflow:
 
 > Better quality and similarity measures will be used in the future. You'll also be able to write your own functions in Python.
 
+### The cluster store
+
+#### Features and masks
+
+#### Cluster statistics
+
+### Visualization
+
 ### Extending and customizing the interface
 
 #### Using custom statistics in the wizard
