@@ -35,7 +35,7 @@ Here is the intended workflow:
 * Initially, the **best** cluster found is shown. You can explore it in the various views (waveforms, features, traces, ACG).
 * Use `space` and `shift+space` to scroll through your best clusters by decreasing quality.
 * At any point, you can **pin** a cluster by pressing `enter`. Then you'll see a second cluster selected: this is the **closest match**. Unpin with `backspace`.
-* Scroll through the list of closest matches with `space` and `shift+space`. The pinned cluster stays selected.
+* When a cluster is pinned, scroll through the list of closest matches with `space` and `shift+space`. The pinned cluster stays selected.
 * You have keyboard shortcuts to:
     * Merge the two displayed clusters.
     * Move either or both clusters to cluster groups (noise, MUA, good).
