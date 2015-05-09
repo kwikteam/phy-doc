@@ -19,7 +19,11 @@ phy 0.2.0 will integrate the entire toolchain to go from raw data to Kwik files,
 
 ### Opening a dataset
 
-`model = KwikModel(kwik_path)`
+Open a Kwik dataset with `model = KwikModel(kwik_path)`. You should have `.kwx` and `.raw.kwd` in the same folder with the same basename.
+
+The waveforms in the `.kwx` file are not used at all in phy: rather, they are dynamically extracted and filtered from the raw data. This is because storing waveforms takes too much space.
+
+See [API](https://github.com/kwikteam/phy-doc/blob/master/api.md#phyiokwikmodel) for more details.
 
 ### Spikes and clusters
 

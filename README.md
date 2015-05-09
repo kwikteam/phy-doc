@@ -59,6 +59,8 @@ clustering, you can just read section 6.
 
 If you want to make custom analyses and visualizations of your data, read the other sections.
 
+The API documentation is for advanced users, and may contain information that has not been yet integrated in the user guide. Feel free to have a look at it.
+
 ## Contact
 
 phy is developed in the [cortexlab](http://cortexlab.net) at University College London by:
