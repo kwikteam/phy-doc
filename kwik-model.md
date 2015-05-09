@@ -19,6 +19,7 @@ phy 0.2.0 will integrate the entire toolchain to go from raw data to Kwik files,
 
 ### Opening a dataset
 
+`model = KwikModel(kwik_path)`
 
 ### Spikes and clusters
 

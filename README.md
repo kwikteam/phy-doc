@@ -1,9 +1,24 @@
 # phy documentation
 
-[**phy**](https://github.com/kwikteam/phy) is an open source electrophysiological data analysis package in Python for neuronal recordings made with high-density multielectrode arrays containing tens, hundreds, or thousands of channels.
-
+[**phy**](https://github.com/kwikteam/phy) is an open source electrophysiological data analysis libbrary in Python for neuronal recordings made with high-density multielectrode arrays containing tens, hundreds, or thousands of channels.
 
 ## Overview
+
+This library provides a Python API to analyze and visualize data interactively, as well as user-friendly graphical interfaces to quickly inspect and refine your data.
+
+
+### Use-cases
+
+As of v0.1.0, you can use phy to:
+
+* Open a Kwik dataset and access all the data fields for inspection, visualization, and analysis.
+* Manually refine a dataset that has been automatically clustered by KlustaKwik.
+
+Future versions will allow you to spike sort raw data and make custom analyses of extracellular and spiking data.
+
+It is recommended to use the library in IPython (terminal or notebook) for interactive use. You can also use it in regular Python scripts. Finally, you can use the public Python API to customize the interfaces or integrate phy in your own projects.
+
+### Milestones
 
 The current 0.1.0 release implements the following features:
 
@@ -26,11 +41,19 @@ The 0.3.0 release (~Fall 2015) will bring further improvements and optimizations
 
 ## Table of contents
 
-* [Installation](install.md)
-* [Working with Kwik files](kwik-model.md)
-* [Interactive plotting](plot.md)
-* [Manual clustering](cluster-manual.md)
+Here is the table of contents of the user guide:
 
+* 1. [Installation](install.md)
+* 2. [Working with Kwik files](kwik-model.md)
+* 3. [Interactive plotting](plot.md)
+* 4. Spike detection (planned for 0.2.0)
+* 5. Automatic clustering (planned for 0.2.0)
+* 6. [Manual clustering](cluster-manual.md)
+* 7. Neuronal data analysis
+
+If you're just interested in the replacement of KlustaViewa for manual clustering, you can just read section 6.
+
+If you want to make custom analyses and visualizations of your data, read the other sections.
 
 ## Contact
 

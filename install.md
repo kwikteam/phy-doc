@@ -14,6 +14,8 @@ There are several dependencies:
 * IPython and its notebook (optional, but recommended for interactive use)
 * requests (for downloading test data)
 
+Most of these dependencies are only imported when you use a feature that needs them. This means that you don't need all dependencies if you're just interested in a small part of the library.
+
 Here are further dependencies useful for development (advanced users):
 
 * py.test (for testing)
