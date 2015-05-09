@@ -16,7 +16,9 @@ As of v0.1.0, you can use phy to:
 
 Future versions will allow you to spike sort raw data and make custom analyses of extracellular and spiking data.
 
-It is recommended to use the library in IPython (terminal or notebook) for interactive use. You can also use it in regular Python scripts. Finally, you can use the public Python API to customize the interfaces or integrate phy in your own projects.
+It is recommended to use the library in IPython (terminal or notebook) for interactive use. **Use tab completion without moderation**: it lets you discover the objects and methods that are available.
+
+You can also use phy in regular Python scripts. Finally, you can use the public Python API to customize the interfaces or integrate phy in your own projects.
 
 ### Milestones
 
@@ -50,8 +52,10 @@ Here is the table of contents of the user guide:
 * 5. Automatic clustering (planned for 0.2.0)
 * 6. [Manual clustering](cluster-manual.md)
 * 7. Neuronal data analysis
+* [API documentation](api.md)
 
-If you're just interested in the replacement of KlustaViewa for manual clustering, you can just read section 6.
+If you're just interested in the replacement of KlustaViewa for manual
+clustering, you can just read section 6.
 
 If you want to make custom analyses and visualizations of your data, read the other sections.
 
