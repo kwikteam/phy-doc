@@ -15,13 +15,31 @@ All of these plots are highly interactive and let you explore your data effectiv
 
 More interactive and static visualization routines (for publication-ready plotting, for example) will be added in future versions.
 
+### Pan and zoom
+
+* pan: `arrows`, left-drag
+* zoom: `+`, `-`, wheel, right-drag
+* reset: `r`
+
+In grid views (feature view and CCG view):
+
+* subplot pan: `arrows`, left-drag
+* subplot zoom: `+`, `-`, right-drag
+* subplot reset: `r`
+* global zoom: `shift+wheel`
+* global reset: `shift+r`
+
 ### Waveforms
 
+* change waveform scaling: `ctrl+arrows`
+* change probe scaling: `shift+arrows`
 
 ### Features
 
+* set marker size: `ctrl++`, `ctrl+-`
 
 ### Traces
 
+* change channel scale: `ctrl+up`, `ctrl+down`
 
 ### Correlograms
