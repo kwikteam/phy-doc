@@ -24,9 +24,23 @@ Oncce the session is loaded, you can view the data and start clustering it. See 
 Type `session.show_gui()` to launch the clustering GUI. This minimal GUI provides two things:
 
 * A window where to dock visualization widgets.
-* Keyboard shortcuts to go through your best clusters and a list of potential merge candidates.
+* Keyboard shortcuts to go through your best clusters and a list of potential merge candidates (**wizard**).
 
 > Type `h` for the list of keyboard shortcuts.
+
+The wizard is there to save you a lot of time clustering your data manually. It makes you propositions with 1 or 2 clusters, and you have to decide an outcome based on the views in the window.
+
+Here is the intended workflow:
+
+* Initially, the **best** cluster found is shown. You can explore it in the various views (waveforms, features, traces, ACG).
+* Use `space` and `shift+space` to scroll through your best clusters by decreasing quality.
+* At any point, you can **pin** a cluster by pressing `enter`. Then you'll see a second cluster selected: this is the **closest match**. Unpin with `backspace`.
+* Scroll through the list of closest matches with `space` and `shift+space`. The pinned cluster stays selected.
+* You have keyboard shortcuts to:
+    * Merge the two displayed clusters.
+    * Move either or both clusters to cluster groups (noise, MUA, good).
+
+> Better quality and similarity measures will be used in the future. You'll also be able to write your own functions in Python.
 
 ### Extending and customizing the interface
 
