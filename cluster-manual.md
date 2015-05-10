@@ -42,6 +42,8 @@ Here is the intended workflow:
 
 > Better quality and similarity measures will be used in the future. You'll also be able to write your own functions in Python.
 
+![Wizard GUI screenshot](images/cluster-manual-gui.png)
+
 ### The cluster store
 
 #### Features and masks
