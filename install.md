@@ -36,6 +36,7 @@ Here are the installation instructions when you're starting from scratch:
 1. Install Miniconda.
 2. Create a Conda environment with all the dependencies for phy.
 3. Install phy.
+4. Use phy.
 
 ### 0. Opening a terminal
 
@@ -60,3 +61,18 @@ For the time being, we recommend to install the development version on GitHub:
 You can use the same command at any time to update the package to the latest version.
 
 > Advanced users can also clone the package manually with git and install phy with `python setup.py develop`.
+
+### 4. Use phy
+
+Open an IPython terminal with `ipython` or a notebook server with `ipython notebook`. Using the notebook is recommended for extended use. The notebook offers a web interface to write Python code, run analyses, and display visualizations.
+
+Import phy with `import phy`. To import a subpackage: `import phy.io`, for example. Then use tab completion to find the functions and classes available.
+
+### Remote use
+
+You normally install phy on your local computer. However you can also install an IPython notebook server on a remote computer, and access your data from anywhere with a web browser. You can enable live visualizations with (experimental):
+
+```python
+from vispy.app import use_app
+use_app('ipynb_webgl')
+```
