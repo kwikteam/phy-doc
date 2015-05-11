@@ -42,15 +42,35 @@ Here are the installation instructions when you're starting from scratch:
 
 * Windows: press `Windows` + `R`, type `cmd`, and press `Enter`.
 * Mac OS X: TODO.
-* Linux: you probably know how to do it.
+* Linux: you probably already know how to do it.
 
 ### 1. Installing Miniconda
 
-TODO
+* http://conda.pydata.org/miniconda.html
+* Download the **Python 3.4, 64-bit** version for your OS (this is the recommended version)
+* Install Miniconda (**no need for root privileges**), for example with:
+
+```
+bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
+```
+
+(or choose any other path)
 
 ### 2. Creating a Conda environment for phy
 
-TODO
+```bash
+# Create a fresh `phy` environment
+conda create -q -n phy
+# Activate that environment
+source activate phy
+# Install all dependencies
+conda install pip numpy matplotlib scipy h5py pyqt pyzmq ipython requests
+# Install VisPy development version
+pip install git+https://github.com/vispy/vispy.git
+```
+
+You'll need to type `source activate phy` in your console **every time you want to use phy**. This is to isolate the Python installation from the rest of your system.
+
 
 ### 3. Installing phy
 
