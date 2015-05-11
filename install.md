@@ -64,7 +64,7 @@ conda create -q -n phy
 # Activate that environment
 source activate phy
 # Install all dependencies
-conda install pip numpy matplotlib scipy h5py pyqt pyzmq ipython requests
+conda install pip numpy matplotlib scipy h5py pyqt ipython-notebook requests
 # Install VisPy development version
 pip install git+https://github.com/vispy/vispy.git
 ```
