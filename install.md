@@ -71,16 +71,18 @@ pip install git+https://github.com/vispy/vispy.git
 
 You'll need to type `source activate phy` in your console **every time you want to use phy**. This is to isolate the Python installation from the rest of your system.
 
-
 ### 3. Installing phy
 
 For the time being, we recommend to install the development version on GitHub:
 
-* `pip install git+git://github.com/kwikteam/phy.git`
+```bash
+source activate phy
+pip install git+git://github.com/kwikteam/phy.git
+```
 
 You can use the same command at any time to update the package to the latest version.
 
-> Advanced users can also clone the package manually with git and install phy with `python setup.py develop`.
+> Advanced users can also clone the package manually with `git clone git://github.com/kwikteam/phy.git` and install phy with `python setup.py develop` in the created directory.
 
 ### 4. Use phy
 
@@ -90,7 +92,7 @@ Import phy with `import phy`. To import a subpackage: `import phy.io`, for examp
 
 ### Remote use
 
-You normally install phy on your local computer. However you can also install an IPython notebook server on a remote computer, and access your data from anywhere with a web browser. You can enable live visualizations with (experimental):
+You normally install phy on your local computer. However you can also install an [IPython notebook server on a remote computer](https://ipython.org/ipython-doc/dev/notebook/public_server.html), and access your data from anywhere in the world with a web browser. You can enable live visualizations with (**still experimental**):
 
 ```python
 from vispy.app import use_app
