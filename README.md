@@ -45,6 +45,7 @@ The 0.3.0 release (~Fall 2015) will bring further improvements and optimizations
 
 Here is the table of contents of the user guide:
 
+* 0. [Quick start guide](quick-start.ipynb)
 * 1. [Installation](install.md)
 * 2. [Working with Kwik files](kwik-model.md)
 * 3. [Interactive plotting](plot.md)
