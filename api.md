@@ -50,7 +50,8 @@ containing tens, hundreds, or thousands of channels.
 
 * [phy.utils.debug](#phyutilsdebugmsg)
 * [phy.utils.download_file](#phyutilsdownload_fileurl-outputnone-checksumnone)
-* [phy.utils.download_test_data](#phyutilsdownload_test_dataname-outputnone)
+* [phy.utils.download_test_data](#phyutilsdownload_test_dataname-output_dirnone)
+* [phy.utils.enable_qt](#phyutilsenable_qt)
 * [phy.utils.info](#phyutilsinfomsg)
 * [phy.utils.qt_app](#phyutilsqt_appargs-kwds)
 * [phy.utils.register](#phyutilsregisterlogger)
@@ -450,7 +451,7 @@ A manual clustering session.
 This is the main object used for manual clustering. It implements
 all common actions:
 
-* Loading a dataset (.kwik file)
+* Loading a dataset (`.kwik` file)
 * Listing the clusters
 * Changing the current channel group or current clustering
 * Showing views (waveforms, features, correlograms, etc.)
@@ -535,7 +536,7 @@ Load a user settings.
 
 Merge some clusters.
 
-##### `Session.move(clusters, group, **kwargs)`
+##### `Session.move(clusters, group)`
 
 Move some clusters to a cluster group.
 
@@ -549,10 +550,6 @@ Here is the list of cluster groups:
 ##### `Session.on_close()`
 
 Save the settings when the data is closed.
-
-##### `Session.on_cluster(up=None, add_to_stack=True)`
-
-Update the history when clustering changes occur.
 
 ##### `Session.on_open()`
 
@@ -713,19 +710,11 @@ First match or first best.
 
 Last match or last best.
 
-##### `Wizard.merge(old, new, group)`
-
-Merge a list of clusters to a new cluster.
-
 ##### `Wizard.most_similar_clusters(cluster=None, n_max=None, similarity=None)`
 
 Return the `n_max` most similar clusters to a given cluster.
 
 The default similarity function is the registered one.
-
-##### `Wizard.move(cluster, group)`
-
-Move a cluster to a group.
 
 ##### `Wizard.next()`
 
@@ -738,6 +727,10 @@ Select the next best cluster.
 ##### `Wizard.next_match()`
 
 Select the next match.
+
+##### `Wizard.on_cluster(up)`
+
+
 
 ##### `Wizard.pin(cluster=None)`
 
@@ -774,12 +767,6 @@ Start the wizard by setting the list of best clusters.
 ##### `Wizard.unpin()`
 
 Unpin the current cluster.
-
-##### `Wizard.update_clusters(deleted, added, group)`
-
-Update the list of clusters.
-
-Specify the lists of deleted and added clusters.
 
 #### Properties
 
@@ -980,6 +967,10 @@ Copy a clustering in the `.kwik` file.
 
 Delete a clustering.
 
+##### `KwikModel.describe()`
+
+Display information about the dataset.
+
 ##### `KwikModel.open(kwik_path, channel_group=None, clustering=None)`
 
 Open a Kwik dataset.
@@ -1091,6 +1082,10 @@ Default is `main`.
 List of clusterings found in the Kwik file.
 
 The first one is always `main`.
+
+##### `KwikModel.duration`
+
+Duration of the experiment (in seconds).
 
 ##### `KwikModel.features`
 
@@ -1667,6 +1662,10 @@ Draw the visual.
 
 Handle key press events.
 
+##### `WaveformView.on_mouse_wheel(event)`
+
+Handle mouse wheel events.
+
 ##### `WaveformView.on_resize(event)`
 
 Resize the OpenGL context.
@@ -1779,9 +1778,13 @@ Generate a debug message.
 
 Download a binary file from an URL.
 
-##### `phy.utils.download_test_data(name, output=None)`
+##### `phy.utils.download_test_data(name, output_dir=None)`
 
 Download a test dataset.
+
+##### `phy.utils.enable_qt()`
+
+
 
 ##### `phy.utils.info(*msg)`
 
