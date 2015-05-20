@@ -2,16 +2,14 @@
 
 phy is an open source electrophysiological data analysis package in Python
 for neuronal recordings made with high-density multielectrode arrays
-containing tens, hundreds, or thousands of channels.
+containing up to thousands of channels.
 
 ## Table of contents
 
 ### [phy.cluster.manual](#phyclustermanual)
 
-* [phy.cluster.manual.ClusterStore](#phyclustermanualclusterstore)
 * [phy.cluster.manual.Clustering](#phyclustermanualclustering)
 * [phy.cluster.manual.Session](#phyclustermanualsession)
-* [phy.cluster.manual.StoreItem](#phyclustermanualstoreitem)
 * [phy.cluster.manual.Wizard](#phyclustermanualwizard)
 
 
@@ -23,8 +21,10 @@ containing tens, hundreds, or thousands of channels.
 ### [phy.io](#phyio)
 
 * [phy.io.open_h5](#phyioopen_h5filename-modenone)
+* [phy.io.ClusterStore](#phyioclusterstore)
 * [phy.io.File](#phyiofile)
 * [phy.io.KwikModel](#phyiokwikmodel)
+* [phy.io.StoreItem](#phyiostoreitem)
 
 
 ### [phy.plot](#phyplot)
@@ -60,9 +60,11 @@ containing tens, hundreds, or thousands of channels.
 * [phy.utils.start_qt_app](#phyutilsstart_qt_app)
 * [phy.utils.unregister](#phyutilsunregisterlogger)
 * [phy.utils.warn](#phyutilswarnmsg)
+* [phy.utils.Bunch](#phyutilsbunch)
 * [phy.utils.DockWindow](#phyutilsdockwindow)
 * [phy.utils.EventEmitter](#phyutilseventemitter)
 * [phy.utils.ProgressReporter](#phyutilsprogressreporter)
+* [phy.utils.Selector](#phyutilsselector)
 
 
 
@@ -70,150 +72,6 @@ containing tens, hundreds, or thousands of channels.
 ## phy.cluster.manual
 
 Manual clustering facilities.
-
-### phy.cluster.manual.ClusterStore
-
-Hold per-cluster information on disk and in memory.
-
-*Note*
-
-Currently, this is used to accelerate access to features, masks, and
-cluster statistics. Features and masks of all clusters are stored in a
-disk cache. Cluster statistics are computed when loading a dataset,
-and are kept in memory afterwards. All data is dynamically updated
-when clustering changes occur.
-
-#### Methods
-
-##### `ClusterStore.clean()`
-
-Erase all old files in the store.
-
-##### `ClusterStore.clear()`
-
-Erase all files in the store.
-
-##### `ClusterStore.display_status()`
-
-Display the current status of the cluster store.
-
-##### `ClusterStore.generate(spikes_per_cluster=None, mode=None)`
-
-Generate the cluster store.
-
-*Parameters*
-
-
-* `spikes_per_cluster` (dict)
-
-    A dictionary `{cluster_ids: spike_ids}`.
-
-* `mode` (str (default is None))
-
-    How the cluster store should be generated. Options are:
-
-    * None or `default`: only regenerate the missing or inconsistent
-      clusters
-    * `force`: fully regenerate the cluster
-    * `read-only`: just load the existing files, do not write anything
-
-##### `ClusterStore.is_consistent()`
-
-Return whether the cluster store is probably consistent.
-
-Return true if all cluster stores files exist and have the expected
-file size.
-
-##### `ClusterStore.load(name, clusters, spikes)`
-
-Load some data for a number of clusters and spikes.
-
-##### `ClusterStore.on_cluster(up)`
-
-Update the cluster store when clustering changes occur.
-
-This method calls `item.on_cluster(up)` on all registered store items.
-
-##### `ClusterStore.register_field(name, location, dtype=None, shape=None)`
-
-Register a new piece of data to store on memory or on disk.
-
-*Parameters*
-
-
-* `name` (str)
-
-    The name of the field.
-
-* `location` (str)
-
-    `memory` or `disk`.
-
-* `dtype` (NumPy dtype or None)
-
-    The dtype of arrays stored for that field. This is only used when
-    the location is `disk`.
-
-* `shape` (tuple or None)
-
-    The shape of arrays. This is only used when the location is `disk`.
-    This is used by `np.reshape()`, so the shape can contain a `-1`.
-
-*Notes*
-
-When storing information to disk, only NumPy arrays are supported
-currently. They are saved as flat binary files. This is why the
-dtype and shape must be registered here, otherwise that information
-is lost. This metadata is not saved in the files.
-
-##### `ClusterStore.register_item(item_cls, **kwargs)`
-
-Register a `StoreItem` class in the store.
-
-A `StoreItem` class is responsible for storing some data to disk
-and memory. It must register one or several pieces of data.
-
-#### Properties
-
-##### `ClusterStore.cluster_ids`
-
-All cluster ids appearing in the `spikes_per_cluster` dictionary.
-
-##### `ClusterStore.disk_store`
-
-Manage the cache of per-cluster voluminous data.
-
-##### `ClusterStore.files`
-
-List of files present in the disk store.
-
-##### `ClusterStore.memory_store`
-
-Hold some cluster statistics.
-
-##### `ClusterStore.old_clusters`
-
-Clusters in the disk store that are no longer in the clustering.
-
-##### `ClusterStore.path`
-
-Path to the disk store cache.
-
-##### `ClusterStore.spikes_per_cluster`
-
-Dictionary `{cluster_id: spike_ids}`.
-
-##### `ClusterStore.status`
-
-Return the current status of the cluster store.
-
-##### `ClusterStore.store_items`
-
-List of registered store items.
-
-##### `ClusterStore.total_size`
-
-Total size of the disk store.
 
 ### phy.cluster.manual.Clustering
 
@@ -492,45 +350,12 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `Session.create_view(name, **kwargs)`
-
-Create a view without displaying it.
-
-*Parameters*
-
-
-* `name` (str)
-
-    Can be `waveforms`, `features`, `correlograms`, or `traces`.
-
-* `cluster_ids` (array-like)
-
-    List of clusters to show.
-
-*Returns*
-
-
-* `view_model` (ViewModel instance)
-
-
 ##### `Session.emit(event, *args, **kwargs)`
 
 Call all callback functions registered with an event.
 
 Any positional and keyword arguments can be passed here, and they will
 be fowarded to the callback functions.
-
-##### `Session.get_internal_settings(key, default=None, scope='experiment')`
-
-Get an internal settings.
-
-##### `Session.get_user_settings(key)`
-
-Load a user settings.
-
-##### `Session.load_user_settings(path=None, file_namespace=None)`
-
-
 
 ##### `Session.merge(clusters)`
 
@@ -563,23 +388,33 @@ Open a .kwik file.
 
 Redo the last undone action.
 
+##### `Session.register_statistic(func)`
+
+Decorator registering a custom cluster statistic.
+
+*Parameters*
+
+
+* `func` (function)
+
+    A function that takes a cluster index as argument, and returns
+    some statistics (generally a NumPy array).
+
+*Notes*
+
+This function will be called on every cluster when a dataset is opened.
+It is also automatically called on new clusters when clusters change.
+You can access the data from the model and from the cluster store.
+
 ##### `Session.save()`
 
 Save the spike clusters and cluster groups to the Kwik file.
 
-##### `Session.set_internal_settings(key, value, scope='experiment')`
-
-Set an internal settings.
-
-##### `Session.set_user_settings(key=None, value=None)`
-
-Set a user settings.
-
-##### `Session.show_gui()`
+##### `Session.show_gui(config=None, **kwargs)`
 
 Show a new manual clustering GUI.
 
-##### `Session.show_view(name, **kwargs)`
+##### `Session.show_view(name, cluster_ids, **kwargs)`
 
 Create and display a new view.
 
@@ -597,7 +432,7 @@ Create and display a new view.
 *Returns*
 
 
-* `view` (VisPy canvas instance)
+* `vm` (`ViewModel` instance)
 
 
 ##### `Session.split(spikes)`
@@ -624,71 +459,9 @@ Undo the last clustering action.
 
 Array of all cluster ids used in the current clustering.
 
-### phy.cluster.manual.StoreItem
+##### `Session.n_clusters`
 
-A class describing information stored in the cluster store.
-
-*Parameters*
-
-
-* `fields` (list)
-
-    A list of pairs `(field_name, storage_location)`.
-    `storage_location` is either `memory` or `disk`.
-
-* `model` (Model)
-
-    A `Model` instance for the current dataset.
-
-* `memory_store` (MemoryStore)
-
-    The `MemoryStore` instance for the current dataset.
-
-* `disk_store` (DiskStore)
-
-    The DiskStore instance for the current dataset.
-
-#### Methods
-
-##### `StoreItem.is_consistent(cluster, spikes)`
-
-Return whether the stored item is consistent.
-
-To be overriden.
-
-##### `StoreItem.on_cluster(up)`
-
-Update the stored data when a clustering change happens.
-
-May be overridden.
-
-No need to delete old clusters here.
-
-##### `StoreItem.store_all_clusters(mode=None)`
-
-Copy all data for that item from the model to the cluster store.
-
-##### `StoreItem.store_cluster(cluster, spikes, mode=None)`
-
-Store data for a cluster from the model to the store.
-
-May be overridden.
-
-No need to delete old clusters here.
-
-##### `StoreItem.to_generate(mode=None)`
-
-Return the list of clusters that need to be regenerated.
-
-#### Properties
-
-##### `StoreItem.cluster_ids`
-
-Array of cluster ids.
-
-##### `StoreItem.spikes_per_cluster`
-
-Spikes per cluster.
+Number of clusters in the current clustering.
 
 ### phy.cluster.manual.Wizard
 
@@ -806,6 +579,10 @@ Numbered of processed clusters so far.
 
 A cluster is considered processed if its group is not `None`.
 
+##### `Wizard.selection`
+
+Return the current best/match cluster selection.
+
 ## phy.electrode
 
 Electrodes.
@@ -841,6 +618,144 @@ Input/output.
 ##### `phy.io.open_h5(filename, mode=None)`
 
 Open an HDF5 file and return a File instance.
+
+### phy.io.ClusterStore
+
+Hold per-cluster information on disk and in memory.
+
+*Note*
+
+Currently, this is used to accelerate access to features, masks, and
+cluster statistics. Features and masks of all clusters are stored in a
+disk cache. Cluster statistics are computed when loading a dataset,
+and are kept in memory afterwards. All data is dynamically updated
+when clustering changes occur.
+
+#### Methods
+
+##### `ClusterStore.clean()`
+
+Erase all old files in the store.
+
+##### `ClusterStore.clear()`
+
+Erase all files in the store.
+
+##### `ClusterStore.display_status()`
+
+Display the current status of the cluster store.
+
+##### `ClusterStore.generate(mode=None)`
+
+Generate the cluster store.
+
+*Parameters*
+
+
+* `mode` (str (default is None))
+
+    How the cluster store should be generated. Options are:
+
+    * None or `default`: only regenerate the missing or inconsistent
+      clusters
+    * `force`: fully regenerate the cluster
+    * `read-only`: just load the existing files, do not write anything
+
+##### `ClusterStore.is_consistent()`
+
+Return whether the cluster store is probably consistent.
+
+Return true if all cluster stores files exist and have the expected
+file size.
+
+##### `ClusterStore.load(name, clusters, spikes=None, spikes_per_cluster=None)`
+
+Load some data for a number of clusters and spikes.
+
+##### `ClusterStore.register_field(name, location, dtype=None, shape=None)`
+
+Register a new piece of data to store on memory or on disk.
+
+*Parameters*
+
+
+* `name` (str)
+
+    The name of the field.
+
+* `location` (str)
+
+    `memory` or `disk`.
+
+* `dtype` (NumPy dtype or None)
+
+    The dtype of arrays stored for that field. This is only used when
+    the location is `disk`.
+
+* `shape` (tuple or None)
+
+    The shape of arrays. This is only used when the location is `disk`.
+    This is used by `np.reshape()`, so the shape can contain a `-1`.
+
+*Notes*
+
+When storing information to disk, only NumPy arrays are supported
+currently. They are saved as flat binary files. This is why the
+dtype and shape must be registered here, otherwise that information
+is lost. This metadata is not saved in the files.
+
+##### `ClusterStore.register_item(item_cls, **kwargs)`
+
+Register a `StoreItem` class in the store.
+
+A `StoreItem` class is responsible for storing some data to disk
+and memory. It must register one or several pieces of data.
+
+##### `ClusterStore.update_spikes_per_cluster(spikes_per_cluster)`
+
+
+
+#### Properties
+
+##### `ClusterStore.cluster_ids`
+
+All cluster ids appearing in the `spikes_per_cluster` dictionary.
+
+##### `ClusterStore.disk_store`
+
+Manage the cache of per-cluster voluminous data.
+
+##### `ClusterStore.files`
+
+List of files present in the disk store.
+
+##### `ClusterStore.memory_store`
+
+Hold some cluster statistics.
+
+##### `ClusterStore.old_clusters`
+
+Clusters in the disk store that are no longer in the clustering.
+
+##### `ClusterStore.path`
+
+Path to the disk store cache.
+
+##### `ClusterStore.spikes_per_cluster`
+
+Dictionary `{cluster_id: spike_ids}`.
+
+##### `ClusterStore.status`
+
+Return the current status of the cluster store.
+
+##### `ClusterStore.store_items`
+
+List of registered store items.
+
+##### `ClusterStore.total_size`
+
+Total size of the disk store.
 
 ### phy.io.File
 
@@ -1170,6 +1085,10 @@ Every element is the cluster identifier of a spike.
 
 The shape is `(n_spikes,)`.
 
+##### `KwikModel.spike_ids`
+
+List of spike ids.
+
 ##### `KwikModel.spike_recordings`
 
 The recording index for each spike.
@@ -1210,6 +1129,91 @@ done on the fly.
 
 The shape is `(n_spikes, n_samples, n_channels)`.
 
+### phy.io.StoreItem
+
+A class describing information stored in the cluster store.
+
+*Parameters*
+
+
+* `fields` (list)
+
+    A list of pairs `(field_name, storage_location)`.
+    `storage_location` is either `memory` or `disk`.
+
+* `model` (Model)
+
+    A `Model` instance for the current dataset.
+
+* `memory_store` (MemoryStore)
+
+    The `MemoryStore` instance for the current dataset.
+
+* `disk_store` (DiskStore)
+
+    The DiskStore instance for the current dataset.
+
+#### Methods
+
+##### `StoreItem.is_consistent(cluster, spikes)`
+
+Return whether the stored item is consistent.
+
+To be overriden.
+
+##### `StoreItem.on_assign(up)`
+
+Called when a new split occurs.
+
+May be overriden.
+
+##### `StoreItem.on_cluster(up=None)`
+
+Called when the clusters change.
+
+Old data is kept on disk and in memory, which is useful for
+undo and redo. The `cluster_store.clean()` method can be called to
+delete the old files.
+
+Nothing happens during undo and redo (the data is already there).
+
+##### `StoreItem.on_merge(up)`
+
+Called when a new merge occurs.
+
+May be overriden if there's an efficient way to update the data
+after a merge.
+
+##### `StoreItem.store_all_clusters(mode=None)`
+
+Copy all data for that item from the model to the cluster store.
+
+##### `StoreItem.store_cluster(cluster, spikes=None, mode=None)`
+
+Store data for a cluster from the model to the store.
+
+May be overridden.
+
+No need to delete old clusters here.
+
+##### `StoreItem.to_generate(mode=None)`
+
+Return the list of clusters that need to be regenerated.
+
+#### Properties
+
+##### `StoreItem.cluster_ids`
+
+Array of cluster ids.
+
+##### `StoreItem.progress_reporter`
+
+
+
+##### `StoreItem.spikes_per_cluster`
+
+Spikes per cluster.
+
 ## phy.plot
 
 Interactive and static visualization of data.
@@ -1221,6 +1225,10 @@ Base class for a VisPy canvas with spike data.
 Display a main `BaseSpikeVisual` with pan zoom.
 
 #### Methods
+
+##### `BaseSpikeCanvas.emit(name, **kwargs)`
+
+
 
 ##### `BaseSpikeCanvas.on_draw(event)`
 
@@ -1253,6 +1261,8 @@ Mark data items to be prepared for GPU.
 ##### `BaseSpikeVisual.cluster_colors`
 
 Colors of the displayed clusters.
+
+The first color is the color of the smallest cluster.
 
 ##### `BaseSpikeVisual.cluster_ids`
 
@@ -1288,6 +1298,10 @@ A VisPy canvas displaying correlograms.
 
 #### Methods
 
+##### `CorrelogramView.emit(name, **kwargs)`
+
+
+
 ##### `CorrelogramView.on_draw(event)`
 
 Draw the correlograms visual.
@@ -1309,8 +1323,14 @@ A VisPy canvas displaying features.
 *Interactivity*
 
 * set marker size: `ctrl++`, `ctrl+-`
+* add lasso point: `ctrl+left click`
+* clear lasso: `ctrl+right click`
 
 #### Methods
+
+##### `FeatureView.emit(name, **kwargs)`
+
+
 
 ##### `FeatureView.on_draw(event)`
 
@@ -1320,11 +1340,23 @@ Draw the features in a grid view.
 
 Handle key press events.
 
+##### `FeatureView.on_mouse_press(e)`
+
+
+
 ##### `FeatureView.on_resize(event)`
 
 Resize the OpenGL context.
 
+##### `FeatureView.update_dimensions(dimensions)`
+
+
+
 #### Properties
+
+##### `FeatureView.diagonal_dimensions`
+
+Dimensions.
 
 ##### `FeatureView.dimensions`
 
@@ -1344,6 +1376,25 @@ Display a grid of multidimensional features.
 
 Draw the waveforms.
 
+##### `FeatureVisual.project(data, box)`
+
+Project data to a subplot's two-dimensional subspace.
+
+*Parameters*
+
+* `data` (array)
+
+    The shape is `(n_points, n_channels, n_features)`.
+
+* `box` (2-tuple)
+
+    The `(row, col)` of the box.
+
+*Notes*
+
+The coordinate system is always the world coordinate system, i.e.
+`[-1, 1]`.
+
 ##### `FeatureVisual.set_to_bake(*bakes)`
 
 Mark data items to be prepared for GPU.
@@ -1354,6 +1405,8 @@ Mark data items to be prepared for GPU.
 
 Colors of the displayed clusters.
 
+The first color is the color of the smallest cluster.
+
 ##### `FeatureVisual.cluster_ids`
 
 Cluster ids of the displayed spikes.
@@ -1361,6 +1414,15 @@ Cluster ids of the displayed spikes.
 ##### `FeatureVisual.cluster_order`
 
 List of selected clusters in display order.
+
+##### `FeatureVisual.diagonal_dimensions`
+
+Displayed dimensions on the diagonal y axis.
+
+This is a list of items which can be:
+
+* tuple `(channel_id, feature_idx)`
+* `'time'`
 
 ##### `FeatureVisual.dimensions`
 
@@ -1539,6 +1601,10 @@ Key press event.
 
 Mouse move event.
 
+##### `PanZoomGrid.on_mouse_press(event)`
+
+Mouse press event.
+
 ##### `PanZoomGrid.on_mouse_wheel(event)`
 
 Mouse wheel event.
@@ -1625,6 +1691,10 @@ A VisPy canvas displaying traces.
 
 #### Methods
 
+##### `TraceView.emit(name, **kwargs)`
+
+
+
 ##### `TraceView.on_draw(event)`
 
 Draw the main visual.
@@ -1651,8 +1721,13 @@ A VisPy canvas displaying waveforms.
 
 * change waveform scaling: `ctrl+arrows`
 * change probe scaling: `shift+arrows`
+* select channel: `key+click`
 
 #### Methods
+
+##### `WaveformView.emit(name, **kwargs)`
+
+
 
 ##### `WaveformView.on_draw(event)`
 
@@ -1661,6 +1736,14 @@ Draw the visual.
 ##### `WaveformView.on_key_press(event)`
 
 Handle key press events.
+
+##### `WaveformView.on_key_release(event)`
+
+
+
+##### `WaveformView.on_mouse_press(e)`
+
+
 
 ##### `WaveformView.on_mouse_wheel(event)`
 
@@ -1678,17 +1761,37 @@ Scale of the waveforms.
 
 This is a pair of scalars.
 
+##### `WaveformView.overlap`
+
+Whether to overlap waveforms.
+
 ##### `WaveformView.probe_scale`
 
 Scale of the probe.
 
 This is a pair of scalars.
 
+##### `WaveformView.show_mean`
+
+Whether to show_mean waveforms.
+
 ### phy.plot.WaveformVisual
 
 Display waveforms with probe geometry.
 
 #### Methods
+
+##### `WaveformVisual.channel_hover(position)`
+
+Return the channel id closest to the mouse pointer.
+
+*Parameters*
+
+
+* `position` (tuple)
+
+    The normalized coordinates of the mouse pointer, in world
+    coordinates (in `[-1, 1]`).
 
 ##### `WaveformVisual.draw()`
 
@@ -1700,11 +1803,19 @@ Mark data items to be prepared for GPU.
 
 #### Properties
 
+##### `WaveformVisual.alpha`
+
+Alpha transparency (between 0 and 1).
+
 ##### `WaveformVisual.box_scale`
 
 Scale of the waveforms.
 
 This is a pair of scalars.
+
+##### `WaveformVisual.channel_order`
+
+
 
 ##### `WaveformVisual.channel_positions`
 
@@ -1715,6 +1826,8 @@ This is a `(n_channels, 2)` array.
 ##### `WaveformVisual.cluster_colors`
 
 Colors of the displayed clusters.
+
+The first color is the color of the smallest cluster.
 
 ##### `WaveformVisual.cluster_ids`
 
@@ -1735,6 +1848,10 @@ Masks of the displayed spikes.
 ##### `WaveformVisual.n_clusters`
 
 Number of displayed clusters.
+
+##### `WaveformVisual.overlap`
+
+Whether to overlap waveforms.
 
 ##### `WaveformVisual.probe_scale`
 
@@ -1828,6 +1945,18 @@ Unregister a logger.
 
 Generate a warning.
 
+### phy.utils.Bunch
+
+A dict with additional dot syntax.
+
+#### Methods
+
+##### `Bunch.copy()`
+
+
+
+#### Properties
+
 ### phy.utils.DockWindow
 
 A Qt main window holding docking Qt or VisPy widgets.
@@ -1838,7 +1967,7 @@ A Qt main window holding docking Qt or VisPy widgets.
 
 Add an action with a keyboard shortcut.
 
-##### `DockWindow.add_view(view, title='view', position='right', closable=True, floatable=True, floating=None, **kwargs)`
+##### `DockWindow.add_view(view, title='view', position=None, closable=True, floatable=True, floating=None, **kwargs)`
 
 Add a widget to the main window.
 
@@ -1846,7 +1975,14 @@ Add a widget to the main window.
 
 Qt slot when the window is closed.
 
-##### `DockWindow.list_views(title='')`
+##### `DockWindow.connect_views(name_0, name_1)`
+
+Decorator for a function that accepts any pair of views.
+
+This is used to connect any view of type `name_0` to any other view
+of type `name_1`.
+
+##### `DockWindow.list_views(title='', is_visible=True)`
 
 List all views which title start with a given string.
 
@@ -1972,6 +2108,16 @@ Return wheter the task has completed.
 
 Set the task as complete.
 
+##### `ProgressReporter.set_complete_message(message)`
+
+Set a complete message.
+
+##### `ProgressReporter.set_progress_message(message)`
+
+Set a progress message.
+
+The string needs to contain `{progress}`.
+
 ##### `ProgressReporter.unconnect(*funcs)`
 
 Unconnect specified callback functions.
@@ -1989,4 +2135,51 @@ Current value (integer).
 ##### `ProgressReporter.value_max`
 
 Maximum value.
+
+### phy.utils.Selector
+
+Object representing a selection of spikes or clusters.
+
+#### Methods
+
+##### `Selector.on_cluster(up=None)`
+
+Callback method called when the clustering has changed.
+
+This currently does nothing, i.e. the spike selection remains
+unchanged when merges and splits occur.
+
+##### `Selector.wrapped(*args, **kwargs)`
+
+
+
+##### `Selector.wrapped(*args, **kwargs)`
+
+
+
+#### Properties
+
+##### `Selector.excerpt_size`
+
+Maximum number of spikes allowed in the selection.
+
+##### `Selector.n_clusters`
+
+
+
+##### `Selector.n_spikes`
+
+
+
+##### `Selector.n_spikes_max`
+
+Maximum number of spikes allowed in the selection.
+
+##### `Selector.selected_clusters`
+
+Cluster ids appearing in the current spike selection.
+
+##### `Selector.selected_spikes`
+
+Ids of the selected spikes.
 
