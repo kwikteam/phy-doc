@@ -2,6 +2,10 @@
 
 The manual clustering subpackage (`phy.cluster.manual`) is the main component of phy 0.1.0. It provides a programmatic Python API as well as a lightweight graphical interface to manually refine the automatic clustering.
 
+There is a light command-line tool to start the GUI on a dataset. Type the following in a terminal: `phy cluster manual myexperiment.kwik`. Add `-i` to start an IPython console at the same time.
+
+In the following, we describe the API in case you want more control on the process.
+
 ### Session
 
 The `Session` is the main interface to the manual clustering engine. Use tab completion in IPython to discover the methods. See also the [API documentation](https://github.com/kwikteam/phy-doc/blob/master/api.md#phyclustermanualsession).
@@ -10,12 +14,20 @@ Let's create a new manual clustering session using an already automatically clus
 
 ```python
 >>> from phy.cluster.manual import Session
+```
+
+```python
+>>> kwik_path = 'myexperiment.kwik'
 >>> session = Session(kwik_path)
+2015-05-21 11:54:32  session:118             Saving a backup of the Kwik file in myexperiment.kwik.bak.
+Features and masks initialized.[K
+Waveforms initialized.[K
+Statistics initialized.[K
 ```
 
 > Putting your data files on a SSD is **highly recommended** for performance reasons.
 
-This may take a while the first time, because a **cluster store** is automatically created. This folder in `your_data.phy/cluster_store/` contains a copy of all masks and features for every cluster (one file per cluster). This makes performance orders of magnitude faster than fetching data from the HDF5 kwik files. The cluster store is transparently handled by the engine and you don't have to worry about it. The cluster store is also used to compute various cluster statistics at initialization time so that the interface is fast during manual clustering.
+This may take a while the first time, because a **cluster store** is automatically created. This folder in `myexperiment.phy/cluster_store/` contains a copy of all masks, features, and part of the waveforms for every cluster (one file per cluster). This makes the GUI orders of magnitude faster than fetching data from the HDF5 kwik files. The cluster store is transparently handled by the engine and you don't have to worry about it. The cluster store is also used to compute various cluster statistics at initialization time so that the interface is fast during manual clustering.
 
 Oncce the session is loaded, you can view the data and start clustering it. See the API documentation for more details.
 
@@ -26,7 +38,7 @@ Type `session.show_gui()` to launch the clustering GUI. This minimal GUI provide
 * A window where to dock visualization widgets.
 * Keyboard shortcuts to go through your best clusters and a list of potential merge candidates (**wizard**).
 
-> Type `h` for the list of keyboard shortcuts.
+> Type `ctrl+h` to see the list of keyboard shortcuts.
 
 The wizard is there to save you a lot of time clustering your data manually. It makes you propositions with 1 or 2 clusters, and you have to decide an outcome based on the views in the window.
 
