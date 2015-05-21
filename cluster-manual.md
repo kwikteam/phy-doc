@@ -17,7 +17,7 @@ The `Session` is the main interface to the manual clustering engine. Use tab com
 ```python
 >>> import phy
 >>> phy.enable_qt()
-2015-05-21 14:18:21  dock:144                Qt event loop activated.
+2015-05-21 14:39:49  dock:144                Qt event loop activated.
 ```
 
 You can also type `%gui qt`.
@@ -137,6 +137,22 @@ All actions are accessible from the Python API. Use tab completion on `session.g
 
 ```python
 >>> gui = session.show_gui()
+```
+
+#### Adding views
+
+You can add new views. Here is how to create a new CCG view for a given set of clusters:
+
+```python
+>>> view = session.show_view('correlograms', [2, 3, 5, 7], winsize_bins=101, binsize=10)
+```
+
+Here, `winsize_bins` is the size of the CCG window in number of bins (**must be an odd number**), whereas `binsize` is the bin size in number of samples.
+
+Now you can add this view to the GUI: the shown clusters will then be bound to the current cluster selection in the GUI.
+
+```python
+>>> gui.add_view(view)
 ```
 
 ### Changing the shank or clustering
@@ -330,6 +346,22 @@ And it is available from the store like the other statistics:
 
 #### Integrating your own plots in the GUI
 
+Coming soon...
+
 #### User parameters
 
+You can put custom settings in `~/.phy/user_settings.py`. See the [default settings here](https://github.com/kwikteam/phy/blob/master/phy/cluster/manual/default_settings.py).
+
 #### Internal settings
+
+Some internal settings (especially related to the views and the GUI, such as the position of the views) are automatically saved in `~/.phy/internal_settings`. You can delete this file if you have some strange bugs in the GUI.
+
+You can also set some settings manually:
+
+```python
+>>> session.settings['hello'] = 'world'
+```
+
+```python
+>>> session.settings.save()
+```
