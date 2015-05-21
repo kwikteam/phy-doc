@@ -10,6 +10,20 @@ In the following, we describe the API in case you want more control on the proce
 
 The `Session` is the main interface to the manual clustering engine. Use tab completion in IPython to discover the methods. See also the [API documentation](https://github.com/kwikteam/phy-doc/blob/master/api.md#phyclustermanualsession).
 
+#### Activating Qt event loop integration in IPython
+
+**Important**: if you use the GUI in the notebook, don't forget to do this at the beginning:
+
+```python
+>>> import phy
+>>> phy.enable_qt()
+2015-05-21 12:35:18  dock:144                Qt event loop activated.
+```
+
+You can also type `%gui qt`.
+
+#### Starting a session
+
 Let's create a new manual clustering session using an already automatically clustered dataset:
 
 ```python
@@ -19,7 +33,6 @@ Let's create a new manual clustering session using an already automatically clus
 ```python
 >>> kwik_path = 'myexperiment.kwik'
 >>> session = Session(kwik_path)
-2015-05-21 11:54:32  session:118             Saving a backup of the Kwik file in myexperiment.kwik.bak.
 Features and masks initialized.[K
 Waveforms initialized.[K
 Statistics initialized.[K
@@ -51,18 +64,23 @@ Here is the intended workflow:
 * You have keyboard shortcuts to:
     * Merge the two displayed clusters.
     * Move either or both clusters to cluster groups (noise, MUA, good).
+* You can also draw a lasso in the feature view to create a new cluster out of the enclosed spikes (`ctrl+click` and `k` to split).
 
 > Better quality and similarity measures will be used in the future. You'll also be able to write your own functions in Python.
 
 ![Wizard GUI screenshot](images/cluster-manual-gui.png)
+
+All actions are accessible from the Python API. Use tab completion on `session.gui` and look at the [API](https://github.com/kwikteam/phy-doc/blob/master/api.md#phyclustermanualclustermanualgui).
+
+```python
+>>> gui = session.show_gui()
+```
 
 ### The cluster store
 
 #### Features and masks
 
 #### Cluster statistics
-
-### Visualization
 
 ### Extending and customizing the interface
 
