@@ -6,6 +6,8 @@
 
 This library provides a Python API to analyze and visualize data interactively, as well as user-friendly graphical interfaces to quickly inspect and refine your data.
 
+The API is highly modular and allows you to adapt it to your workflows. For example, you can create your own custom GUI.
+
 
 ### Use-cases
 
@@ -45,8 +47,8 @@ The 0.3.0 release (~Fall 2015) will bring further improvements and optimizations
 
 Here is the table of contents of the user guide:
 
-* 0. [Quick start guide](quick-start.ipynb)
-* 1. [Installation](install.md)
+* 0. [Installation](install.md)
+* 1. [Quick start guide](quick-start.ipynb)
 * 2. [Working with Kwik files](kwik-model.md)
 * 3. [Interactive plotting](plot.md)
 * 4. Spike detection (planned for 0.2.0)

@@ -8,7 +8,7 @@ The [**Kwik format**](https://github.com/klusta-team/kwiklib/wiki/Kwik-format) f
 * `.kwx`: features, waveforms
 * `.raw.kwd`: raw extracellular traces
 
-phy 0.1.0 requires you to provide these files. You can use the [`klusta`](https://github.com/klusta-team/example) program to generate them from raw data in `.dat` format (flat binary file with int16 samples). As part of this process, spikes are detected, extracted, and grouped into putative clusters.
+phy 0.1.0 requires you to provide all of these files. You can use the [`klusta`](https://github.com/klusta-team/example) program to generate them from raw data in `.dat` format (flat binary file with int16 samples). As part of this process, spikes are detected, extracted, and grouped into putative clusters.
 
 > OpenEphys can also generate Kwik files. Feel free to contact us if you get any problem or incompatibility.
 
@@ -28,12 +28,14 @@ model = KwikModel(kwik_path)
 
 You should have `.kwx` and `.raw.kwd` in the same folder with the same basename.
 
-The waveforms in the `.kwx` file are not used at all in phy: rather, they are dynamically extracted and filtered from the raw data. This is because storing waveforms takes too much space.
+The waveforms in the `.kwx` file are not used at all in phy: rather, they are dynamically extracted and filtered from the raw data. This is because storing waveforms takes too much storage space.
 
 See [API](https://github.com/kwikteam/phy-doc/blob/master/api.md#phyiokwikmodel) for more details.
 
 ### Spikes and clusters
 
+```python
+```
 
 ### Metadata
 

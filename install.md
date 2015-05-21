@@ -8,8 +8,8 @@ There are several dependencies:
 * NumPy (mandatory)
 * SciPy (for filtering waveforms)
 * h5py (for reading/saving Kwik files)
-* VisPy (for interactive plotting)
-* PyQt4 (for the graphical interfaces)
+* VisPy (for interactive plotting, **development version on GitHub required**)
+* PyQt4 (for graphical interfaces)
 * matplotlib (optional, for plotting)
 * IPython and its notebook (optional, but recommended for interactive use)
 * requests (for downloading test data)
@@ -23,9 +23,9 @@ Here are further dependencies useful for development (advanced users):
 * flake8 (for testing code quality)
 * responses (for testing downloading functionality)
 
-**It is highly recommended to use the free Miniconda distribution**. This software comes with a package manager that lets you easily install, update, and remove Python packages.
+**It is highly recommended to use the free Miniconda distribution**. This software comes with a package manager named **conda** that lets you easily install, update, and remove Python packages.
 
-> **Miniconda** is a lightweight Python distribution. **Anaconda** is Miniconda + many common Python packages. **Conda** is the package manager used by Miniconda and Anaconda. We recommend that you first install Miniconda, and then use Conda to install the packages you need.
+> **Miniconda** is a lightweight Python distribution. **Anaconda** is Miniconda + many common Python packages. **Conda** is the package manager used by Miniconda and Anaconda. We recommend that you first install Miniconda, and then use Conda to install just the packages you need.
 
 Advanced users may use other Python distributions, but we will only provide installation-related support on Miniconda/Anaconda.
 
@@ -69,7 +69,7 @@ conda install pip numpy matplotlib scipy h5py pyqt ipython-notebook requests
 pip install git+https://github.com/vispy/vispy.git
 ```
 
-You'll need to type `source activate phy` in your console **every time you want to use phy**. This is to isolate the Python installation from the rest of your system.
+You'll need to type `source activate phy` in your console **every time you want to use phy**. This is to isolate the Python installation from the rest of your system. This is not required but strongly recommended.
 
 ### 3. Installing phy
 
@@ -86,7 +86,7 @@ You can use the same command at any time to update the package to the latest ver
 
 ### 4. Use phy
 
-Open an IPython terminal with `ipython` or a notebook server with `ipython notebook`. Using the notebook is recommended for extended use. The notebook offers a web interface to write Python code, run analyses, and display visualizations.
+Open an IPython terminal with `ipython` or a notebook server with `ipython notebook`. Using the notebook is recommended when you want to do custom analyses. The notebook offers a web interface to write Python code, run analyses, and display visualizations.
 
 Import phy with `import phy`. To import a subpackage: `import phy.io`, for example. Then use tab completion to find the functions and classes available.
 
