@@ -459,6 +459,13 @@ Undo the last clustering action.
 
 Array of all cluster ids used in the current clustering.
 
+##### `Session.has_unsaved_changes`
+
+Whether there are unsaved changes in the model.
+
+If true, a prompt message for saving will be displayed when closing
+the GUI.
+
 ##### `Session.n_clusters`
 
 Number of clusters in the current clustering.
@@ -1320,12 +1327,6 @@ Displayed cluster ids.
 
 A VisPy canvas displaying features.
 
-*Interactivity*
-
-* set marker size: `ctrl++`, `ctrl+-`
-* add lasso point: `ctrl+left click`
-* clear lasso: `ctrl+right click`
-
 #### Methods
 
 ##### `FeatureView.emit(name, **kwargs)`
@@ -1488,12 +1489,6 @@ You can also control programmatically the transform using:
 * zmin  : minimum zoom level
 * zmax  : maximum zoom level
 
-*Interactivity*
-
-* pan: `arrows`, left-drag
-* zoom: `+`, `-`, wheel, right-drag
-* reset: `r`
-
 #### Methods
 
 ##### `PanZoom.add(programs)`
@@ -1574,14 +1569,6 @@ This is used in a grid view with independent per-subplot pan & zoom.
 
 The currently-active subplot depends on where the cursor was when
 the mouse was clicked.
-
-*Interactivity*
-
-* subplot pan: `arrows`, left-drag
-* subplot zoom: `+`, `-`, right-drag
-* subplot reset: `r`
-* global zoom: `shift+wheel`
-* global reset: `shift+r`
 
 #### Methods
 
@@ -1685,10 +1672,6 @@ Whether to zoom toward the pointer position.
 
 A VisPy canvas displaying traces.
 
-*Interactivity*
-
-* change channel scale: `ctrl+up`, `ctrl+down`
-
 #### Methods
 
 ##### `TraceView.emit(name, **kwargs)`
@@ -1716,12 +1699,6 @@ Vertical scale of the traces.
 ### phy.plot.WaveformView
 
 A VisPy canvas displaying waveforms.
-
-*Interactivity*
-
-* change waveform scaling: `ctrl+arrows`
-* change probe scaling: `shift+arrows`
-* select channel: `key+click`
 
 #### Methods
 
