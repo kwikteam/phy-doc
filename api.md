@@ -8,8 +8,11 @@ containing up to thousands of channels.
 
 ### [phy.cluster.manual](#phyclustermanual)
 
+* [phy.cluster.manual.ClusterManualGUI](#phyclustermanualclustermanualgui)
 * [phy.cluster.manual.Clustering](#phyclustermanualclustering)
+* [phy.cluster.manual.GUICreator](#phyclustermanualguicreator)
 * [phy.cluster.manual.Session](#phyclustermanualsession)
+* [phy.cluster.manual.ViewCreator](#phyclustermanualviewcreator)
 * [phy.cluster.manual.Wizard](#phyclustermanualwizard)
 
 
@@ -72,6 +75,151 @@ containing up to thousands of channels.
 ## phy.cluster.manual
 
 Manual clustering facilities.
+
+### phy.cluster.manual.ClusterManualGUI
+
+Manual clustering GUI.
+
+This object represents a main window with:
+
+* multiple views
+* a wizard panel
+* high-level clustering methods
+* global keyboard shortcuts
+
+#### Methods
+
+##### `ClusterManualGUI.add_view(item, **kwargs)`
+
+Add a new view model instance to the GUI.
+
+##### `ClusterManualGUI.close()`
+
+Close the GUI.
+
+##### `ClusterManualGUI.connect(func=None, event=None, set_method=False)`
+
+Register a callback function to a given event.
+
+To register a callback function to the `spam` event, where `obj` is
+an instance of a class deriving from `EventEmitter`:
+
+```python
+@obj.connect
+def on_spam(arg1, arg2):
+    pass
+```
+
+This is called when `obj.emit('spam', arg1, arg2)` is called.
+
+Several callback functions can be registered for a given event.
+
+The registration order is conserved and may matter in applications.
+
+##### `ClusterManualGUI.emit(event, *args, **kwargs)`
+
+Call all callback functions registered with an event.
+
+Any positional and keyword arguments can be passed here, and they will
+be fowarded to the callback functions.
+
+##### `ClusterManualGUI.exit()`
+
+Close the GUI.
+
+##### `ClusterManualGUI.first()`
+
+Go to the first cluster proposed by the wizard.
+
+##### `ClusterManualGUI.get_views(name=None)`
+
+Return the list of views of a given type.
+
+##### `ClusterManualGUI.last()`
+
+Go to the last cluster proposed by the wizard.
+
+##### `ClusterManualGUI.merge()`
+
+Merge all selected clusters together.
+
+##### `ClusterManualGUI.next()`
+
+Go to the next cluster proposed by the wizard.
+
+##### `ClusterManualGUI.pin()`
+
+Pin the current best cluster.
+
+##### `ClusterManualGUI.previous()`
+
+Go to the previous cluster proposed by the wizard.
+
+##### `ClusterManualGUI.redo()`
+
+Redo the last clustering action.
+
+##### `ClusterManualGUI.reset_gui()`
+
+Reset the GUI configuration.
+
+##### `ClusterManualGUI.reset_wizard()`
+
+Restart the wizard.
+
+##### `ClusterManualGUI.save()`
+
+Save the clustering changes to the `.kwik` file.
+
+##### `ClusterManualGUI.select(cluster_ids)`
+
+Select clusters.
+
+##### `ClusterManualGUI.show()`
+
+Show the GUI
+
+##### `ClusterManualGUI.show_shortcuts()`
+
+Show the list off all keyboard shortcuts.
+
+##### `ClusterManualGUI.split()`
+
+Create a new cluster out of the selected spikes.
+
+##### `ClusterManualGUI.start()`
+
+Start the wizard.
+
+##### `ClusterManualGUI.unconnect(*funcs)`
+
+Unconnect specified callback functions.
+
+##### `ClusterManualGUI.undo()`
+
+Undo the last clustering action.
+
+##### `ClusterManualGUI.unpin()`
+
+Unpin the current best cluster.
+
+#### Properties
+
+##### `ClusterManualGUI.dock_widgets`
+
+
+
+##### `ClusterManualGUI.main_window`
+
+Dock main window.
+
+##### `ClusterManualGUI.selected_clusters`
+
+The list of selected clusters.
+
+##### `ClusterManualGUI.title`
+
+Title of the main window.
 
 ### phy.cluster.manual.Clustering
 
@@ -302,6 +450,44 @@ Array of all spike ids.
 
 A dictionary `{cluster: spikes}`.
 
+### phy.cluster.manual.GUICreator
+
+
+
+#### Methods
+
+##### `GUICreator.add(config=None, show=True)`
+
+Add a new manual clustering GUI.
+
+*Parameters*
+
+
+* `config` (list)
+
+    A list of tuples `(name, kwargs)` describing the views in the GUI.
+
+* `show` (bool)
+
+    Whether to show the newly-created GUI.
+
+*Returns*
+
+
+* `gui` (ClusterManualGUI)
+
+    The GUI.
+
+#### Properties
+
+##### `GUICreator.gui`
+
+The GUI if there is only one.
+
+##### `GUICreator.guis`
+
+List of GUIs.
+
 ### phy.cluster.manual.Session
 
 A manual clustering session.
@@ -469,6 +655,26 @@ the GUI.
 ##### `Session.n_clusters`
 
 Number of clusters in the current clustering.
+
+### phy.cluster.manual.ViewCreator
+
+Create views from a model.
+
+#### Methods
+
+##### `ViewCreator.add(vm_or_name, show=True, **kwargs)`
+
+Add a new view.
+
+##### `ViewCreator.get(name=None)`
+
+Return the list of views of a given type.
+
+##### `ViewCreator.save_view_params(save_size_pos=True)`
+
+Save all view parameters to user settings.
+
+#### Properties
 
 ### phy.cluster.manual.Wizard
 
