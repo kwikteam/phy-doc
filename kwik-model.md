@@ -190,8 +190,48 @@ Masks of three spikes:
 (3, 32)
 ```
 
+This is the same thing for the features, except that this is now a 2D `(n_spikes, n_channels * n_features)` array:
+
+```python
+>>> model.features.shape
+(18539, 96)
+```
+
+#### Accessing clusters
+
+When you want to access the features from one or a small number of clusters, it is more efficient to use the **cluster store**. This is an internal cache saved along your data in a `myexperiment.phy` subdirectory. It contains a copy of the features, masks, and waveforms, but stored in a format much more amenable to per-cluster access.
+
+```python
+>>> from phy.io import ClusterStore
+```
+
+```python
+>>> cs = ClusterStore(model)
+```
+
+```python
+>>> cs.cluster_ids
+```
+
 
 ### Waveforms
+
+Waveforms are dynamically fetched and filtered from the raw data file. This is all transparent, and you can access them as if it was a `(n_spikes, n_samples, n_channels)` array:
+
+```python
+>>> model.waveforms
+<phy.io.kwik.model.SpikeLoader at 0x7fa9d986be48>
+```
+
+```python
+>>> model.waveforms.shape
+(18539, 32, 32)
+```
+
+```python
+>>> model.waveforms[:10].shape
+(10, 32, 32)
+```
 
 ### Extracellular traces
 
