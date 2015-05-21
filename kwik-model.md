@@ -104,12 +104,94 @@ Here are the default cluster groups:
 
 ### Metadata
 
+The metadata contains information from the PRM file (used by SpikeDetekt2):
 
-### Features
+```python
+>>> model.metadata
+{'assigntofirstclosestmask': 1,
+ 'chunk_overlap': 300,
+ 'chunk_size': 20000,
+ 'connected_component_join_size': 1,
+ 'debug': 0,
+ 'detect_spikes': "b'negative'",
+ 'excerpt_size': 20000,
+ 'experiment_name': "b'test_hybrid_120sec'",
+ 'extract_s_after': 16,
+ 'extract_s_before': 16,
+ 'filter_butter_order': 3,
+ 'filter_high': 9500.0,
+ 'filter_lfp_high': 300,
+ 'filter_lfp_low': 0,
+ 'filter_low': 500.0,
+ 'fullstepevery': 10,
+ 'maskstarts': 100,
+ 'maxiter': 10000,
+ 'maxpossibleclusters': 500,
+ 'nbits': 16,
+ 'nchannels': 32,
+ 'nexcerpts': 50,
+ 'nfeatures_per_channel': 3,
+ 'pca_nwaveforms_max': 10000,
+ 'penaltyk': 0,
+ 'penaltyklogn': 1,
+ 'prb_file': "b'32chan1shankbuzsaki.prb'",
+ 'priorpoint': 1,
+ 'randomseed': 654,
+ 'raw_data_files': "b'test_hybrid_120sec.raw.kwd'",
+ 'sample_rate': 20000,
+ 'savecovariancemeans': 0,
+ 'savesorted': 0,
+ 'splitevery': 100,
+ 'splitfirst': 20,
+ 'subset': 1,
+ 'threshold_strong_std_factor': 4.5,
+ 'threshold_weak_std_factor': 2.0,
+ 'usedistributional': 1,
+ 'usemaskedinitialconditions': 1,
+ 'voltage_gain': 10.0,
+ 'waveforms_nsamples': 32}
+```
+
+### Masks and features
+
+You have two ways to access masks and features. One is faster when you want to access to particular spikes, the other when you want to access to particular clusters. The two methods only differ in the speed of data access.
+
+#### Accessing spikes
+
+The `model.masks` acts as a memory-mapped array to HDF5. You can access the masks of individual spikes. The shape is `(n_spikes, n_channels)`.
+
+```python
+>>> model.masks.shape
+(18539, 32)
+```
+
+> This is an instance of `PartialArray`: in the current file format, masks and features are stored in the same array, for legacy reasons. This partial array dyamically maps indexing to the original HDF5 array. This is why this object is not just an `h5py` dataset.
+
+Mask vector of spike number 10:
+
+```python
+>>> model.masks[10]
+array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  1.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.], dtype=float32)
+```
+
+Masks of the first ten spikes:
+
+```python
+>>> model.masks[:10].shape
+(10, 32)
+```
+
+Masks of three spikes:
+
+```python
+>>> model.masks[[10, 20, 30]].shape
+(3, 32)
+```
 
 
 ### Waveforms
-
 
 ### Extracellular traces
 
