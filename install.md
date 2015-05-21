@@ -86,9 +86,17 @@ You can use the same command at any time to update the package to the latest ver
 
 ### 4. Use phy
 
-Open an IPython terminal with `ipython` or a notebook server with `ipython notebook`. Using the notebook is recommended when you want to do custom analyses. The notebook offers a web interface to write Python code, run analyses, and display visualizations.
+There is a command-line tool that you can use for quick manual clustering:
 
-Import phy with `import phy`. To import a subpackage: `import phy.io`, for example. Then use tab completion to find the functions and classes available.
+```
+phy cluster manual myexperiment.kwik
+```
+
+Use the optional `-i` option to start an interactive IPython terminal at the same time.
+
+You can also start a notebook server with `ipython notebook`. Using the notebook is recommended when you want to do custom analyses. The notebook offers a web interface to write Python code, run analyses, and display visualizations.
+
+In the notebook, import phy with `import phy`. To import a subpackage: `import phy.io`, for example. Then use tab completion to find the functions and classes available. See also the rest of the user guide for more documentation.
 
 ### Remote use
 
