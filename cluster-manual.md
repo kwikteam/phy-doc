@@ -9,8 +9,8 @@ The `Session` is the main interface to the manual clustering engine. Use tab com
 Let's create a new manual clustering session using an already automatically clustered dataset:
 
 ```python
-from phy.cluster.manual import Session
-session = Session(kwik_path)
+>>> from phy.cluster.manual import Session
+>>> session = Session(kwik_path)
 ```
 
 > Putting your data files on a SSD is **highly recommended** for performance reasons.
