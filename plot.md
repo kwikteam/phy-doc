@@ -15,7 +15,9 @@ All of these plots are highly interactive and let you explore your data effectiv
 
 More interactive and static visualization routines (for publication-ready plotting, for example) will be added in future releases.
 
-#### Keyboard and mouse shortcuts
+### Keyboard and mouse shortcuts
+
+Press `h` to see the shortcuts in any given view.
 
 #### Pan and zoom
 
@@ -50,4 +52,4 @@ In grid views (feature view and CCG view):
 * scroll: `ctrl+arrows`
 * fast scroll: `shift+arrows`
 
-### Correlograms
+#### Correlograms
