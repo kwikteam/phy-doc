@@ -147,7 +147,7 @@ You can add new views. Here is how to create a new CCG view for a given set of c
 >>> view = session.show_view('correlograms', [2, 3, 5, 7], winsize_bins=101, binsize=10)
 ```
 
-Here, `winsize_bins` is the size of the CCG window in number of bins (**must be an odd number**), whereas `binsize` is the bin size in number of samples.
+Here, `winsize_bins` is the size of the CCG window in number of bins, whereas `binsize` is the bin size in number of samples.
 
 Now you can add this view to the GUI: the shown clusters will then be bound to the current cluster selection in the GUI.
 
