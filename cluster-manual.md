@@ -352,6 +352,19 @@ Coming soon...
 
 You can put custom settings in `~/.phy/user_settings.py`. See the [default settings here](https://github.com/kwikteam/phy/blob/master/phy/cluster/manual/default_settings.py).
 
+For example, to add a new CCG view with custom parameters by default in all GUIs, put this in your settings file:
+
+```
+gui_config = [
+    ('wizard', {'position': 'right'}),
+    ('features', {'position': 'left'}),
+    ('correlograms', {'position': 'left'}),
+    ('correlograms', {'position': 'left', 'binsize': 5}),
+    ('waveforms', {'position': 'right'}),
+    ('traces', {'position': 'right'}),
+]
+```
+
 #### Internal settings
 
 Some internal settings (especially related to the views and the GUI, such as the position of the views) are automatically saved in `~/.phy/internal_settings`. You can delete this file if you have some strange bugs in the GUI.
