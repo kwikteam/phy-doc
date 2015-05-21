@@ -154,7 +154,7 @@ The metadata contains information from the PRM file (used by SpikeDetekt2):
 
 ### Masks and features
 
-You have two ways to access masks and features. One is faster when you want to access to particular spikes, the other when you want to access to particular clusters. The two methods only differ in the speed of data access.
+You have two ways to access masks and features. One is faster when you want to access to particular spikes, the other when you want to access to particular clusters. The two methods only differ in the speed of data access. The second method is described in the manual clustering guide.
 
 #### Accessing spikes
 
@@ -195,22 +195,6 @@ This is the same thing for the features, except that this is now a 2D `(n_spikes
 ```python
 >>> model.features.shape
 (18539, 96)
-```
-
-#### Accessing clusters
-
-When you want to access the features from one or a small number of clusters, it is more efficient to use the **cluster store**. This is an internal cache saved along your data in a `myexperiment.phy` subdirectory. It contains a copy of the features, masks, and waveforms, but stored in a format much more amenable to per-cluster access.
-
-```python
->>> from phy.io import ClusterStore
-```
-
-```python
->>> cs = ClusterStore(model)
-```
-
-```python
->>> cs.cluster_ids
 ```
 
 
