@@ -43,6 +43,18 @@ The waveforms in the `.kwx` file are not used at all in phy: rather, they are dy
 
 Now, `model` offers you access to all of your data. See the [API](https://github.com/kwikteam/phy-doc/blob/master/api.md#phyiokwikmodel) for more details. In IPython, use tab completion to discover the attributes and methods of the object.
 
+```python
+>>> model.describe()
+Kwik file               myexperiment.kwik
+Recordings              1
+List of shanks          0*
+Clusterings             main*, original
+Channels                32
+Spikes                  18539
+Clusters                24
+Duration                120s
+```
+
 ### Spikes and clusters
 
 ```python
@@ -197,7 +209,6 @@ This is the same thing for the features, except that this is now a 2D `(n_spikes
 (18539, 96)
 ```
 
-
 ### Waveforms
 
 Waveforms are dynamically fetched and filtered from the raw data file. This is all transparent, and you can access them as if it was a `(n_spikes, n_samples, n_channels)` array:
@@ -219,8 +230,46 @@ Waveforms are dynamically fetched and filtered from the raw data file. This is a
 
 ### Extracellular traces
 
+The following is a memory-mapped array from the `.raw.kwd` file:
 
-### Working with multiple clusterings
+```python
+>>> model.traces
+<HDF5 dataset "data": shape (2400000, 32), type "<i2">
+```
 
+### Working with multiple shanks and clusterings
 
-### Modifying spike clusters manually
+```python
+>>> model.channel_groups
+[0]
+```
+
+```python
+>>> model.channel_group
+0
+```
+
+```python
+>>> model.clusterings
+['main', 'original']
+```
+
+```python
+>>> model.clustering
+'main'
+```
+
+Here is how to change the current clustering (by default, the **main** clustering is the one that you modify during manual clustering, while the **original** one comes from the automatic clustering algorithm like KlustaKwik):
+
+```python
+>>> model.clustering = 'original'
+```
+
+```python
+>>> model.spike_clusters
+array([20, 10, 25, ..., 10, 12, 20], dtype=uint32)
+```
+
+### Modifying the data
+
+If you want to modify the clusters, you need to start a manual clustering session, as described later in the user guide.
