@@ -17,7 +17,7 @@ The `Session` is the main interface to the manual clustering engine. Use tab com
 ```python
 >>> import phy
 >>> phy.enable_qt()
-2015-05-21 13:37:39  dock:144                Qt event loop activated.
+2015-05-21 14:18:21  dock:144                Qt event loop activated.
 ```
 
 You can also type `%gui qt`.
@@ -143,16 +143,10 @@ All actions are accessible from the Python API. Use tab completion on `session.g
 
 ```python
 >>> session.change_channel_group(0)
-Features and masks initialized.[K
-Waveforms initialized.[K
-Statistics initialized.[K
 ```
 
 ```python
 >>> session.change_clustering('original')
-Features and masks initialized.[K
-Waveforms initialized.[K
-Statistics initialized.[K
 ```
 
 ### The cluster store
@@ -304,15 +298,16 @@ The higher the score, the most similar the clusters are. Use negative numbers if
 
 #### Registering a new statistic
 
+You can create a new cluster statistic. It will be automatically computed for all clusters and kept up-to-date during the manual clustering session.
+
 ```python
 >>> @session.register_statistic
 ... def n_spikes(cluster):
 ...     return len(store.spikes_per_cluster[cluster])
+2015-05-21 14:18:48  session:273             Registered statistic `n_spikes`.
 ```
 
-```python
->>> store.n_spikes
-```
+The new statistic now appears here:
 
 ```python
 >>> stats.fields
@@ -326,7 +321,14 @@ The higher the score, the most similar the clusters are. Use negative numbers if
  ('n_spikes', 'memory')]
 ```
 
-#### Integrating your analyses in the engine
+And it is available from the store like the other statistics:
+
+```python
+>>> store.n_spikes(3)
+188
+```
+
+#### Integrating your own plots in the GUI
 
 #### User parameters
 
