@@ -139,6 +139,22 @@ All actions are accessible from the Python API. Use tab completion on `session.g
 >>> gui = session.show_gui()
 ```
 
+### Changing the shank or clustering
+
+```python
+>>> session.change_channel_group(0)
+Features and masks initialized.[K
+Waveforms initialized.[K
+Statistics initialized.[K
+```
+
+```python
+>>> session.change_clustering('original')
+Features and masks initialized.[K
+Waveforms initialized.[K
+Statistics initialized.[K
+```
+
 ### The cluster store
 
 The cluster stores contains a copy of the features, masks, waveforms of your data, in a format much more adapted to manual clustering. This makes the progam much faster than before. You can also use it to access per-cluster data and statistics.
@@ -242,7 +258,73 @@ We'll see below how to customize these objects.
 
 ### Extending and customizing the interface
 
-#### Using custom statistics in the wizard
+The whole API is designed fo modularity and extendability.
+
+#### Using a custom quality function in the wizard
+
+You can write your own quality function for the wizard:
+
+```python
+>>> @session.wizard.set_quality_function
+... def stupid_quality(cluster):
+...     return cluster
+```
+
+```python
+>>> session.wizard.start()
+```
+
+```python
+>>> session.wizard.best_clusters(n_max=10)
+[25, 24, 23, 22, 21, 20, 19, 18, 17, 16]
+```
+
+Inside the function, you can use the cluster store to access the data and statistics.
+
+If you have a GUI running, it will be automatically synchronized with this new statistic.
+
+#### Using a custom similarity function in the wizard
+
+```python
+>>> @session.wizard.set_similarity_function
+... def stupid_similarity(target, candidate):
+...     return target - candidate
+```
+
+```python
+>>> session.wizard.start()
+```
+
+```python
+>>> session.wizard.most_similar_clusters(25, n_max=10)
+[2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+```
+
+The higher the score, the most similar the clusters are. Use negative numbers if you want to write a distance instead. The actual values don't count, only the cluster-per-cluster differences.
+
+#### Registering a new statistic
+
+```python
+>>> @session.register_statistic
+... def n_spikes(cluster):
+...     return len(store.spikes_per_cluster[cluster])
+```
+
+```python
+>>> store.n_spikes
+```
+
+```python
+>>> stats.fields
+[('mean_masks', 'memory'),
+ ('sum_masks', 'memory'),
+ ('n_unmasked_channels', 'memory'),
+ ('main_channels', 'memory'),
+ ('mean_probe_position', 'memory'),
+ ('mean_features', 'memory'),
+ ('mean_waveforms', 'memory'),
+ ('n_spikes', 'memory')]
+```
 
 #### Integrating your analyses in the engine
 
