@@ -68,6 +68,7 @@ containing up to thousands of channels.
 * [phy.utils.EventEmitter](#phyutilseventemitter)
 * [phy.utils.ProgressReporter](#phyutilsprogressreporter)
 * [phy.utils.Selector](#phyutilsselector)
+* [phy.utils.Settings](#phyutilssettings)
 
 
 
@@ -89,7 +90,7 @@ This object represents a main window with:
 
 #### Methods
 
-##### `ClusterManualGUI.add_view(item, **kwargs)`
+##### `ClusterManualGUI.add_view(item, title=None, **kwargs)`
 
 Add a new view model instance to the GUI.
 
@@ -574,7 +575,7 @@ Open a .kwik file.
 
 Redo the last undone action.
 
-##### `Session.register_statistic(func)`
+##### `Session.register_statistic(shape=(-1,))`
 
 Decorator registering a custom cluster statistic.
 
@@ -691,6 +692,10 @@ The default quality function is the registered one.
 ##### `Wizard.first()`
 
 First match or first best.
+
+##### `Wizard.get_panel(extra_styles='')`
+
+
 
 ##### `Wizard.last()`
 
@@ -838,11 +843,9 @@ Hold per-cluster information on disk and in memory.
 
 *Note*
 
-Currently, this is used to accelerate access to features, masks, and
-cluster statistics. Features and masks of all clusters are stored in a
-disk cache. Cluster statistics are computed when loading a dataset,
-and are kept in memory afterwards. All data is dynamically updated
-when clustering changes occur.
+Currently, this is used to accelerate access to per-cluster data
+and statistics. All data is dynamically updated when clustering
+changes occur.
 
 #### Methods
 
@@ -881,11 +884,11 @@ Return whether the cluster store is probably consistent.
 Return true if all cluster stores files exist and have the expected
 file size.
 
-##### `ClusterStore.load(name, clusters, spikes=None, spikes_per_cluster=None)`
+##### `ClusterStore.load(name, clusters=None, spikes=None)`
 
 Load some data for a number of clusters and spikes.
 
-##### `ClusterStore.register_field(name, location, dtype=None, shape=None)`
+##### `ClusterStore.register_field(name, item_name=None)`
 
 Register a new piece of data to store on memory or on disk.
 
@@ -896,26 +899,9 @@ Register a new piece of data to store on memory or on disk.
 
     The name of the field.
 
-* `location` (str)
+* `item_name` (str)
 
-    `memory` or `disk`.
-
-* `dtype` (NumPy dtype or None)
-
-    The dtype of arrays stored for that field. This is only used when
-    the location is `disk`.
-
-* `shape` (tuple or None)
-
-    The shape of arrays. This is only used when the location is `disk`.
-    This is used by `np.reshape()`, so the shape can contain a `-1`.
-
-*Notes*
-
-When storing information to disk, only NumPy arrays are supported
-currently. They are saved as flat binary files. This is why the
-dtype and shape must be registered here, otherwise that information
-is lost. This metadata is not saved in the files.
+    The name of the item.
 
 ##### `ClusterStore.register_item(item_cls, **kwargs)`
 
@@ -942,9 +928,17 @@ Manage the cache of per-cluster voluminous data.
 
 List of files present in the disk store.
 
+##### `ClusterStore.items`
+
+Dictionary of registered store items.
+
 ##### `ClusterStore.memory_store`
 
 Hold some cluster statistics.
+
+##### `ClusterStore.model`
+
+Model.
 
 ##### `ClusterStore.old_clusters`
 
@@ -961,10 +955,6 @@ Dictionary `{cluster_id: spike_ids}`.
 ##### `ClusterStore.status`
 
 Return the current status of the cluster store.
-
-##### `ClusterStore.store_items`
-
-List of registered store items.
 
 ##### `ClusterStore.total_size`
 
@@ -1098,6 +1088,18 @@ Delete a clustering.
 ##### `KwikModel.describe()`
 
 Display information about the dataset.
+
+##### `KwikModel.has_kwd()`
+
+Returns whether the `.raw.kwd` file is present.
+
+If not, the waveforms won't be available.
+
+##### `KwikModel.has_kwx()`
+
+Returns whether the `.kwx` file is present.
+
+If not, the features and masks won't be available.
 
 ##### `KwikModel.open(kwik_path, channel_group=None, clustering=None)`
 
@@ -1349,10 +1351,13 @@ A class describing information stored in the cluster store.
 *Parameters*
 
 
+* `name` (str)
+
+    Name of the item.
+
 * `fields` (list)
 
-    A list of pairs `(field_name, storage_location)`.
-    `storage_location` is either `memory` or `disk`.
+    A list of field names.
 
 * `model` (Model)
 
@@ -1368,11 +1373,27 @@ A class describing information stored in the cluster store.
 
 #### Methods
 
+##### `StoreItem.empty_values(name)`
+
+Return a null array of the right shape for a given field.
+
 ##### `StoreItem.is_consistent(cluster, spikes)`
 
 Return whether the stored item is consistent.
 
 To be overriden.
+
+##### `StoreItem.load(cluster, name)`
+
+Load data for one cluster.
+
+##### `StoreItem.load_multi(clusters, name)`
+
+Load data for several clusters.
+
+##### `StoreItem.load_spikes(spikes, name)`
+
+Load data from an array of spikes.
 
 ##### `StoreItem.on_assign(up)`
 
@@ -1397,17 +1418,19 @@ Called when a new merge occurs.
 May be overriden if there's an efficient way to update the data
 after a merge.
 
-##### `StoreItem.store_all_clusters(mode=None)`
+##### `StoreItem.spikes_in_clusters(clusters)`
 
-Copy all data for that item from the model to the cluster store.
+Return the spikes belonging to clusters.
 
-##### `StoreItem.store_cluster(cluster, spikes=None, mode=None)`
+##### `StoreItem.store(cluster)`
 
 Store data for a cluster from the model to the store.
 
 May be overridden.
 
-No need to delete old clusters here.
+##### `StoreItem.store_all(mode=None, **kwargs)`
+
+Copy all data for that item from the model to the cluster store.
 
 ##### `StoreItem.to_generate(mode=None)`
 
@@ -1421,7 +1444,7 @@ Array of cluster ids.
 
 ##### `StoreItem.progress_reporter`
 
-
+Progress reporter instance.
 
 ##### `StoreItem.spikes_per_cluster`
 
@@ -2336,9 +2359,14 @@ unchanged when merges and splits occur.
 
 
 
-##### `Selector.wrapped(*args, **kwargs)`
+##### `Selector.subset_spikes_clusters(clusters, n_spikes_max=None, excerpt_size=None)`
 
+Take a subselection of spikes belonging to a set of clusters.
 
+This method ensures that the same number of spikes is chosen
+for every spike.
+
+`n_spikes_max` is the maximum number of spikers *per cluster*.
 
 #### Properties
 
@@ -2365,4 +2393,28 @@ Cluster ids appearing in the current spike selection.
 ##### `Selector.selected_spikes`
 
 Ids of the selected spikes.
+
+### phy.utils.Settings
+
+Manage default, user-wide, and experiment-wide settings.
+
+#### Methods
+
+##### `Settings.get(key, default=None)`
+
+Return a settings value.
+
+##### `Settings.keys()`
+
+Return the list of settings keys.
+
+##### `Settings.on_open(path)`
+
+Initialize settings when loading an experiment.
+
+##### `Settings.save()`
+
+Save settings to an internal settings file.
+
+#### Properties
 

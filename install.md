@@ -89,7 +89,7 @@ You can use the same command at any time to update the package to the latest ver
 There is a command-line tool that you can use for quick manual clustering:
 
 ```
-phy cluster manual myexperiment.kwik
+phy cluster-manual myexperiment.kwik
 ```
 
 Use the optional `-i` option to start an interactive IPython terminal at the same time.

@@ -241,27 +241,26 @@ array([  6.89437687e-01,   1.20974028e+00,   1.33888766e-01,
 A cluster store contains several **store items**: these objects are responsible for storing some data. Here are the default store items:
 
 ```python
->>> store.store_items
+>>> store.items
 [<phy.io.kwik.store_items.FeatureMasks at 0x7f72e630bac8>,
  <phy.io.kwik.store_items.Waveforms at 0x7f72e630b9b0>,
  <phy.io.kwik.store_items.ClusterStatistics at 0x7f72e6333358>]
 ```
 
 ```python
->>> stats = store.get_item('statistics')
+>>> stats = store.items['statistics']
 ```
 
 Every store items contains a list of **fields** which represents one particular bit of data, stored either on disk or in memory. For example, the statistics item contains the following default statistics:
 
 ```python
 >>> stats.fields
-[('mean_masks', 'memory'),
- ('sum_masks', 'memory'),
- ('n_unmasked_channels', 'memory'),
- ('main_channels', 'memory'),
- ('mean_probe_position', 'memory'),
- ('mean_features', 'memory'),
- ('mean_waveforms', 'memory')]
+['mean_masks',
+ 'n_unmasked_channels',
+ 'main_channels',
+ 'mean_probe_position',
+ 'mean_features',
+ 'mean_waveforms']
 ```
 
 We'll see below how to customize these objects.
@@ -359,7 +358,9 @@ gui_config = [
     ('wizard', {'position': 'right'}),
     ('features', {'position': 'left'}),
     ('correlograms', {'position': 'left'}),
-    ('correlograms', {'position': 'left', 'binsize': 5}),
+    ('correlograms', {'position': 'left',
+                      'binsize': 5,
+                      'winsize_bins': 4*100}),
     ('waveforms', {'position': 'right'}),
     ('traces', {'position': 'right'}),
 ]
