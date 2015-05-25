@@ -17,7 +17,7 @@ The `Session` is the main interface to the manual clustering engine. Use tab com
 ```python
 >>> import phy
 >>> phy.enable_qt()
-2015-05-21 14:39:49  dock:144                Qt event loop activated.
+2015-05-25 23:49:39  dock:142                Qt event loop activated.
 ```
 
 You can also type `%gui qt`.
@@ -54,7 +54,7 @@ This is documented earlier in the user guide, as well as in the API documentatio
 
 ```python
 >>> session.model
-<phy.io.kwik.model.KwikModel at 0x7fc8d79a5710>
+<phy.io.kwik.model.KwikModel at 0x7ffc084b30b8>
 ```
 
 #### Clustering
@@ -63,7 +63,7 @@ The `Clustering` object handles the spike-cluster mapping:
 
 ```python
 >>> session.clustering
-<phy.cluster.manual.clustering.Clustering at 0x7fc9256afc50>
+<phy.cluster.manual.clustering.Clustering at 0x7ffc084b3ef0>
 ```
 
 The following two dictionaries can be useful:
@@ -72,9 +72,7 @@ The following two dictionaries can be useful:
 >>> session.clustering.cluster_counts
 {2: 553,
  3: 188,
- 4: 708,
  ...
- 23: 360,
  24: 825,
  25: 418}
 ```
@@ -82,8 +80,8 @@ The following two dictionaries can be useful:
 ```python
 >>> session.clustering.spikes_per_cluster
 {2: array([   44,    68,   131,   133,   213,   224,   235,   364,   399,
-           ...
-            18480, 18484, 18485, 18521])}
+   ....
+           18480, 18484, 18485, 18521])}
 ```
 
 These dictionaries are always up to date with the current manual clustering.
@@ -94,17 +92,17 @@ In general you don't need to use these objects directly.
 
 ```python
 >>> session.view_creator
-<phy.cluster.manual.views.ViewCreator at 0x7fc8d79a5438>
+<phy.cluster.manual.views.ViewCreator at 0x7ffc084b3208>
 ```
 
 ```python
 >>> session.gui_creator
-<phy.cluster.manual.gui.GUICreator at 0x7fc8d79a55f8>
+<phy.cluster.manual.gui.GUICreator at 0x7ffc084b3518>
 ```
 
 ```python
 >>> session.wizard
-<phy.cluster.manual.wizard.Wizard at 0x7fb708337668>
+<phy.cluster.manual.wizard.Wizard at 0x7ffbeb0b32e8>
 ```
 
 ### Wizard GUI
@@ -159,10 +157,17 @@ Now you can add this view to the GUI: the shown clusters will then be bound to t
 
 ```python
 >>> session.change_channel_group(0)
+Features and masks initialized.[K
+Waveforms initialized.[K
+Statistics initialized.[K
 ```
 
 ```python
 >>> session.change_clustering('original')
+Features and masks initialized.[K
+Features and masks initialized.[K
+Waveforms initialized.[K
+Statistics initialized.[K
 ```
 
 ### The cluster store
@@ -181,7 +186,7 @@ Cluster store status (/data/spikesorting/1_simple120sec/test_hybrid_120sec.phy/c
 ----------------------------------------------------------------------------------------------------
 Number of clusters in the store     24
 Number of old clusters               0
-Total size (MB)                     18
+Total size (MB)                     19
 Consistent                        True
 ```
 
@@ -209,7 +214,7 @@ Only a subset of the waveforms (those that are displayed) are stored:
 Here are the corresponding spikes:
 
 ```python
->>> store.waveforms_spikes(3)
+>>> store.items['waveforms'].spikes_per_cluster[3]
 array([  152,   171,   173,   284,   695,   801,   829,   831,   927,
         ...
        17331, 17332, 17411, 17728, 17881, 17883, 18127, 18139, 18184, 18233])
@@ -233,18 +238,16 @@ array([ -1.71710563,  26.0843029 ], dtype=float32)
 
 ```python
 >>> store.mean_features(3)
-array([  6.89437687e-01,   1.20974028e+00,   1.33888766e-01,
-         ...
-         1.01085186e+00,   8.73123109e-01,   2.94472277e-01], dtype=float32)
+array([[  6.89437687e-01,   1.20974028e+00,   1.33888766e-01],
+          ...
+       [  1.01085186e+00,   8.73123109e-01,   2.94472277e-01]], dtype=float32)
 ```
 
 A cluster store contains several **store items**: these objects are responsible for storing some data. Here are the default store items:
 
 ```python
 >>> store.items
-[<phy.io.kwik.store_items.FeatureMasks at 0x7f72e630bac8>,
- <phy.io.kwik.store_items.Waveforms at 0x7f72e630b9b0>,
- <phy.io.kwik.store_items.ClusterStatistics at 0x7f72e6333358>]
+OrderedDict([('features and masks', <phy.io.kwik.store_items.FeatureMasks object at 0x7ffbed23ca58>), ('waveforms', <phy.io.kwik.store_items.Waveforms object at 0x7ffbed23c9b0>), ('statistics', <phy.io.kwik.store_items.ClusterStatistics object at 0x7ffbed23ccc0>)])
 ```
 
 ```python
@@ -256,11 +259,11 @@ Every store items contains a list of **fields** which represents one particular 
 ```python
 >>> stats.fields
 ['mean_masks',
- 'n_unmasked_channels',
- 'main_channels',
- 'mean_probe_position',
  'mean_features',
- 'mean_waveforms']
+ 'mean_waveforms',
+ 'mean_probe_position',
+ 'main_channels',
+ 'n_unmasked_channels']
 ```
 
 We'll see below how to customize these objects.
@@ -319,21 +322,20 @@ You can create a new cluster statistic. It will be automatically computed for al
 >>> @session.register_statistic
 ... def n_spikes(cluster):
 ...     return len(store.spikes_per_cluster[cluster])
-2015-05-21 14:18:48  session:273             Registered statistic `n_spikes`.
+2015-05-25 23:50:00  session:283             Registered statistic `n_spikes`.
 ```
 
 The new statistic now appears here:
 
 ```python
 >>> stats.fields
-[('mean_masks', 'memory'),
- ('sum_masks', 'memory'),
- ('n_unmasked_channels', 'memory'),
- ('main_channels', 'memory'),
- ('mean_probe_position', 'memory'),
- ('mean_features', 'memory'),
- ('mean_waveforms', 'memory'),
- ('n_spikes', 'memory')]
+['mean_masks',
+ 'mean_features',
+ 'mean_waveforms',
+ 'mean_probe_position',
+ 'main_channels',
+ 'n_unmasked_channels',
+ 'n_spikes']
 ```
 
 And it is available from the store like the other statistics:
