@@ -575,7 +575,7 @@ Open a .kwik file.
 
 Redo the last undone action.
 
-##### `Session.register_statistic(shape=(-1,))`
+##### `Session.register_statistic(func=None, shape=(-1,))`
 
 Decorator registering a custom cluster statistic.
 
