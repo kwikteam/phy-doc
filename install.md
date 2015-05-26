@@ -1,6 +1,61 @@
 ## Installation
 
+Welcome to the installation guide for phy.
+
+### Quick-install (Linux and Mac OS X)
+
+Run this in a console (**only if you don't already have miniconda installed**):
+
+`wget -qO- http://phy.cortexlab.net/install/latest.sh | bash`
+
+This will install **miniconda** (a Python distribution) and **phy** in your `$HOME/miniconda` by default. See more options at http://phy.cortexlab.net/install/latest.sh
+
+Below are more detailled instructions if you don't want to use the automated installer.
+
+> We will provide Windows and GUI installers in the near future.
+
+### Detailled instructions
+
 phy is written in pure Python. It works with Python 2.7, 3.3, and 3.4 on Windows, Mac OS X, and Linux.
+
+**It is highly recommended to use the free Miniconda distribution**. This software comes with a package manager named **conda** that lets you easily install, update, and remove Python packages.
+
+> **Miniconda** is a lightweight Python distribution. **Anaconda** is Miniconda + many common Python packages. **Conda** is the package manager used by Miniconda and Anaconda. We recommend that you first install Miniconda, and then use Conda to install just the packages you need.
+
+Advanced users may use other Python distributions, but we will only provide installation-related support on Miniconda/Anaconda.
+
+> If you install Miniconda/Anaconda while you already have Python installed, you might end up with some conflicts. You're encouraged to uninstall all previous non-Conda Python installations, unless you're already using them.
+
+Here are the installation instructions when you're starting from scratch:
+
+#### 1. Open a terminal
+
+* Windows: press `Windows` + `R`, type `cmd`, and press `Enter`.
+* Mac OS X: TODO.
+* Linux: you probably already know how to do it.
+
+#### 2. Install miniconda
+
+* http://conda.pydata.org/miniconda.html
+* Download the **Python 3.4, 64-bit** version for your OS (this is the recommended version)
+* Install Miniconda (**no need for root privileges**), for example with:
+
+```
+bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
+```
+
+(or choose any other path)
+
+#### 3. Install phy and its dependencies
+
+```bash
+conda install conda python=3 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests && pip install vispy phy
+```
+
+> Advanced users can use the development version with `git clone git://github.com/kwikteam/phy.git && cd phy && python setup.py develop`.
+
+
+### Dependencies
 
 There are several dependencies:
 
@@ -23,59 +78,8 @@ Here are further dependencies useful for development (advanced users):
 * flake8 (for testing code quality)
 * responses (for testing downloading functionality)
 
-**It is highly recommended to use the free Miniconda distribution**. This software comes with a package manager named **conda** that lets you easily install, update, and remove Python packages.
 
-> **Miniconda** is a lightweight Python distribution. **Anaconda** is Miniconda + many common Python packages. **Conda** is the package manager used by Miniconda and Anaconda. We recommend that you first install Miniconda, and then use Conda to install just the packages you need.
-
-Advanced users may use other Python distributions, but we will only provide installation-related support on Miniconda/Anaconda.
-
-> If you install Miniconda/Anaconda while you already have Python installed, you might end up with some conflicts. You're encouraged to uninstall all previous non-Conda Python installations, unless you're already using them.
-
-Here are the installation instructions when you're starting from scratch:
-
-1. Install Miniconda.
-2. Create a Conda environment with all the dependencies for phy.
-3. Install phy.
-4. Use phy.
-
-### 0. Opening a terminal
-
-* Windows: press `Windows` + `R`, type `cmd`, and press `Enter`.
-* Mac OS X: TODO.
-* Linux: you probably already know how to do it.
-
-### 1. Installing Miniconda
-
-* http://conda.pydata.org/miniconda.html
-* Download the **Python 3.4, 64-bit** version for your OS (this is the recommended version)
-* Install Miniconda (**no need for root privileges**), for example with:
-
-```
-bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
-```
-
-(or choose any other path)
-
-### 2. Creating a Conda environment for phy
-
-```bash
-# Create a fresh `phy` environment
-conda create -q -n phy
-# Activate that environment
-source activate phy
-# Install all dependencies
-conda install pip numpy matplotlib scipy h5py pyqt ipython-notebook requests
-# Switch to phy env
-source activate phy
-# Install VisPy and phy
-pip install vispy phy
-```
-
-You'll need to type `source activate phy` in your console **every time you want to use phy**. This is to isolate the Python installation from the rest of your system. This is not required but strongly recommended.
-
-> Advanced users can use the development version with `git clone git://github.com/kwikteam/phy.git && cd phy && python setup.py develop`.
-
-### 3. Use phy
+### Using phy
 
 There is a command-line tool that you can use for quick manual clustering:
 
@@ -88,6 +92,7 @@ Use the optional `-i` option to start an interactive IPython terminal at the sam
 You can also start a notebook server with `ipython notebook`. Using the notebook is recommended when you want to do custom analyses. The notebook offers a web interface to write Python code, run analyses, and display visualizations.
 
 In the notebook, import phy with `import phy`. To import a subpackage: `import phy.io`, for example. Then use tab completion to find the functions and classes available. See also the rest of the user guide for more documentation.
+
 
 ### Remote use
 
