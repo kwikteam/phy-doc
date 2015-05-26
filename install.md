@@ -1,6 +1,6 @@
 ## Installation
 
-Welcome to the installation guide for phy.
+Welcome to the installation guide of phy.
 
 ### Quick-install (Linux and Mac OS X)
 
@@ -10,7 +10,9 @@ Run this in a console (**only if you don't already have miniconda installed**):
 
 This will install **miniconda** (a Python distribution) and **phy** in your `$HOME/miniconda` by default. See more options at http://phy.cortexlab.net/install/latest.sh
 
-Below are more detailled instructions if you don't want to use the automated installer.
+Then, use `phy cluster-manual myexperiment.kwik` to launch the GUI on a [Kwik](https://github.com/klusta-team/kwiklib/wiki/Kwik-format) dataset. Note that you have some test datasets [here](http://phy.cortexlab.net/data/).
+
+Below are more detailled instructions if you don't want to use the automatic installer.
 
 > We will provide Windows and GUI installers in the near future.
 
@@ -102,3 +104,5 @@ You normally install phy on your local computer. However you can also install an
 from vispy.app import use_app
 use_app('ipynb_webgl')
 ```
+
+In the near future we'll work particularly on this, so that you can use phy in the browser without installing the software or downloading the data.
