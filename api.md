@@ -1813,6 +1813,10 @@ Attach this tranform to a canvas.
 
 Key press event.
 
+##### `PanZoomGrid.on_mouse_double_click(event)`
+
+Double click event.
+
 ##### `PanZoomGrid.on_mouse_move(event)`
 
 Mouse move event.
@@ -1860,6 +1864,10 @@ Number of rows.
 ##### `PanZoomGrid.pan`
 
 Pan translation.
+
+##### `PanZoomGrid.pan_matrix`
+
+Pan in every subplot.
 
 ##### `PanZoomGrid.xmax`
 
