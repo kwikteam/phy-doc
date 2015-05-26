@@ -1,6 +1,6 @@
 # phy documentation
 
-[**phy**](https://github.com/kwikteam/phy) is an open source electrophysiological data analysis libbrary in Python for neuronal recordings made with high-density multielectrode arrays containing tens, hundreds, or thousands of channels.
+[**phy**](https://github.com/kwikteam/phy) is an open source electrophysiological data analysis library in Python for neuronal recordings made with high-density multielectrode arrays containing up to thousands of channels.
 
 ## Overview
 
