@@ -65,26 +65,17 @@ conda create -q -n phy
 source activate phy
 # Install all dependencies
 conda install pip numpy matplotlib scipy h5py pyqt ipython-notebook requests
-# Install VisPy development version
-pip install git+https://github.com/vispy/vispy.git
+# Switch to phy env
+source activate phy
+# Install VisPy and phy
+pip install vispy phy
 ```
 
 You'll need to type `source activate phy` in your console **every time you want to use phy**. This is to isolate the Python installation from the rest of your system. This is not required but strongly recommended.
 
-### 3. Installing phy
+> Advanced users can use the development version with `git clone git://github.com/kwikteam/phy.git && cd phy && python setup.py develop`.
 
-For the time being, we recommend to install the development version on GitHub:
-
-```bash
-source activate phy
-pip install git+git://github.com/kwikteam/phy.git
-```
-
-You can use the same command at any time to update the package to the latest version.
-
-> Advanced users can also clone the package manually with `git clone git://github.com/kwikteam/phy.git` and install phy with `python setup.py develop` in the created directory.
-
-### 4. Use phy
+### 3. Use phy
 
 There is a command-line tool that you can use for quick manual clustering:
 
@@ -100,7 +91,7 @@ In the notebook, import phy with `import phy`. To import a subpackage: `import p
 
 ### Remote use
 
-You normally install phy on your local computer. However you can also install an [IPython notebook server on a remote computer](https://ipython.org/ipython-doc/dev/notebook/public_server.html), and access your data from anywhere in the world with a web browser. You can enable live visualizations with (**still experimental**):
+You normally install phy on your local computer. However you can also install an [IPython notebook server on a remote computer](https://ipython.org/ipython-doc/dev/notebook/public_server.html), and access your data from anywhere in the world with a web browser. You can even enable live visualizations with (**still highly experimental**):
 
 ```python
 from vispy.app import use_app
