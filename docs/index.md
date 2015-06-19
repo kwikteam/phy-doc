@@ -1,15 +1,30 @@
-# phy documentation
-
-[**phy**](https://github.com/kwikteam/phy) is an open source electrophysiological data analysis library in Python for neuronal recordings made with high-density multielectrode arrays containing up to thousands of channels.
+#phy
+_Spike sorting and data analysis for 1000 channels and beyond._
 
 ## Overview
+
+[**phy**](https://github.com/kwikteam/phy) is an open source electrophysiological data analysis library in Python for neuronal recordings made with high-density multielectrode arrays containing up to thousands of channels.
 
 This library provides a Python API to analyze and visualize data interactively, as well as user-friendly graphical interfaces to quickly inspect and refine your data.
 
 The API is highly modular and allows you to adapt it to your workflows. For example, you can create your own custom GUI.
 
+## Quick install
 
-### Use-cases
+On Linux or Mac OS X, run this in a console:
+
+```
+curl http://phy.cortexlab.net/install/latest.sh
+bash latest.sh
+```
+
+This will install **miniconda** (a Python distribution) and **phy** in your `$HOME/miniconda` by default. To install phy without reinstalling miniconda, use `bash latest.sh -s`. For more options, run `bash latest.sh -h`.
+
+For other platforms or more detailed installation instructions, see [the Installation page](install.md).
+
+Then, use `phy cluster-manual myexperiment.kwik` to launch the GUI on a [Kwik](https://github.com/klusta-team/kwiklib/wiki/Kwik-format) dataset. Note that you have some test datasets [here](http://phy.cortexlab.net/data/).
+
+## Use-cases
 
 As of v0.1.0, you can use phy to:
 
@@ -22,7 +37,7 @@ It is recommended to use the library in IPython (terminal or notebook) for inter
 
 You can also use phy in regular Python scripts. Finally, you can use the public Python API to customize the interfaces or integrate phy in your own projects.
 
-### Milestones
+## Milestones
 
 The current 0.1.0 release implements the following features:
 
@@ -41,41 +56,3 @@ The 0.2.0 release (~Summer 2015) will be the first release of phy to implement a
 * Automatic clustering of spikes into putative neurons through a custom version of the expectation-maximization algorithm (previously known as masked KlustaKwik).
 
 The 0.3.0 release (~Fall 2015) will bring further improvements and optimizations to scale to 1000+ channels (mainly sparse array structures).
-
-
-## Table of contents
-
-Here is the table of contents of the user guide:
-
-* 0. [Installation](install.md)
-* 1. [Quick start guide](quick-start.ipynb)
-* 2. [Working with Kwik files](kwik-model.md)
-* 3. [Interactive plotting](plot.md)
-* 4. Spike detection (planned for 0.2.0)
-* 5. Automatic clustering (planned for 0.2.0)
-* 6. [Manual clustering](cluster-manual.md)
-* 7. Neuronal data analysis
-* [API documentation](api.md)
-
-If you're just interested in the replacement of KlustaViewa for manual
-clustering, you can just read section 6.
-
-If you want to make custom analyses and visualizations of your data, read the other sections.
-
-The API documentation is for advanced users, and may contain information that has not been yet integrated in the user guide. Feel free to have a look at it.
-
-## Contact
-
-phy is developed in the [cortexlab](http://cortexlab.net) at University College London by:
-
-* [Cyrille Rossant](http://cyrille.rossant.net/)
-* Max Hunter (graphical interfaces)
-* Dan Goodman (automatic clustering with KlustaKwik2)
-* Shabnam Kadir
-* Kenneth Harris
-
-Here are a few useful links:
-
-* [Mailing list](https://groups.google.com/forum/#!forum/klustaviewas)
-* [Issue tracker](https://github.com/kwikteam/phy/issues)
-* [GitHub repository](https://github.com/kwikteam/phy)

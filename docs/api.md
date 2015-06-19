@@ -1,9 +1,3 @@
-# API documentation of phy
-
-phy is an open source electrophysiological data analysis package in Python
-for neuronal recordings made with high-density multielectrode arrays
-containing up to thousands of channels.
-
 ## Table of contents
 
 ### [phy.cluster.manual](#phyclustermanual)

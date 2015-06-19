@@ -1,14 +1,13 @@
-## Installation
-
-Welcome to the installation guide of phy.
-
 ### Quick-install (Linux and Mac OS X)
 
-Run this in a console (**only if you don't already have miniconda installed**):
+Run this in a console:
 
-`wget -qO- http://phy.cortexlab.net/install/latest.sh | bash`
+```
+curl http://phy.cortexlab.net/install/latest.sh
+bash latest.sh
+```
 
-This will install **miniconda** (a Python distribution) and **phy** in your `$HOME/miniconda` by default. See more options at http://phy.cortexlab.net/install/latest.sh
+This will install **miniconda** (a Python distribution) and **phy** in your `$HOME/miniconda` by default. To install phy without reinstalling miniconda, use `bash latest.sh -s`. For more options, run `bash latest.sh -h`.
 
 Then, use `phy cluster-manual myexperiment.kwik` to launch the GUI on a [Kwik](https://github.com/klusta-team/kwiklib/wiki/Kwik-format) dataset. Note that you have some test datasets [here](http://phy.cortexlab.net/data/).
 
@@ -16,7 +15,7 @@ Below are more detailled instructions if you don't want to use the automatic ins
 
 > We will provide Windows and GUI installers in the near future.
 
-### Detailled instructions
+### Detailed instructions
 
 phy is written in pure Python. It works with Python 2.7, 3.3, and 3.4 on Windows, Mac OS X, and Linux.
 

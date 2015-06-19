@@ -1,1 +1,11 @@
 site_name: phy
+pages:
+- Home: 'index.md'
+- Installation: 'install.md'
+- User Guide:
+   - 'Working with Kwik files': 'kwik-model.md'
+   - 'Interactive plotting': 'plot.md'
+   - 'Manual clustering (KlustaViewa)': 'cluster-manual.md'
+- API reference: 'api.md'
+- Contact: 'contact.md'
+theme: readthedocs
