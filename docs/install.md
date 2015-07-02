@@ -9,8 +9,6 @@ bash latest.sh
 
 This will install **miniconda** (a Python distribution) and **phy** in your `$HOME/miniconda` by default. To install phy without reinstalling miniconda, use `bash latest.sh -s`. For more options, run `bash latest.sh -h`.
 
-Then, use `phy cluster-manual myexperiment.kwik` to launch the GUI on a [Kwik](https://github.com/klusta-team/kwiklib/wiki/Kwik-format) dataset. Note that you have some test datasets [here](http://phy.cortexlab.net/data/).
-
 Below are more detailled instructions if you don't want to use the automatic installer.
 
 > We will provide Windows and GUI installers in the near future.
@@ -82,13 +80,13 @@ Here are further dependencies useful for development (advanced users):
 
 ### Using phy
 
-There is a command-line tool that you can use for quick manual clustering:
+There is a command-line tool named `phy` that you can use for automatic and manual clustering. Type the following to see the help.
 
 ```
-phy cluster-manual myexperiment.kwik
+phy -h
 ```
 
-Use the optional `-i` option to start an interactive IPython terminal at the same time.
+The `-i` option launches phy in an interactive IPython terminal.
 
 You can also start a notebook server with `ipython notebook`. Using the notebook is recommended when you want to do custom analyses. The notebook offers a web interface to write Python code, run analyses, and display visualizations.
 
@@ -97,7 +95,7 @@ In the notebook, import phy with `import phy`. To import a subpackage: `import p
 
 ### Remote use
 
-You normally install phy on your local computer. However you can also install an [IPython notebook server on a remote computer](https://ipython.org/ipython-doc/dev/notebook/public_server.html), and access your data from anywhere in the world with a web browser. You can even enable live visualizations with (**still highly experimental**):
+You normally install phy on your local computer. However you can also install an [IPython notebook server on a remote computer](https://ipython.org/ipython-doc/dev/notebook/public_server.html), and access your data from anywhere in the world with a web browser. You can even enable live visualizations with (**still highly experimental and largely untested**):
 
 ```python
 from vispy.app import use_app
