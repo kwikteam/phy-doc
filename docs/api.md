@@ -1,12 +1,15 @@
+# API documentation of phy
+
+phy is an open source electrophysiological data analysis package in Python
+for neuronal recordings made with high-density multielectrode arrays
+containing up to thousands of channels.
+
 ## Table of contents
 
 ### [phy.cluster.manual](#phyclustermanual)
 
 * [phy.cluster.manual.ClusterManualGUI](#phyclustermanualclustermanualgui)
 * [phy.cluster.manual.Clustering](#phyclustermanualclustering)
-* [phy.cluster.manual.GUICreator](#phyclustermanualguicreator)
-* [phy.cluster.manual.Session](#phyclustermanualsession)
-* [phy.cluster.manual.ViewCreator](#phyclustermanualviewcreator)
 * [phy.cluster.manual.Wizard](#phyclustermanualwizard)
 
 
@@ -17,15 +20,23 @@
 
 ### [phy.io](#phyio)
 
+* [phy.io.create_kwik](#phyiocreate_kwikprm_filenone-kwik_pathnone-overwritefalse-probenone-kwargs)
 * [phy.io.open_h5](#phyioopen_h5filename-modenone)
+* [phy.io.BaseModel](#phyiobasemodel)
+* [phy.io.BaseSession](#phyiobasesession)
 * [phy.io.ClusterStore](#phyioclusterstore)
 * [phy.io.File](#phyiofile)
+* [phy.io.KwikCreator](#phyiokwikcreator)
 * [phy.io.KwikModel](#phyiokwikmodel)
 * [phy.io.StoreItem](#phyiostoreitem)
 
 
 ### [phy.plot](#phyplot)
 
+* [phy.plot.plot_correlograms](#phyplotplot_correlogramsargs-kwargs)
+* [phy.plot.plot_features](#phyplotplot_featuresargs-kwargs)
+* [phy.plot.plot_traces](#phyplotplot_tracesargs-kwargs)
+* [phy.plot.plot_waveforms](#phyplotplot_waveformsargs-kwargs)
 * [phy.plot.BaseSpikeCanvas](#phyplotbasespikecanvas)
 * [phy.plot.BaseSpikeVisual](#phyplotbasespikevisual)
 * [phy.plot.CorrelogramView](#phyplotcorrelogramview)
@@ -47,21 +58,15 @@
 
 * [phy.utils.debug](#phyutilsdebugmsg)
 * [phy.utils.download_file](#phyutilsdownload_fileurl-outputnone-checksumnone)
-* [phy.utils.download_test_data](#phyutilsdownload_test_dataname-output_dirnone)
-* [phy.utils.enable_qt](#phyutilsenable_qt)
+* [phy.utils.download_sample_data](#phyutilsdownload_sample_dataname-output_dirnone-basecortexlab)
 * [phy.utils.info](#phyutilsinfomsg)
-* [phy.utils.qt_app](#phyutilsqt_appargs-kwds)
 * [phy.utils.register](#phyutilsregisterlogger)
-* [phy.utils.run_qt_app](#phyutilsrun_qt_app)
 * [phy.utils.set_level](#phyutilsset_levellevel)
-* [phy.utils.start_qt_app](#phyutilsstart_qt_app)
 * [phy.utils.unregister](#phyutilsunregisterlogger)
 * [phy.utils.warn](#phyutilswarnmsg)
 * [phy.utils.Bunch](#phyutilsbunch)
-* [phy.utils.DockWindow](#phyutilsdockwindow)
 * [phy.utils.EventEmitter](#phyutilseventemitter)
 * [phy.utils.ProgressReporter](#phyutilsprogressreporter)
-* [phy.utils.Selector](#phyutilsselector)
 * [phy.utils.Settings](#phyutilssettings)
 
 
@@ -78,15 +83,20 @@ Manual clustering GUI.
 This object represents a main window with:
 
 * multiple views
-* a wizard panel
 * high-level clustering methods
 * global keyboard shortcuts
+
+*Events*
+
+cluster
+select
+request_save
 
 #### Methods
 
 ##### `ClusterManualGUI.add_view(item, title=None, **kwargs)`
 
-Add a new view model instance to the GUI.
+Add a new view instance to the GUI.
 
 ##### `ClusterManualGUI.close()`
 
@@ -111,12 +121,27 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
+##### `ClusterManualGUI.connect_views(name_0, name_1)`
+
+Decorator for a function called on every pair of views of a
+given type.
+
+##### `ClusterManualGUI.disable_snippet_mode()`
+
+
+
 ##### `ClusterManualGUI.emit(event, *args, **kwargs)`
 
 Call all callback functions registered with an event.
 
 Any positional and keyword arguments can be passed here, and they will
 be fowarded to the callback functions.
+
+Return the list of callback return results.
+
+##### `ClusterManualGUI.enable_snippet_mode()`
+
+
 
 ##### `ClusterManualGUI.exit()`
 
@@ -126,21 +151,40 @@ Close the GUI.
 
 Go to the first cluster proposed by the wizard.
 
-##### `ClusterManualGUI.get_views(name=None)`
+##### `ClusterManualGUI.get_views(*names)`
 
 Return the list of views of a given type.
+
+##### `ClusterManualGUI.isVisible()`
+
+
 
 ##### `ClusterManualGUI.last()`
 
 Go to the last cluster proposed by the wizard.
 
-##### `ClusterManualGUI.merge()`
+##### `ClusterManualGUI.merge(clusters=None)`
 
-Merge all selected clusters together.
+Merge some clusters.
+
+##### `ClusterManualGUI.move(clusters, group)`
+
+Move some clusters to a cluster group.
+
+Here is the list of cluster groups:
+
+* 0=Noise
+* 1=MUA
+* 2=Good
+* 3=Unsorted
 
 ##### `ClusterManualGUI.next()`
 
 Go to the next cluster proposed by the wizard.
+
+##### `ClusterManualGUI.on_open()`
+
+Reinitialize the GUI after new data has been loaded.
 
 ##### `ClusterManualGUI.pin()`
 
@@ -150,9 +194,19 @@ Pin the current best cluster.
 
 Go to the previous cluster proposed by the wizard.
 
+##### `ClusterManualGUI.process_snippet(snippet)`
+
+Processes a snippet.
+
+May be overriden.
+
 ##### `ClusterManualGUI.redo()`
 
-Redo the last clustering action.
+Redo the last undone action.
+
+##### `ClusterManualGUI.reset()`
+
+
 
 ##### `ClusterManualGUI.reset_gui()`
 
@@ -164,9 +218,9 @@ Restart the wizard.
 
 ##### `ClusterManualGUI.save()`
 
-Save the clustering changes to the `.kwik` file.
 
-##### `ClusterManualGUI.select(cluster_ids)`
+
+##### `ClusterManualGUI.select(cluster_ids, **kwargs)`
 
 Select clusters.
 
@@ -174,17 +228,39 @@ Select clusters.
 
 Show the GUI
 
+##### `ClusterManualGUI.show_features_time()`
+
+
+
 ##### `ClusterManualGUI.show_shortcuts()`
 
-Show the list off all keyboard shortcuts.
+Show the list of all keyboard shortcuts.
 
-##### `ClusterManualGUI.split()`
+##### `ClusterManualGUI.split(spikes=None)`
 
-Create a new cluster out of the selected spikes.
+Make a new cluster out of some spikes.
+
+*Notes*
+
+Spikes belonging to affected clusters, but not part of the `spikes`
+array, will move to brand new cluster ids. This is because a new
+cluster id must be used as soon as a cluster changes.
 
 ##### `ClusterManualGUI.start()`
 
 Start the wizard.
+
+##### `ClusterManualGUI.toggle_correlogram_normalization()`
+
+
+
+##### `ClusterManualGUI.toggle_waveforms_mean()`
+
+
+
+##### `ClusterManualGUI.toggle_waveforms_overlap()`
+
+
 
 ##### `ClusterManualGUI.unconnect(*funcs)`
 
@@ -198,23 +274,39 @@ Undo the last clustering action.
 
 Unpin the current best cluster.
 
+##### `ClusterManualGUI.view_count()`
+
+
+
 #### Properties
 
-##### `ClusterManualGUI.dock_widgets`
+##### `ClusterManualGUI.cluster_ids`
 
-
+Array of all cluster ids used in the current clustering.
 
 ##### `ClusterManualGUI.main_window`
 
-Dock main window.
+Main Qt window.
+
+##### `ClusterManualGUI.n_clusters`
+
+Number of clusters in the current clustering.
 
 ##### `ClusterManualGUI.selected_clusters`
 
 The list of selected clusters.
 
+##### `ClusterManualGUI.status_message`
+
+Message in the status bar.
+
 ##### `ClusterManualGUI.title`
 
 Title of the main window.
+
+##### `ClusterManualGUI.views`
+
+
 
 ### phy.cluster.manual.Clustering
 
@@ -445,232 +537,6 @@ Array of all spike ids.
 
 A dictionary `{cluster: spikes}`.
 
-### phy.cluster.manual.GUICreator
-
-
-
-#### Methods
-
-##### `GUICreator.add(config=None, show=True)`
-
-Add a new manual clustering GUI.
-
-*Parameters*
-
-
-* `config` (list)
-
-    A list of tuples `(name, kwargs)` describing the views in the GUI.
-
-* `show` (bool)
-
-    Whether to show the newly-created GUI.
-
-*Returns*
-
-
-* `gui` (ClusterManualGUI)
-
-    The GUI.
-
-#### Properties
-
-##### `GUICreator.gui`
-
-The GUI if there is only one.
-
-##### `GUICreator.guis`
-
-List of GUIs.
-
-### phy.cluster.manual.Session
-
-A manual clustering session.
-
-This is the main object used for manual clustering. It implements
-all common actions:
-
-* Loading a dataset (`.kwik` file)
-* Listing the clusters
-* Changing the current channel group or current clustering
-* Showing views (waveforms, features, correlograms, etc.)
-* Clustering actions: merge, split, undo, redo
-* Wizard: cluster quality, best clusters, most similar clusters
-* Save back to .kwik
-
-#### Methods
-
-##### `Session.change_channel_group(channel_group)`
-
-Change the current channel group.
-
-##### `Session.change_clustering(clustering)`
-
-Change the current clustering.
-
-##### `Session.close()`
-
-Close the currently-open dataset.
-
-##### `Session.connect(func=None, event=None, set_method=False)`
-
-Register a callback function to a given event.
-
-To register a callback function to the `spam` event, where `obj` is
-an instance of a class deriving from `EventEmitter`:
-
-```python
-@obj.connect
-def on_spam(arg1, arg2):
-    pass
-```
-
-This is called when `obj.emit('spam', arg1, arg2)` is called.
-
-Several callback functions can be registered for a given event.
-
-The registration order is conserved and may matter in applications.
-
-##### `Session.emit(event, *args, **kwargs)`
-
-Call all callback functions registered with an event.
-
-Any positional and keyword arguments can be passed here, and they will
-be fowarded to the callback functions.
-
-##### `Session.merge(clusters)`
-
-Merge some clusters.
-
-##### `Session.move(clusters, group)`
-
-Move some clusters to a cluster group.
-
-Here is the list of cluster groups:
-
-* 0=Noise
-* 1=MUA
-* 2=Good
-* 3=Unsorted
-
-##### `Session.on_close()`
-
-Save the settings when the data is closed.
-
-##### `Session.on_open()`
-
-Update the session after new data has been loaded.
-
-##### `Session.open(kwik_path=None, model=None)`
-
-Open a .kwik file.
-
-##### `Session.redo()`
-
-Redo the last undone action.
-
-##### `Session.register_statistic(func=None, shape=(-1,))`
-
-Decorator registering a custom cluster statistic.
-
-*Parameters*
-
-
-* `func` (function)
-
-    A function that takes a cluster index as argument, and returns
-    some statistics (generally a NumPy array).
-
-*Notes*
-
-This function will be called on every cluster when a dataset is opened.
-It is also automatically called on new clusters when clusters change.
-You can access the data from the model and from the cluster store.
-
-##### `Session.save()`
-
-Save the spike clusters and cluster groups to the Kwik file.
-
-##### `Session.show_gui(config=None, **kwargs)`
-
-Show a new manual clustering GUI.
-
-##### `Session.show_view(name, cluster_ids, **kwargs)`
-
-Create and display a new view.
-
-*Parameters*
-
-
-* `name` (str)
-
-    Can be `waveforms`, `features`, `correlograms`, or `traces`.
-
-* `cluster_ids` (array-like)
-
-    List of clusters to show.
-
-*Returns*
-
-
-* `vm` (`ViewModel` instance)
-
-
-##### `Session.split(spikes)`
-
-Make a new cluster out of some spikes.
-
-*Notes*
-
-Spikes belonging to affected clusters, but not part of the `spikes`
-array, will move to brand new cluster ids. This is because a new
-cluster id must be used as soon as a cluster changes.
-
-##### `Session.unconnect(*funcs)`
-
-Unconnect specified callback functions.
-
-##### `Session.undo()`
-
-Undo the last clustering action.
-
-#### Properties
-
-##### `Session.cluster_ids`
-
-Array of all cluster ids used in the current clustering.
-
-##### `Session.has_unsaved_changes`
-
-Whether there are unsaved changes in the model.
-
-If true, a prompt message for saving will be displayed when closing
-the GUI.
-
-##### `Session.n_clusters`
-
-Number of clusters in the current clustering.
-
-### phy.cluster.manual.ViewCreator
-
-Create views from a model.
-
-#### Methods
-
-##### `ViewCreator.add(vm_or_name, show=True, **kwargs)`
-
-Add a new view.
-
-##### `ViewCreator.get(name=None)`
-
-Return the list of views of a given type.
-
-##### `ViewCreator.save_view_params(save_size_pos=True)`
-
-Save all view parameters to user settings.
-
-#### Properties
-
 ### phy.cluster.manual.Wizard
 
 Propose a selection of high-quality clusters and merge candidates.
@@ -687,9 +553,9 @@ The default quality function is the registered one.
 
 First match or first best.
 
-##### `Wizard.get_panel(extra_styles='')`
+##### `Wizard.get_panel_params()`
 
-
+Return the parameters for the HTML panel.
 
 ##### `Wizard.last()`
 
@@ -733,6 +599,10 @@ Select the previous best in cluster.
 
 Select the previous match.
 
+##### `Wizard.reset()`
+
+
+
 ##### `Wizard.set_quality_function(func)`
 
 Register a function returning the quality of a cluster.
@@ -773,6 +643,10 @@ The groups are: `None` (corresponds to unsorted), `good`, or `ignored`.
 
 Array of cluster ids in the current clustering.
 
+##### `Wizard.has_started`
+
+
+
 ##### `Wizard.match`
 
 Currently-selected closest match.
@@ -803,7 +677,17 @@ Electrodes.
 
 A Multi-Electrode Array.
 
+There are two modes:
+
+* No probe specified: one single channel group, positions and adjacency
+  list specified directly.
+* Probe specified: one can change the current channel_group.
+
 #### Methods
+
+##### `MEA.change_channel_group(group)`
+
+
 
 #### Properties
 
@@ -827,9 +711,233 @@ Channel positions.
 
 Input/output.
 
+##### `phy.io.create_kwik(prm_file=None, kwik_path=None, overwrite=False, probe=None, **kwargs)`
+
+
+
 ##### `phy.io.open_h5(filename, mode=None)`
 
 Open an HDF5 file and return a File instance.
+
+### phy.io.BaseModel
+
+This class holds data from an experiment.
+
+This base class must be derived.
+
+#### Methods
+
+##### `BaseModel.close()`
+
+Close the model and the underlying files.
+
+May be implemented by child classes.
+
+##### `BaseModel.save()`
+
+Save the data.
+
+May be implemented by child classes.
+
+##### `BaseModel.spike_train(cluster_id)`
+
+Return the spike times of a given cluster.
+
+##### `BaseModel.update_spikes_per_cluster(spc)`
+
+
+
+#### Properties
+
+##### `BaseModel.channel_group`
+
+
+
+##### `BaseModel.channel_groups`
+
+List of channel groups.
+
+May be implemented by child classes.
+
+##### `BaseModel.cluster_groups`
+
+Groups of all clusters in the current channel group and clustering.
+
+This is a regular Python dictionary.
+
+##### `BaseModel.cluster_metadata`
+
+ClusterMetadata instance holding information about the clusters.
+
+Must be implemented by child classes.
+
+##### `BaseModel.clustering`
+
+
+
+##### `BaseModel.clusterings`
+
+List of clusterings.
+
+May be implemented by child classes.
+
+##### `BaseModel.features`
+
+Features from the current channel_group (may be memory-mapped).
+
+May be implemented by child classes.
+
+##### `BaseModel.masks`
+
+Masks from the current channel_group (may be memory-mapped).
+
+May be implemented by child classes.
+
+##### `BaseModel.metadata`
+
+A dictionary holding metadata about the experiment.
+
+May be implemented by child classes.
+
+##### `BaseModel.path`
+
+
+
+##### `BaseModel.probe`
+
+A Probe instance.
+
+May be implemented by child classes.
+
+##### `BaseModel.sample_rate`
+
+
+
+##### `BaseModel.spike_clusters`
+
+Spike clusters from the current channel_group.
+
+Must be implemented by child classes.
+
+##### `BaseModel.spike_samples`
+
+Spike times from the current channel_group.
+
+Must be implemented by child classes.
+
+##### `BaseModel.spike_times`
+
+Spike times from the current channel_group.
+
+This is a NumPy array containing `float64` values (in seconds).
+
+The spike times of all recordings are concatenated. There is no gap
+between consecutive recordings, currently.
+
+##### `BaseModel.spikes_per_cluster`
+
+Spikes per cluster dictionary.
+
+Must be implemented by child classes.
+
+##### `BaseModel.traces`
+
+Traces (may be memory-mapped).
+
+May be implemented by child classes.
+
+##### `BaseModel.waveforms`
+
+Waveforms from the current channel_group (may be memory-mapped).
+
+May be implemented by child classes.
+
+### phy.io.BaseSession
+
+Give access to the data, views, and GUIs in an interactive session.
+
+The model must implement:
+
+* `model(path)`
+* `model.path`
+* `model.close()`
+
+*Events*
+
+open
+close
+
+#### Methods
+
+##### `BaseSession.close()`
+
+Close the currently-open dataset.
+
+##### `BaseSession.connect(func=None, event=None, set_method=False)`
+
+Register a callback function to a given event.
+
+To register a callback function to the `spam` event, where `obj` is
+an instance of a class deriving from `EventEmitter`:
+
+```python
+@obj.connect
+def on_spam(arg1, arg2):
+    pass
+```
+
+This is called when `obj.emit('spam', arg1, arg2)` is called.
+
+Several callback functions can be registered for a given event.
+
+The registration order is conserved and may matter in applications.
+
+##### `BaseSession.emit(event, *args, **kwargs)`
+
+Call all callback functions registered with an event.
+
+Any positional and keyword arguments can be passed here, and they will
+be fowarded to the callback functions.
+
+Return the list of callback return results.
+
+##### `BaseSession.on_close()`
+
+
+
+##### `BaseSession.on_open()`
+
+
+
+##### `BaseSession.open(path=None, model=None)`
+
+Open a dataset.
+
+##### `BaseSession.reopen()`
+
+
+
+##### `BaseSession.reset()`
+
+
+
+##### `BaseSession.save()`
+
+
+
+##### `BaseSession.save_view_params(vm, save_size_pos=True)`
+
+Save the parameters exported by a view model instance.
+
+##### `BaseSession.show_gui(name=None, show=True, **kwargs)`
+
+Show a new GUI.
+
+##### `BaseSession.unconnect(*funcs)`
+
+Unconnect specified callback functions.
+
+#### Properties
 
 ### phy.io.ClusterStore
 
@@ -1020,7 +1128,7 @@ Read an HDF5 dataset, given its HDF5 path in the file.
 
 Read an attribute of an HDF5 group.
 
-##### `File.write(path, array, overwrite=False)`
+##### `File.write(path, array=None, dtype=None, shape=None, overwrite=False)`
 
 Write a NumPy array in the file.
 
@@ -1033,6 +1141,14 @@ Write a NumPy array in the file.
 * `array` (ndarray)
 
     Array to write in the file.
+
+* `dtype` (dtype)
+
+    If `array` is None, the dtype of the array.
+
+* `shape` (tuple)
+
+    If `array` is None, the shape of the array.
 
 * `overwrite` (bool)
 
@@ -1048,6 +1164,50 @@ Write an attribute of an HDF5 group.
 ##### `File.h5py_file`
 
 Native h5py file handle.
+
+### phy.io.KwikCreator
+
+
+
+#### Methods
+
+##### `KwikCreator.add_cluster_group(group=None, id=None, name=None, clustering=None)`
+
+
+
+##### `KwikCreator.add_clustering(group=None, name=None, spike_clusters=None, cluster_groups=None)`
+
+
+
+##### `KwikCreator.add_recording(id=None, raw_path=None, start_sample=None, sample_rate=None)`
+
+
+
+##### `KwikCreator.add_recordings_from_dat(files, sample_rate=None, n_channels=None, dtype=None)`
+
+
+
+##### `KwikCreator.add_recordings_from_kwd(file, sample_rate=None)`
+
+
+
+##### `KwikCreator.add_spikes(group=None, spike_samples=None, spike_recordings=None, masks=None, features=None)`
+
+
+
+##### `KwikCreator.create_empty()`
+
+
+
+##### `KwikCreator.set_metadata(path, **kwargs)`
+
+
+
+##### `KwikCreator.set_probe(probe)`
+
+
+
+#### Properties
 
 ### phy.io.KwikModel
 
@@ -1082,12 +1242,6 @@ Delete a clustering.
 ##### `KwikModel.describe()`
 
 Display information about the dataset.
-
-##### `KwikModel.has_kwd()`
-
-Returns whether the `.raw.kwd` file is present.
-
-If not, the waveforms won't be available.
 
 ##### `KwikModel.has_kwx()`
 
@@ -1142,9 +1296,17 @@ Rename an existing cluster group.
 
 Rename a clustering in the `.kwik` file.
 
-##### `KwikModel.save(spike_clusters, cluster_groups)`
+##### `KwikModel.save(spike_clusters, cluster_groups, clustering_metadata=None)`
 
 Save the spike clusters and cluster groups in the Kwik file.
+
+##### `KwikModel.spike_train(cluster_id)`
+
+Return the spike times of a given cluster.
+
+##### `KwikModel.update_spikes_per_cluster(spc)`
+
+
 
 #### Properties
 
@@ -1200,6 +1362,11 @@ cluster. The default group is 3 (unsorted).
 The currently-active clustering.
 
 Default is `main`.
+
+##### `KwikModel.clustering_metadata`
+
+A dictionary of key-value metadata specific to the current
+clustering.
 
 ##### `KwikModel.clusterings`
 
@@ -1269,6 +1436,10 @@ Number of recordings found in the Kwik file.
 
 Number of spikes in the current channel group.
 
+##### `KwikModel.path`
+
+
+
 ##### `KwikModel.probe`
 
 A `Probe` instance representing the probe used for the recording.
@@ -1322,6 +1493,10 @@ This is a NumPy array containing `float64` values (in seconds).
 
 The spike times of all recordings are concatenated. There is no gap
 between consecutive recordings, currently.
+
+##### `KwikModel.spikes_per_cluster`
+
+Spikes per cluster from the current channel group and clustering.
 
 ##### `KwikModel.traces`
 
@@ -1448,6 +1623,33 @@ Spikes per cluster.
 
 Interactive and static visualization of data.
 
+##### `phy.plot.plot_correlograms(*args, **kwargs)`
+
+Plot an array of correlograms.
+
+*Parameters*
+
+
+* `correlograms` (array)
+
+    A `(n_clusters, n_clusters, n_bins)` array.
+
+* `colors` (array-like (optional))
+
+    A list of colors as RGB tuples.
+
+##### `phy.plot.plot_features(*args, **kwargs)`
+
+
+
+##### `phy.plot.plot_traces(*args, **kwargs)`
+
+
+
+##### `phy.plot.plot_waveforms(*args, **kwargs)`
+
+
+
 ### phy.plot.BaseSpikeCanvas
 
 Base class for a VisPy canvas with spike data.
@@ -1540,11 +1742,29 @@ Draw the correlograms visual.
 
 Resize the OpenGL context.
 
+##### `CorrelogramView.set_data(correlograms=None, colors=None, lines=None)`
+
+
+
 #### Properties
 
 ##### `CorrelogramView.cluster_ids`
 
 Displayed cluster ids.
+
+##### `CorrelogramView.correlograms`
+
+
+
+##### `CorrelogramView.lines`
+
+List of x coordinates where to put vertical lines.
+
+This is unit of samples.
+
+##### `CorrelogramView.lines_color`
+
+
 
 ### phy.plot.FeatureView
 
@@ -1552,9 +1772,21 @@ A VisPy canvas displaying features.
 
 #### Methods
 
+##### `FeatureView.add_extra_feature(name, array, array_min, array_max, array_bg=None)`
+
+
+
 ##### `FeatureView.emit(name, **kwargs)`
 
 
+
+##### `FeatureView.init_grid(n_rows)`
+
+Initialize the view with a given number of rows.
+
+*Note*
+
+This function *must* be called before setting the attributes.
 
 ##### `FeatureView.on_draw(event)`
 
@@ -1572,23 +1804,31 @@ Handle key press events.
 
 Resize the OpenGL context.
 
-##### `FeatureView.update_dimensions(dimensions)`
+##### `FeatureView.set_data(features=None, n_rows=1, x_dimensions=None, y_dimensions=None, masks=None, spike_clusters=None, extra_features=None, background_features=None, colors=None)`
 
 
+
+##### `FeatureView.set_dimensions(axis, dimensions)`
+
+
+
+##### `FeatureView.smart_dimension(axis, box, dim)`
+
+Smartify a dimension selection by ensuring x != y.
 
 #### Properties
-
-##### `FeatureView.diagonal_dimensions`
-
-Dimensions.
-
-##### `FeatureView.dimensions`
-
-Dimensions.
 
 ##### `FeatureView.marker_size`
 
 Marker size.
+
+##### `FeatureView.x_dim`
+
+
+
+##### `FeatureView.y_dim`
+
+
 
 ### phy.plot.FeatureVisual
 
@@ -1596,28 +1836,38 @@ Display a grid of multidimensional features.
 
 #### Methods
 
+##### `FeatureVisual.add_extra_feature(name, array, array_min, array_max)`
+
+
+
 ##### `FeatureVisual.draw()`
 
 Draw the waveforms.
 
-##### `FeatureVisual.project(data, box)`
+##### `FeatureVisual.project(box, features=None, extra_features=None)`
 
 Project data to a subplot's two-dimensional subspace.
 
 *Parameters*
 
-* `data` (array)
-
-    The shape is `(n_points, n_channels, n_features)`.
-
 * `box` (2-tuple)
 
     The `(row, col)` of the box.
+
+* `features` (array)
+
+
+* `extra_features` (dict)
+
 
 *Notes*
 
 The coordinate system is always the world coordinate system, i.e.
 `[-1, 1]`.
+
+##### `FeatureVisual.set_dimension(axis, box, dim)`
+
+
 
 ##### `FeatureVisual.set_to_bake(*bakes)`
 
@@ -1639,27 +1889,13 @@ Cluster ids of the displayed spikes.
 
 List of selected clusters in display order.
 
-##### `FeatureVisual.diagonal_dimensions`
-
-Displayed dimensions on the diagonal y axis.
-
-This is a list of items which can be:
-
-* tuple `(channel_id, feature_idx)`
-* `'time'`
-
-##### `FeatureVisual.dimensions`
-
-Displayed dimensions.
-
-This is a list of items which can be:
-
-* tuple `(channel_id, feature_idx)`
-* `'time'`
-
 ##### `FeatureVisual.empty`
 
 Specify whether the visual is currently empty or not.
+
+##### `FeatureVisual.extra_features`
+
+
 
 ##### `FeatureVisual.features`
 
@@ -1691,9 +1927,23 @@ The clusters assigned to the displayed spikes.
 
 Spike ids to display.
 
-##### `FeatureVisual.spike_samples`
+##### `FeatureVisual.x_dim`
 
-Time samples of the displayed spikes.
+Dimensions in the x axis of all subplots.
+
+This is a matrix of items which can be:
+
+* tuple `(channel_id, feature_idx)`
+* an extra feature name (string)
+
+##### `FeatureVisual.y_dim`
+
+Dimensions in the y axis of all subplots.
+
+This is a matrix of items which can be:
+
+* tuple `(channel_id, feature_idx)`
+* an extra feature name (string)
 
 ### phy.plot.PanZoom
 
@@ -1833,20 +2083,6 @@ Resize event.
 
 Aspect (width/height).
 
-##### `PanZoomGrid.global_pan_zoom_axis`
-
-Global pan zoom matrix.
-
-This matrix indicates how each subplot reacts to global pan zoom
-events.
-
-Element `(i, j)` in this matrix is:
-
-* `x` if only this axis is to be changed
-* `y` if only this axis is to be changed
-* `b` if both axes are to be changed
-* `n` if no axis is to be changed
-
 ##### `PanZoomGrid.is_attached`
 
 Whether the transform is attached to a canvas.
@@ -1921,6 +2157,10 @@ Handle key press events.
 
 Resize the OpenGL context.
 
+##### `TraceView.set_data(traces=None, spike_samples=None, spike_clusters=None, n_samples_per_spike=50, masks=None, colors=None)`
+
+
+
 #### Properties
 
 ##### `TraceView.channel_scale`
@@ -1960,6 +2200,10 @@ Handle mouse wheel events.
 ##### `WaveformView.on_resize(event)`
 
 Resize the OpenGL context.
+
+##### `WaveformView.set_data(waveforms=None, masks=None, spike_clusters=None, channel_positions=None, channel_order=None, colors=None)`
+
+
 
 #### Properties
 
@@ -2083,7 +2327,7 @@ This is a `(n_spikes, n_samples, n_channels)` array.
 
 ## phy.stats
 
-Statistics
+Statistics functions.
 
 ##### `phy.stats.pairwise_correlograms(spike_samples, spike_clusters, binsize=None, winsize_bins=None)`
 
@@ -2103,29 +2347,32 @@ Generate a debug message.
 
 Download a binary file from an URL.
 
-##### `phy.utils.download_test_data(name, output_dir=None)`
+##### `phy.utils.download_sample_data(name, output_dir=None, base='cortexlab')`
 
-Download a test dataset.
+Download a sample dataset.
 
-##### `phy.utils.enable_qt()`
+*Parameters*
 
 
+* `name` (str)
+
+    Name of the sample dataset to download.
+
+* `output_dir` (str)
+
+    The directory where to save the file.
+
+* `base` (str)
+
+    The id of the base URL. Can be `'cortexlab'` or `'github'`.
 
 ##### `phy.utils.info(*msg)`
 
 Generate an info message.
 
-##### `phy.utils.qt_app(*args, **kwds)`
-
-Context manager to ensure that a Qt app is running.
-
 ##### `phy.utils.register(logger)`
 
 Register a logger.
-
-##### `phy.utils.run_qt_app()`
-
-Start the Qt application's event loop.
 
 ##### `phy.utils.set_level(level)`
 
@@ -2137,13 +2384,6 @@ Set the level of all registered loggers.
 * `level` (str)
 
     Can be `warn`, `info`, or `debug`.
-
-##### `phy.utils.start_qt_app()`
-
-Start a Qt application if necessary.
-
-If a new Qt application is created, this function returns it.
-If no new application is created, the function returns None.
 
 ##### `phy.utils.unregister(logger)`
 
@@ -2162,71 +2402,6 @@ A dict with additional dot syntax.
 ##### `Bunch.copy()`
 
 
-
-#### Properties
-
-### phy.utils.DockWindow
-
-A Qt main window holding docking Qt or VisPy widgets.
-
-#### Methods
-
-##### `DockWindow.add_action(name, callback=None, shortcut=None, checkable=False, checked=False)`
-
-Add an action with a keyboard shortcut.
-
-##### `DockWindow.add_view(view, title='view', position=None, closable=True, floatable=True, floating=None, **kwargs)`
-
-Add a widget to the main window.
-
-##### `DockWindow.closeEvent(e)`
-
-Qt slot when the window is closed.
-
-##### `DockWindow.connect_views(name_0, name_1)`
-
-Decorator for a function that accepts any pair of views.
-
-This is used to connect any view of type `name_0` to any other view
-of type `name_1`.
-
-##### `DockWindow.list_views(title='', is_visible=True)`
-
-List all views which title start with a given string.
-
-##### `DockWindow.on_close(func)`
-
-Register a callback function when the window is closed.
-
-##### `DockWindow.on_show(func)`
-
-Register a callback function when the window is shown.
-
-##### `DockWindow.restore_geometry_state(gs)`
-
-Restore the position of the main window and the docks.
-
-The dock widgets need to be recreated first.
-
-This function can be called in `on_show()`.
-
-##### `DockWindow.save_geometry_state()`
-
-Return picklable geometry and state of the window and docks.
-
-This function can be called in `on_close()`.
-
-##### `DockWindow.shortcut(name, key=None)`
-
-Decorator to add a global keyboard shortcut.
-
-##### `DockWindow.show()`
-
-Show the window.
-
-##### `DockWindow.view_counts()`
-
-Return the number of opened views.
 
 #### Properties
 
@@ -2264,6 +2439,12 @@ Call all callback functions registered with an event.
 
 Any positional and keyword arguments can be passed here, and they will
 be fowarded to the callback functions.
+
+Return the list of callback return results.
+
+##### `EventEmitter.reset()`
+
+
 
 ##### `EventEmitter.unconnect(*funcs)`
 
@@ -2308,11 +2489,21 @@ Call all callback functions registered with an event.
 Any positional and keyword arguments can be passed here, and they will
 be fowarded to the callback functions.
 
+Return the list of callback return results.
+
+##### `ProgressReporter.increment(**kwargs)`
+
+
+
 ##### `ProgressReporter.is_complete()`
 
 Return wheter the task has completed.
 
-##### `ProgressReporter.set_complete()`
+##### `ProgressReporter.reset(value_max=None)`
+
+
+
+##### `ProgressReporter.set_complete(**kwargs)`
 
 Set the task as complete.
 
@@ -2320,7 +2511,7 @@ Set the task as complete.
 
 Set a complete message.
 
-##### `ProgressReporter.set_progress_message(message)`
+##### `ProgressReporter.set_progress_message(message, line_break=False)`
 
 Set a progress message.
 
@@ -2343,58 +2534,6 @@ Current value (integer).
 ##### `ProgressReporter.value_max`
 
 Maximum value.
-
-### phy.utils.Selector
-
-Object representing a selection of spikes or clusters.
-
-#### Methods
-
-##### `Selector.on_cluster(up=None)`
-
-Callback method called when the clustering has changed.
-
-This currently does nothing, i.e. the spike selection remains
-unchanged when merges and splits occur.
-
-##### `Selector.wrapped(*args, **kwargs)`
-
-
-
-##### `Selector.subset_spikes_clusters(clusters, n_spikes_max=None, excerpt_size=None)`
-
-Take a subselection of spikes belonging to a set of clusters.
-
-This method ensures that the same number of spikes is chosen
-for every spike.
-
-`n_spikes_max` is the maximum number of spikers *per cluster*.
-
-#### Properties
-
-##### `Selector.excerpt_size`
-
-Maximum number of spikes allowed in the selection.
-
-##### `Selector.n_clusters`
-
-
-
-##### `Selector.n_spikes`
-
-
-
-##### `Selector.n_spikes_max`
-
-Maximum number of spikes allowed in the selection.
-
-##### `Selector.selected_clusters`
-
-Cluster ids appearing in the current spike selection.
-
-##### `Selector.selected_spikes`
-
-Ids of the selected spikes.
 
 ### phy.utils.Settings
 
