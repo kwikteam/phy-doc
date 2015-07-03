@@ -3,13 +3,25 @@
 Run this in a console:
 
 ```
-curl http://phy.cortexlab.net/install/latest.sh
+curl -O http://phy.cortexlab.net/install/latest.sh
 bash latest.sh
 ```
 
 This will install **miniconda** (a Python distribution) and **phy** in your `$HOME/miniconda` by default. To install phy without reinstalling miniconda, use `bash latest.sh -s`. For more options, run `bash latest.sh -h`.
 
-Below are more detailled instructions if you don't want to use the automatic installer.
+To use the `klustakwik2` clustering algorithm (currently the only algorithm integrated with `phy`), you must install this separately:
+
+On Windows, install the binary klustakwik2 package:
+```
+conda install -c http://conda.binstar.org/kwikteam klustakwik2
+```
+
+On Mac / Linux (or if you want to compile from source in Windows)
+```
+pip install klustakwik2
+```
+
+Below are more detailed instructions if you don't want to use the automatic installer.
 
 > We will provide Windows and GUI installers in the near future.
 
@@ -30,7 +42,7 @@ Here are the installation instructions when you're starting from scratch:
 #### 1. Open a terminal
 
 * Windows: press `Windows` + `R`, type `cmd`, and press `Enter`.
-* Mac OS X: TODO.
+* Mac OS X: press `Command` + `Space`, type `Terminal`, and press `Enter`.
 * Linux: you probably already know how to do it.
 
 #### 2. Install miniconda
@@ -51,6 +63,16 @@ bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
 conda install conda python=3 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests && pip install vispy phy
 ```
 
+On Windows, install the binary klustakwik2 package:
+```
+conda install -c http://conda.binstar.org/kwikteam klustakwik2
+```
+
+On Mac / Linux (or if you want to compile from source in Windows)
+```
+pip install klustakwik2
+```
+
 > Advanced users can use the development version with `git clone git://github.com/kwikteam/phy.git && cd phy && python setup.py develop`.
 
 
@@ -67,6 +89,7 @@ There are several dependencies:
 * matplotlib (optional, for plotting)
 * IPython and its notebook (optional, but recommended for interactive use)
 * requests (for downloading test data)
+* klustakwik2 (fast masked-EM clustering algorithm)
 
 Most of these dependencies are only imported when you use a feature that needs them. This means that you don't need all dependencies if you're just interested in a small part of the library.
 

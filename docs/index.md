@@ -20,7 +20,7 @@ The API is highly modular, and you can extend the library in many ways. You can 
 On Linux or Mac OS X, run this in a console:
 
 ```
-curl http://phy.cortexlab.net/install/latest.sh
+curl -O http://phy.cortexlab.net/install/latest.sh
 bash latest.sh
 ```
 
