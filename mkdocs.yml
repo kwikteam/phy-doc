@@ -10,5 +10,6 @@ pages:
    - 'Automatic clustering': 'cluster-auto.md'
    - 'Manual clustering GUI': 'cluster-manual.md'
 - API reference: 'api.md'
+- Kwik format description: 'kwik-format.md'
 - Contact: 'contact.md'
 theme: readthedocs

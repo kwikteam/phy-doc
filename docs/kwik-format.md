@@ -1,5 +1,7 @@
 # Kwik format
 
+**NOTE: this format is still experimental and subject to future changes. Subscribe to the Klustaviewas mailing list to be kept up to date.**
+
 TODO: update this document.
 TODO: move descriptions of PRB/PRM in another file?
 
