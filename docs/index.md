@@ -1,12 +1,12 @@
-#phy
+# phy
 
 _Spike sorting and ephys data analysis for 1000 channels and beyond._
 
 ## Overview
 
-[**phy**](https://github.com/kwikteam/phy) is an open source electrophysiological data analysis library in Python for neuronal recordings made with high-density multielectrode arrays containing up to thousands of channels.
+[**phy**](https://github.com/kwikteam/phy) is an open source electrophysiological data analysis library in Python. It targets neuronal recordings made with high-density multielectrode arrays containing up to thousands of channels.
 
-This library allows you to spike-sort, analyze, and visualize your data interactively. It is currently based on the Kwik format. *phy* provides:
+This library allows you to spike-sort, analyze, and visualize your data interactively. It is currently based on the [Kwik format](kwik-format.md). *phy* provides:
 
 * A Python API, to be used in scripts or interactively in an IPython terminal or notebook
 * User-friendly, high-performance plotting facilities
