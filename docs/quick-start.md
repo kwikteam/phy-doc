@@ -20,17 +20,21 @@ $ phy -v
 Create a new folder for your experiments, and type the following:
 
 ```bash
-$ phy download hybrid_120sec.dat
+$ phy download hybrid_10sec.dat
 ```
 
-This should download a 150MB raw data file, containing a 2 minutes recordings with 32 channels.
+This will download a raw data file containing a 10-seconds-long recordings with 32 channels.
 
-> `hybrid_120sec.dat` is a flat binary file containing `int16` samples. The first 32 numbers correspond to the first time sample, all 32 channels, etc.
+> `hybrid_10sec.dat` is a flat binary file containing `int16` samples. The first 32 numbers correspond to the first time sample, all 32 channels, etc.
 
 
 ## Download and edit the parameters file
 
-TODO
+```bash
+$ phy download hybrid_10sec.prm
+```
+
+This will download a parameters file, named **PRM file**. This Python text file contains the parameters required to run the spike sorting algorithms on the data.
 
 
 ## Run spike detection and automatic clustering
@@ -38,15 +42,15 @@ TODO
 Type the following command:
 
 ```bash
-$ phy spikesort hybrid_120sec.prm
+$ phy spikesort hybrid_10sec.prm
 ```
 
-This will take a few minutes to complete. The spike detection and automatic clustering algorithms will save their results in the `hybrid_120sec.kwik` and `hybrid_120sec.kwx` files.
+This will take a few minutes to complete. The spike detection and automatic clustering algorithms will save their results in the `hybrid_10sec.kwik` and `hybrid_10sec.kwx` files.
 
 
 ## Run the manual clustering GUI
 
 ```bash
-$ phy spikesort hybrid_120sec.kwik
+$ phy cluster-manual hybrid_10sec.kwik
 ```
 
