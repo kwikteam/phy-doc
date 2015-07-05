@@ -3,6 +3,7 @@ pages:
 - Home: 'index.md'
 - Installation: 'install.md'
 - User Guide:
+   - 'Quick start': 'quick-start.md'
    - 'Working with Kwik files': 'kwik-model.md'
    - 'Interactive plotting': 'plot.md'
    - 'Manual clustering (KlustaViewa)': 'cluster-manual.md'
