@@ -1,6 +1,6 @@
 #phy
 
-_Spike sorting and data analysis for 1000 channels and beyond._
+_Spike sorting and ephys data analysis for 1000 channels and beyond._
 
 ## Overview
 

@@ -6,7 +6,9 @@ pages:
    - 'Quick start': 'quick-start.md'
    - 'Working with Kwik files': 'kwik-model.md'
    - 'Interactive plotting': 'plot.md'
-   - 'Manual clustering (KlustaViewa)': 'cluster-manual.md'
+   - 'Spike detection': 'detect.md'
+   - 'Automatic clustering': 'cluster-auto.md'
+   - 'Manual clustering GUI': 'cluster-manual.md'
 - API reference: 'api.md'
 - Contact: 'contact.md'
 theme: readthedocs
