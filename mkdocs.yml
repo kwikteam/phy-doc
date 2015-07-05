@@ -3,7 +3,7 @@ pages:
 - Home: 'index.md'
 - Installation: 'install.md'
 - User Guide:
-   - 'Quick start': 'quick-start.md'
+   - 'Quick start: spike sorting': 'quick-start.md'
    - 'Working with Kwik files': 'kwik-model.md'
    - 'Interactive plotting': 'plot.md'
    - 'Spike detection': 'detect.md'
