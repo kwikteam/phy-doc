@@ -2,11 +2,11 @@
 
 > phy 0.2.0 only supports files in the Kwik format. Future versions may support other file formats.
 
-The [**Kwik format**](https://github.com/klusta-team/kwiklib/wiki/Kwik-format) features several files:
+The [**Kwik format**](kwik-format.md) features several files:
 
 * `.kwik`: metadata, spikes, clusters
-* `.kwx`: features, waveforms
-* `.raw.kwd`: raw extracellular traces
+* `.kwx`: masks, features
+* `.dat`: raw extracellular traces
 
 > OpenEphys can also generate Kwik files. Feel free to contact us if you get any problem or incompatibility.
 
@@ -22,64 +22,75 @@ Open a Kwik dataset with:
 Let's assume that we have a Kwik dataset in the current directory:
 
 ```python
->>> !ls | grep myexperiment
-myexperiment.kwik
-myexperiment.kwx
-myexperiment.raw.kwd
+>>> %ls data/hybrid*
+[0m[01;32mdata/hybrid_10sec.dat[0m*   [01;32mdata/hybrid_10sec.kwik.bak[0m*  [01;32mdata/hybrid_10sec.log[0m*
+[01;32mdata/hybrid_10sec.kwik[0m*  [01;32mdata/hybrid_10sec.kwx[0m*       [01;32mdata/hybrid_10sec.prm[0m*
 ```
 
 ```python
->>> kwik_path = 'myexperiment.kwik'
+>>> kwik_path = 'data/hybrid_10sec.kwik'
 >>> model = KwikModel(kwik_path)
 ```
 
-The waveforms in the `.kwx` file are not used at all in phy: rather, they are dynamically extracted and filtered from the raw data. This is because storing waveforms takes too much storage space.
-
-Now, `model` offers you access to all of your data. See the [API](https://github.com/kwikteam/phy-doc/blob/master/api.md#phyiokwikmodel) for more details. In IPython, use tab completion to discover the attributes and methods of the object.
+Now, you can use the `model` to access your data. See the [API](api.md#phyiokwikmodel) for more details. In IPython, use tab completion to discover the attributes and methods of the object.
 
 ```python
 >>> model.describe()
-Kwik file               myexperiment.kwik
+Kwik file               /data/git/phy/doc/docs/data/hybrid_10sec.kwik
 Recordings              1
 List of shanks          0*
-Clusterings             main*, original
+Clusterings             main*, empty, kk2_current, original
 Channels                32
-Spikes                  18539
-Clusters                24
-Duration                120s
+Spikes                  1603
+Clusters                19
+Duration                10s
 ```
 
 ### Spikes and clusters
 
 ```python
 >>> model.spike_samples
-array([     35,     795,     812, ..., 2398670, 2398753, 2399983], dtype=uint64)
+array([    35,    812,    833, ..., 197537, 197550, 197670], dtype=uint64)
 ```
 
 ```python
 >>> model.spike_times
-array([  1.75000000e-03,   3.97500000e-02,   4.06000000e-02, ...,
-         1.19933500e+02,   1.19937650e+02,   1.19999150e+02])
+array([  1.75000000e-03,   4.06000000e-02,   4.16500000e-02, ...,
+         9.87685000e+00,   9.87750000e+00,   9.88350000e+00])
 ```
 
 ```python
 >>> model.spike_clusters
-array([20, 10, 25, ..., 10, 12, 20], dtype=uint32)
+array([19, 16,  6, ...,  3, 16, 14], dtype=int32)
 ```
 
 ```python
 >>> model.cluster_ids
-array([ 2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-       19, 20, 21, 22, 23, 24, 25])
+array([ 0,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+       18, 19])
 ```
 
 ```python
 >>> model.cluster_groups
-{2: 3,
+{0: 3,
+ 2: 3,
  3: 3,
- ...
- 24: 3,
- 25: 3}
+ 4: 3,
+ 5: 3,
+ 6: 3,
+ 7: 3,
+ 8: 3,
+ 9: 3,
+ 10: 3,
+ 11: 3,
+ 12: 3,
+ 13: 3,
+ 14: 3,
+ 15: 3,
+ 16: 3,
+ 17: 3,
+ 18: 3,
+ 19: 3}
 ```
 
 Here are the default cluster groups:
@@ -91,52 +102,32 @@ Here are the default cluster groups:
 
 ### Metadata
 
-The metadata contains information from the PRM file (used by SpikeDetekt2):
+The metadata contains information from the PRM file (used by the spike detection algorithm):
 
 ```python
 >>> model.metadata
-{'assigntofirstclosestmask': 1,
- 'chunk_overlap': 300,
- 'chunk_size': 20000,
+{'chunk_overlap_seconds': 0.014999999999999999,
+ 'chunk_size_seconds': 1,
  'connected_component_join_size': 1,
- 'debug': 0,
- 'detect_spikes': "b'negative'",
- 'excerpt_size': 20000,
- 'experiment_name': "b'test_hybrid_120sec'",
+ 'detect_spikes': 'negative',
+ 'dtype': 'int16',
+ 'excerpt_size_seconds': 1,
  'extract_s_after': 16,
  'extract_s_before': 16,
  'filter_butter_order': 3,
- 'filter_high': 9500.0,
- 'filter_lfp_high': 300,
- 'filter_lfp_low': 0,
+ 'filter_high_factor': 0.47499999999999998,
  'filter_low': 500.0,
- 'fullstepevery': 10,
- 'maskstarts': 100,
- 'maxiter': 10000,
- 'maxpossibleclusters': 500,
- 'nbits': 16,
- 'nchannels': 32,
- 'nexcerpts': 50,
- 'nfeatures_per_channel': 3,
- 'pca_nwaveforms_max': 10000,
- 'penaltyk': 0,
- 'penaltyklogn': 1,
- 'prb_file': "b'32chan1shankbuzsaki.prb'",
- 'priorpoint': 1,
- 'randomseed': 654,
- 'raw_data_files': "b'test_hybrid_120sec.raw.kwd'",
+ 'n_channels': 32,
+ 'n_excerpts': 50,
+ 'n_features_per_channel': 3,
+ 'pca_n_waveforms_max': 10000,
+ 'prb_file': '1x32_buzsaki',
+ 'raw_data_files': 'hybrid_10sec.dat',
  'sample_rate': 20000,
- 'savecovariancemeans': 0,
- 'savesorted': 0,
- 'splitevery': 100,
- 'splitfirst': 20,
- 'subset': 1,
  'threshold_strong_std_factor': 4.5,
  'threshold_weak_std_factor': 2.0,
- 'usedistributional': 1,
- 'usemaskedinitialconditions': 1,
- 'voltage_gain': 10.0,
- 'waveforms_nsamples': 32}
+ 'use_single_threshold': 0,
+ 'weight_power': 2}
 ```
 
 ### Masks and features
@@ -149,16 +140,18 @@ The `model.masks` acts as a memory-mapped array to HDF5. You can access the mask
 
 ```python
 >>> model.masks.shape
-(18539, 32)
+(1603, 32)
 ```
 
-> This is an instance of `PartialArray`: in the current file format, masks and features are stored in the same array, for legacy reasons. This partial array dyamically maps indexing to the original HDF5 array. This is why this object is not just an `h5py` dataset.
+> This is an instance of `PartialArray`: in the current file format, masks and features are stored in the same array, for historical reasons. This partial array dyamically maps indexing to the original HDF5 array. This is why this object is not just an `h5py` dataset.
 
 Mask vector of spike number 10:
 
 ```python
 >>> model.masks[10]
-array([ 0.,  0.,  ...,  0.,  0.], dtype=float32)
+array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  1.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,
+        0.,  0.,  0.,  0.,  0.,  0.], dtype=float32)
 ```
 
 Masks of the first ten spikes:
@@ -179,7 +172,7 @@ This is the same thing for the features, except that this is now a 2D `(n_spikes
 
 ```python
 >>> model.features.shape
-(18539, 96)
+(1603, 96)
 ```
 
 ### Waveforms
@@ -188,17 +181,17 @@ Waveforms are dynamically fetched and filtered from the raw data file. This is a
 
 ```python
 >>> model.waveforms
-<phy.io.kwik.model.SpikeLoader at 0x7fa9d986be48>
+<phy.io.kwik.model.SpikeLoader at 0x7ff4b39a5ba8>
 ```
 
 ```python
 >>> model.waveforms.shape
-(18539, 32, 32)
+(1603, 32, 32)
 ```
 
 ```python
->>> model.waveforms[:10].shape
-(10, 32, 32)
+>>> model.waveforms[:3].shape
+(3, 32, 32)
 ```
 
 ### Extracellular traces
@@ -206,8 +199,8 @@ Waveforms are dynamically fetched and filtered from the raw data file. This is a
 The following is a memory-mapped array from the `.raw.kwd` file:
 
 ```python
->>> model.traces
-<HDF5 dataset "data": shape (2400000, 32), type "<i2">
+>>> model.traces.shape
+(200000, 32)
 ```
 
 ### Working with multiple shanks and clusterings
@@ -224,7 +217,7 @@ The following is a memory-mapped array from the `.raw.kwd` file:
 
 ```python
 >>> model.clusterings
-['main', 'original']
+['main', 'empty', 'kk2_current', 'original']
 ```
 
 ```python
@@ -240,7 +233,7 @@ Here is how to change the current clustering (by default, the **main** clusterin
 
 ```python
 >>> model.spike_clusters
-array([20, 10, 25, ..., 10, 12, 20], dtype=uint32)
+array([19, 16,  6, ...,  3, 16, 14], dtype=int32)
 ```
 
 ### Modifying the data
