@@ -69,33 +69,21 @@ You can define your own quality and similarity functions. For example, we can so
 ```python
 >>> @gui.wizard.set_quality_function
 ... def cluster_id(cluster):
-...     return cluster
+...     # The clusters are sorted by decreasing quality.
+...     return -cluster
 ```
 
 ```python
->>> gui.wizard.reset()
+>>> gui.wizard.start()
 ```
 
-#### Adding views
-
-You can add new views. Here is how to create a new CCG view for a given set of clusters:
-
-```python
->>> view = session.show_view('correlograms', [2, 3, 5, 7], winsize_bins=101, binsize=10)
-```
-
-Here, `winsize_bins` is the size of the CCG window in number of bins, whereas `binsize` is the bin size in number of samples.
-
-Now you can add this view to the GUI: the shown clusters will then be bound to the current cluster selection in the GUI.
-
-```python
->>> gui.add_view(view)
-```
+Similarly, there is the `@gui.wizard.set_similarity_function` decorator.
 
 ### Changing the shank or clustering
 
 ```python
 >>> session.change_channel_group(0)
+12:59:27 [I] Switched to channel group 0.
 Features and masks initialized.[K
 Waveforms initialized.[K
 Statistics initialized.[K
@@ -103,144 +91,15 @@ Statistics initialized.[K
 
 ```python
 >>> session.change_clustering('original')
-Features and masks initialized.[K
+12:59:29 [I] Switched to `original` clustering.
 Features and masks initialized.[K
 Waveforms initialized.[K
 Statistics initialized.[K
 ```
 
-#### Cluster statistics
+### User settings
 
-There are also some basic cluster statistics, computed and stored in RAM when you load a dataset:
-
-```python
->>> store.mean_masks(3)
-array([  5.53777814e-03,   7.00678080e-02,   6.73059449e-02,
-         ...
-         3.20874620e-03,   3.55315686e-04], dtype=float32)
-```
-
-```python
->>> store.mean_probe_position(3)
-array([ -1.71710563,  26.0843029 ], dtype=float32)
-```
-
-```python
->>> store.mean_features(3)
-array([[  6.89437687e-01,   1.20974028e+00,   1.33888766e-01],
-          ...
-       [  1.01085186e+00,   8.73123109e-01,   2.94472277e-01]], dtype=float32)
-```
-
-A cluster store contains several **store items**: these objects are responsible for storing some data. Here are the default store items:
-
-```python
->>> store.items
-OrderedDict([('features and masks', <phy.io.kwik.store_items.FeatureMasks object at 0x7ffbed23ca58>), ('waveforms', <phy.io.kwik.store_items.Waveforms object at 0x7ffbed23c9b0>), ('statistics', <phy.io.kwik.store_items.ClusterStatistics object at 0x7ffbed23ccc0>)])
-```
-
-```python
->>> stats = store.items['statistics']
-```
-
-Every store items contains a list of **fields** which represents one particular bit of data, stored either on disk or in memory. For example, the statistics item contains the following default statistics:
-
-```python
->>> stats.fields
-['mean_masks',
- 'mean_features',
- 'mean_waveforms',
- 'mean_probe_position',
- 'main_channels',
- 'n_unmasked_channels']
-```
-
-We'll see below how to customize these objects.
-
-### Extending and customizing the interface
-
-The whole API is designed fo modularity and extendability.
-
-#### Using a custom quality function in the wizard
-
-You can write your own quality function for the wizard:
-
-```python
->>> @session.wizard.set_quality_function
-... def stupid_quality(cluster):
-...     return cluster
-```
-
-```python
->>> session.wizard.start()
-```
-
-```python
->>> session.wizard.best_clusters(n_max=10)
-[25, 24, 23, 22, 21, 20, 19, 18, 17, 16]
-```
-
-Inside the function, you can use the cluster store to access the data and statistics.
-
-If you have a GUI running, it will be automatically synchronized with this new statistic.
-
-#### Using a custom similarity function in the wizard
-
-```python
->>> @session.wizard.set_similarity_function
-... def stupid_similarity(target, candidate):
-...     return target - candidate
-```
-
-```python
->>> session.wizard.start()
-```
-
-```python
->>> session.wizard.most_similar_clusters(25, n_max=10)
-[2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-```
-
-The higher the score, the most similar the clusters are. Use negative numbers if you want to write a distance instead. The actual values don't count, only the cluster-per-cluster differences.
-
-#### Registering a new statistic
-
-You can create a new cluster statistic. It will be automatically computed for all clusters and kept up-to-date during the manual clustering session.
-
-```python
->>> @session.register_statistic
-... def n_spikes(cluster):
-...     return len(store.spikes_per_cluster[cluster])
-2015-05-25 23:50:00  session:283             Registered statistic `n_spikes`.
-```
-
-The new statistic now appears here:
-
-```python
->>> stats.fields
-['mean_masks',
- 'mean_features',
- 'mean_waveforms',
- 'mean_probe_position',
- 'main_channels',
- 'n_unmasked_channels',
- 'n_spikes']
-```
-
-And it is available from the store like the other statistics:
-
-```python
->>> store.n_spikes(3)
-188
-```
-
-#### Integrating your own plots in the GUI
-
-Coming soon...
-
-#### User parameters
-
-You can put custom settings in `~/.phy/user_settings.py`. See the [default settings here](https://github.com/kwikteam/phy/blob/master/phy/cluster/manual/default_settings.py).
+You can put custom settings in `~/.phy/user_settings.py`.
 
 For example, to add a new CCG view with custom parameters by default in all GUIs, put this in your settings file:
 
@@ -257,9 +116,9 @@ gui_config = [
 ]
 ```
 
-#### Internal settings
+### Internal settings
 
-Some internal settings (especially related to the views and the GUI, such as the position of the views) are automatically saved in `~/.phy/internal_settings`. You can delete this file if you have some strange bugs in the GUI.
+Some internal settings (especially related to the views and the GUI, such as the position of the views) are automatically saved in `~/.phy/internal_settings` (a JSON file). You can delete this file if you have some strange bugs in the GUI.
 
 You can also set some settings manually:
 
@@ -269,4 +128,11 @@ You can also set some settings manually:
 
 ```python
 >>> session.settings.save()
+```
+
+```python
+>>> !cat ~/.phy/internal_settings
+{
+  "hello": "world"
+}
 ```
