@@ -3,9 +3,12 @@ pages:
 - Home: 'index.md'
 - Installation: 'install.md'
 - User Guide:
+   - 'Quick start: spike sorting': 'quick-start.md'
    - 'Working with Kwik files': 'kwik-model.md'
    - 'Interactive plotting': 'plot.md'
-   - 'Manual clustering (KlustaViewa)': 'cluster-manual.md'
+   - 'Spike sorting session': 'cluster-auto.md'
+   - 'Manual clustering GUI': 'cluster-manual.md'
 - API reference: 'api.md'
+- Kwik format description: 'kwik-format.md'
 - Contact: 'contact.md'
 theme: readthedocs
