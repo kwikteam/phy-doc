@@ -6,30 +6,24 @@ Although you can use the `phy cluster-manual` command-line tool to open the GUI,
 
 ### Session
 
-The `Session` is the main interface to the manual clustering engine. Use tab completion in IPython to discover the methods. See also the [API documentation](https://github.com/kwikteam/phy-doc/blob/master/api.md#phyclustermanualsession).
+You can launch the clustering GUI from the session.
 
-#### Activating Qt event loop integration in IPython
-
-**Important**: if you use the GUI in the notebook, don't forget to do this at the beginning:
+**Important**: you need to enable Qt integration first:
 
 ```python
 >>> import phy
 >>> phy.enable_qt()
-2015-05-25 23:49:39  dock:142                Qt event loop activated.
+12:52:52 [I] Qt event loop activated.
 ```
 
-You can also type `%gui qt`.
-
-#### Starting a session
-
-Let's create a new manual clustering session using an already automatically clustered dataset:
+Let's open a new session:
 
 ```python
->>> from phy.cluster.manual import Session
+>>> from phy.cluster import Session
 ```
 
 ```python
->>> kwik_path = 'myexperiment.kwik'
+>>> kwik_path = 'data/hybrid_10sec.kwik'
 >>> session = Session(kwik_path)
 Features and masks initialized.[K
 Waveforms initialized.[K
@@ -38,72 +32,7 @@ Statistics initialized.[K
 
 > Putting your data files on a SSD is **highly recommended** for performance reasons.
 
-This may take a while the first time, because a **cluster store** is automatically created. This folder in `myexperiment.phy/cluster_store/` contains a copy of all masks, features, and part of the waveforms for every cluster (one file per cluster). This makes the GUI orders of magnitude faster than fetching data from the HDF5 kwik files. The cluster store is transparently handled by the engine and you don't have to worry about it. The cluster store is also used to compute various cluster statistics at initialization time so that the interface is fast during manual clustering.
-
-Oncce the session is loaded, you can view the data and start clustering it. See the API documentation for more details.
-
-### Objects
-
-There are several objects accessible from the session. See the API documentation for more details.
-
-#### Model
-
-This is documented earlier in the user guide, as well as in the API documentation:
-
-```python
->>> session.model
-<phy.io.kwik.model.KwikModel at 0x7ffc084b30b8>
-```
-
-#### Clustering
-
-The `Clustering` object handles the spike-cluster mapping:
-
-```python
->>> session.clustering
-<phy.cluster.manual.clustering.Clustering at 0x7ffc084b3ef0>
-```
-
-The following two dictionaries can be useful:
-
-```python
->>> session.clustering.cluster_counts
-{2: 553,
- 3: 188,
- ...
- 24: 825,
- 25: 418}
-```
-
-```python
->>> session.clustering.spikes_per_cluster
-{2: array([   44,    68,   131,   133,   213,   224,   235,   364,   399,
-   ....
-           18480, 18484, 18485, 18521])}
-```
-
-These dictionaries are always up to date with the current manual clustering.
-
-#### Other objects
-
-In general you don't need to use these objects directly.
-
-```python
->>> session.view_creator
-<phy.cluster.manual.views.ViewCreator at 0x7ffc084b3208>
-```
-
-```python
->>> session.gui_creator
-<phy.cluster.manual.gui.GUICreator at 0x7ffc084b3518>
-```
-
-```python
->>> session.wizard
-<phy.cluster.manual.wizard.Wizard at 0x7ffbeb0b32e8>
-```
-
-### Wizard GUI
+### Manual clustering GUI
 
 Type `session.show_gui()` to launch the clustering GUI. This minimal GUI provides two things:
 
@@ -125,14 +54,26 @@ Here is the intended workflow:
     * Move either or both clusters to cluster groups (noise, MUA, good).
 * You can also draw a lasso in the feature view to create a new cluster out of the enclosed spikes (`ctrl+click` and `k` to split).
 
-> Better quality and similarity measures will be used in the future. You'll also be able to write your own functions in Python.
-
 ![Wizard GUI screenshot](images/cluster-manual-gui.png)
 
 All actions are accessible from the Python API. Use tab completion on `session.gui` and look at the [API](https://github.com/kwikteam/phy-doc/blob/master/api.md#phyclustermanualclustermanualgui).
 
 ```python
 >>> gui = session.show_gui()
+```
+
+## Custom wizard
+
+You can define your own quality and similarity functions. For example, we can sort the clusters by increasing number with this:
+
+```python
+>>> @gui.wizard.set_quality_function
+... def cluster_id(cluster):
+...     return cluster
+```
+
+```python
+>>> gui.wizard.reset()
 ```
 
 #### Adding views
@@ -166,56 +107,6 @@ Features and masks initialized.[K
 Features and masks initialized.[K
 Waveforms initialized.[K
 Statistics initialized.[K
-```
-
-### The cluster store
-
-The cluster stores contains a copy of the features, masks, waveforms of your data, in a format much more adapted to manual clustering. This makes the progam much faster than before. You can also use it to access per-cluster data and statistics.
-
-#### Masks and features
-
-```python
->>> store = session.cluster_store
-```
-
-```python
->>> store.display_status()
-Cluster store status (/data/spikesorting/1_simple120sec/test_hybrid_120sec.phy/cluster_store/0/main)
-----------------------------------------------------------------------------------------------------
-Number of clusters in the store     24
-Number of old clusters               0
-Total size (MB)                     19
-Consistent                        True
-```
-
-You can obtain the features and masks of all spikes in any given cluster very efficiently:
-
-```python
->>> store.masks(3).shape
-(188, 32)
-```
-
-```python
->>> store.features(5).shape
-(260, 32, 3)
-```
-
-#### Waveforms
-
-Only a subset of the waveforms (those that are displayed) are stored:
-
-```python
->>> store.waveforms(3).shape
-(100, 32, 32)
-```
-
-Here are the corresponding spikes:
-
-```python
->>> store.items['waveforms'].spikes_per_cluster[3]
-array([  152,   171,   173,   284,   695,   801,   829,   831,   927,
-        ...
-       17331, 17332, 17411, 17728, 17881, 17883, 18127, 18139, 18184, 18233])
 ```
 
 #### Cluster statistics
