@@ -2,36 +2,14 @@
 
 *phy* 0.2.0 provides automatic spike detection and clustering algorithms.
 
-### Spike detection
-
-The code comes from the previous SpikeDetekt2 software. The steps are the following:
-
-* filtering of the raw data
-* automatic threshold detection
-* thresholding of the filtered data
-* spike detection
-* connected component extraction (using the probe's adjacency graph)
-* mask computation (channels on which spikes are detected)
-* waveform extraction (including realignment with respect to the peak)
-* per-channel PCA of the waveforms
-* projection of all waveforms on the PCs to compute the spike features
-
-All of these steps are implemented in modular classes in the `phy.traces` package. The whole algorithm is implemented in `phy.cluster`.
-
-> A parallel implementation will be provided in the next version.
-
-
-### Automatic clustering
-
-The code is implemented in the KlustaKwik2 program, written in Python and Cython. It implements a modified version of the expectation-maximization algorithm.
-
 ### Session
 
 The `Session` represents an interactive session around a given dataset. You can use it to detect spikes, cluster spikes, inspect and analyze your data, and open the manual clustering GUI.
 
-Let's create a new session around a Kwik file:
+Let's create a new session around a Kwik file (after `phy spikesort` has run):
 
 ```python
+>>> import numpy as np
 >>> from phy.cluster import Session
 ```
 
@@ -88,6 +66,39 @@ array([  0.00000000e+00,   0.00000000e+00,   0.00000000e+00,
          9.12764490e-01,   9.03752923e-01], dtype=float32)
 ```
 
-```python
+You can add your own cluster statistics as follows:
 
+```python
+>>> @session.register_statistic
+... def n_refractory_violations(cluster):
+...     return np.sum(np.diff(session.model.spike_train(cluster)) < .003)
+12:45:18 [I] Registered statistic `n_refractory_violations`.
 ```
+
+```python
+>>> session.store.n_refractory_violations(10)
+17
+```
+
+### Spike detection
+
+The code comes from the previous SpikeDetekt2 software. The steps are the following:
+
+* filtering of the raw data
+* automatic threshold detection
+* thresholding of the filtered data
+* spike detection
+* connected component extraction (using the probe's adjacency graph)
+* mask computation (channels on which spikes are detected)
+* waveform extraction (including realignment with respect to the peak)
+* per-channel PCA of the waveforms
+* projection of all waveforms on the PCs to compute the spike features
+
+All of these steps are implemented in modular classes in the `phy.traces` package. The whole algorithm is implemented in `phy.cluster`.
+
+> A parallel implementation will be provided in the next version.
+
+
+### Automatic clustering
+
+The code is implemented in the KlustaKwik2 program, written in Python and Cython. It implements a modified version of the expectation-maximization algorithm.

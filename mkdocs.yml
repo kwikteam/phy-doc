@@ -6,7 +6,7 @@ pages:
    - 'Quick start: spike sorting': 'quick-start.md'
    - 'Working with Kwik files': 'kwik-model.md'
    - 'Interactive plotting': 'plot.md'
-   - 'Spike detection and automatic clustering': 'cluster-auto.md'
+   - 'Spike sorting session': 'cluster-auto.md'
    - 'Manual clustering GUI': 'cluster-manual.md'
 - API reference: 'api.md'
 - Kwik format description: 'kwik-format.md'
