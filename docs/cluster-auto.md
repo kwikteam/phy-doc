@@ -1,4 +1,4 @@
-## Spike detection and automatic clustering
+## Spike sorting session
 
 *phy* 0.2.0 provides automatic spike detection and clustering algorithms.
 
@@ -24,3 +24,70 @@ All of these steps are implemented in modular classes in the `phy.traces` packag
 ### Automatic clustering
 
 The code is implemented in the KlustaKwik2 program, written in Python and Cython. It implements a modified version of the expectation-maximization algorithm.
+
+### Session
+
+The `Session` represents an interactive session around a given dataset. You can use it to detect spikes, cluster spikes, inspect and analyze your data, and open the manual clustering GUI.
+
+Let's create a new session around a Kwik file:
+
+```python
+>>> from phy.cluster import Session
+```
+
+```python
+>>> session = Session('data/hybrid_10sec.kwik')
+Features and masks initialized.[K
+Waveforms initialized.[K
+Statistics initialized.[K
+```
+
+Opening the session automatically initializes the **cluster store**. This is an internal cache used by phy to accelerate access to per-cluster data. It is located in the `hybrid_10sec.phy/` subdirectory.
+
+The session provides access to several objects:
+
+* `session.model`: the underlying `KwikModel` instance
+* `session.store`: the cluster store
+
+```python
+>>> session.model.describe()
+Kwik file               /data/git/phy/doc/docs/data/hybrid_10sec.kwik
+Recordings              1
+List of shanks          0*
+Clusterings             main*, empty, kk2_current, original
+Channels                32
+Spikes                  1603
+Clusters                19
+Duration                10s
+```
+
+```python
+>>> session.store.display_status()
+Cluster store status (/data/git/phy/doc/docs/data/hybrid_10sec.phy/cluster_store/0/main)
+----------------------------------------------------------------------------------------
+Number of clusters in the store     19
+Number of old clusters               0
+Total size (MB)                      6
+Consistent                        True
+```
+
+The store gives you access to per-cluster data like features, masks, waveforms, their means, and other information.
+
+```python
+>>> session.store.mean_masks(14)
+array([  0.00000000e+00,   0.00000000e+00,   0.00000000e+00,
+         0.00000000e+00,   0.00000000e+00,   0.00000000e+00,
+         0.00000000e+00,   0.00000000e+00,   0.00000000e+00,
+         0.00000000e+00,   0.00000000e+00,   0.00000000e+00,
+         0.00000000e+00,   7.15117727e-04,   6.62863022e-03,
+         1.09908376e-02,   7.21668033e-03,   1.46417338e-02,
+         1.87453795e-02,   3.88467051e-02,   4.11636345e-02,
+         8.84853676e-02,   8.97215530e-02,   3.50288361e-01,
+         2.48874888e-01,   7.05275834e-01,   6.27078891e-01,
+         9.15426850e-01,   9.13762569e-01,   9.69715059e-01,
+         9.12764490e-01,   9.03752923e-01], dtype=float32)
+```
+
+```python
+
+```

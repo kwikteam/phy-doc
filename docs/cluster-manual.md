@@ -1,10 +1,8 @@
 ## Manual clustering
 
-The manual clustering subpackage (`phy.cluster.manual`) is the main component of phy 0.1.0. It provides a programmatic Python API as well as a lightweight graphical interface to manually refine the automatic clustering.
+The manual clustering subpackage (`phy.cluster.manual`) provides a programmatic Python API as well as a lightweight graphical interface to manually refine the output of the automatic clustering algorithm.
 
-There is a light command-line tool to start the GUI on a dataset. Type the following in a terminal: `phy cluster manual myexperiment.kwik`. Add `-i` to start an IPython console at the same time.
-
-In the following, we describe the API in case you want more control on the process.
+Although you can use the `phy cluster-manual` command-line tool to open the GUI, you can also access it from IPython (terminal or notebook) for more control.
 
 ### Session
 
