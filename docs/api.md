@@ -1,8 +1,6 @@
 # API documentation of phy
 
-phy is an open source electrophysiological data analysis package in Python
-for neuronal recordings made with high-density multielectrode arrays
-containing up to thousands of channels.
+Spike sorting and ephys data analysis for 1000 channels and beyond.
 
 ## Table of contents
 
@@ -15,6 +13,7 @@ containing up to thousands of channels.
 
 ### [phy.electrode](#phyelectrode)
 
+* [phy.electrode.load_probe](#phyelectrodeload_probename)
 * [phy.electrode.MEA](#phyelectrodemea)
 
 
@@ -22,6 +21,8 @@ containing up to thousands of channels.
 
 * [phy.io.create_kwik](#phyiocreate_kwikprm_filenone-kwik_pathnone-overwritefalse-probenone-kwargs)
 * [phy.io.open_h5](#phyioopen_h5filename-modenone)
+* [phy.io.read_dat](#phyioread_datfilename-dtypenone-shapenone-offset0-n_channelsnone)
+* [phy.io.read_kwd](#phyioread_kwdkwd_handle)
 * [phy.io.BaseModel](#phyiobasemodel)
 * [phy.io.BaseSession](#phyiobasesession)
 * [phy.io.ClusterStore](#phyioclusterstore)
@@ -206,7 +207,7 @@ Redo the last undone action.
 
 ##### `ClusterManualGUI.reset()`
 
-
+Remove all registered callbacks.
 
 ##### `ClusterManualGUI.reset_gui()`
 
@@ -218,7 +219,7 @@ Restart the wizard.
 
 ##### `ClusterManualGUI.save()`
 
-
+Save the changes.
 
 ##### `ClusterManualGUI.select(cluster_ids, **kwargs)`
 
@@ -230,7 +231,7 @@ Show the GUI
 
 ##### `ClusterManualGUI.show_features_time()`
 
-
+Set the x dimension to time in all feature views.
 
 ##### `ClusterManualGUI.show_shortcuts()`
 
@@ -252,15 +253,15 @@ Start the wizard.
 
 ##### `ClusterManualGUI.toggle_correlogram_normalization()`
 
-
+Toggle CCG normalization in the correlograms views.
 
 ##### `ClusterManualGUI.toggle_waveforms_mean()`
 
-
+Toggle mean mode in the waveform views.
 
 ##### `ClusterManualGUI.toggle_waveforms_overlap()`
 
-
+Toggle cluster overlap in the waveform views.
 
 ##### `ClusterManualGUI.unconnect(*funcs)`
 
@@ -276,7 +277,7 @@ Unpin the current best cluster.
 
 ##### `ClusterManualGUI.view_count()`
 
-
+Number of views of each type.
 
 #### Properties
 
@@ -306,7 +307,7 @@ Title of the main window.
 
 ##### `ClusterManualGUI.views`
 
-
+List of all open views.
 
 ### phy.cluster.manual.Clustering
 
@@ -673,6 +674,10 @@ Return the current best/match cluster selection.
 
 Electrodes.
 
+##### `phy.electrode.load_probe(name)`
+
+Load one of the built-in probes.
+
 ### phy.electrode.MEA
 
 A Multi-Electrode Array.
@@ -687,25 +692,25 @@ There are two modes:
 
 ##### `MEA.change_channel_group(group)`
 
-
+Change the current channel group.
 
 #### Properties
 
 ##### `MEA.adjacency`
 
-Adjacency graph.
+Adjacency graph in the current channel group.
 
 ##### `MEA.channels`
 
-Channel ids.
+Channel ids in the current channel group.
 
 ##### `MEA.n_channels`
 
-Number of channels.
+Number of channels in the current channel group.
 
 ##### `MEA.positions`
 
-Channel positions.
+Channel positions in the current channel group.
 
 ## phy.io
 
@@ -713,11 +718,48 @@ Input/output.
 
 ##### `phy.io.create_kwik(prm_file=None, kwik_path=None, overwrite=False, probe=None, **kwargs)`
 
-
+Create a new Kwik dataset from a PRM file.
 
 ##### `phy.io.open_h5(filename, mode=None)`
 
 Open an HDF5 file and return a File instance.
+
+##### `phy.io.read_dat(filename, dtype=None, shape=None, offset=0, n_channels=None)`
+
+Read traces from a flat binary `.dat` file.
+
+The output is a memory-mapped file.
+
+*Parameters*
+
+
+* `filename` (str)
+
+    The path to the `.dat` file.
+
+* `dtype` (dtype)
+
+    The NumPy dtype.
+
+* `offset` (0)
+
+    The header size.
+
+* `n_channels` (int)
+
+    The number of channels in the data.
+
+* `shape` (tuple (optional))
+
+    The array shape. Typically `(n_samples, n_channels)`. The shape is
+    automatically computed from the file size if the number of channels
+    and dtype are specified.
+
+##### `phy.io.read_kwd(kwd_handle)`
+
+Read all traces in a  `.kwd` file.
+
+The output is a memory-mapped file.
 
 ### phy.io.BaseModel
 
@@ -919,7 +961,7 @@ Open a dataset.
 
 ##### `BaseSession.reset()`
 
-
+Remove all registered callbacks.
 
 ##### `BaseSession.save()`
 
@@ -1167,45 +1209,123 @@ Native h5py file handle.
 
 ### phy.io.KwikCreator
 
-
+Create and modify a `.kwik` file.
 
 #### Methods
 
 ##### `KwikCreator.add_cluster_group(group=None, id=None, name=None, clustering=None)`
 
+Add a cluster group.
 
+*Parameters*
+
+
+* `group` (int)
+
+    The channel group.
+
+* `id` (int)
+
+    The cluster group id.
+
+* `name` (str)
+
+    The cluster group name.
+
+* `clustering` (str)
+
+    The name of the clustering.
 
 ##### `KwikCreator.add_clustering(group=None, name=None, spike_clusters=None, cluster_groups=None)`
 
+Add a clustering.
 
+*Parameters*
+
+
+* `group` (int)
+
+    The channel group.
+
+* `name` (str)
+
+    The clustering name.
+
+* `spike_clusters` (ndarray)
+
+    The spike clusters assignements. This is `(n_spikes,)` array.
+
+* `cluster_groups` (dict)
+
+    The cluster group of every cluster.
 
 ##### `KwikCreator.add_recording(id=None, raw_path=None, start_sample=None, sample_rate=None)`
 
+Add a recording.
+
+*Parameters*
 
 
-##### `KwikCreator.add_recordings_from_dat(files, sample_rate=None, n_channels=None, dtype=None)`
+* `id` (int)
 
+    The recording id (0, 1, 2, etc.).
 
+* `raw_path` (str)
 
-##### `KwikCreator.add_recordings_from_kwd(file, sample_rate=None)`
+    Path to the file containing the raw data.
 
+* `start_sample` (int)
 
+    The offset of the recording, in number of samples.
+
+* `sample_rate` (float)
+
+    The sample rate of the recording
 
 ##### `KwikCreator.add_spikes(group=None, spike_samples=None, spike_recordings=None, masks=None, features=None)`
 
+Add spikes in the file.
 
+*Parameters*
+
+
+* `group` (int)
+
+    Channel group.
+
+* `spike_samples` (ndarray)
+
+    The spike times in number of samples.
+
+* `spike_recordings` (ndarray (optional))
+
+    The recording indices of every spike.
+
+* `masks` (ndarray or list of ndarrays)
+
+    The masks.
+
+* `features` (ndarray or list of ndarrays)
+
+    The features.
+
+*Note*
+
+The features and masks can be passed as lists or generators of
+(memmapped) data chunks in order to avoid loading the entire arrays
+in RAM.
 
 ##### `KwikCreator.create_empty()`
 
-
+Create empty `.kwik` and `.kwx` files.
 
 ##### `KwikCreator.set_metadata(path, **kwargs)`
 
-
+Set metadata fields in a HDF5 path.
 
 ##### `KwikCreator.set_probe(probe)`
 
-
+Save a probe dictionary in the file.
 
 #### Properties
 
@@ -1634,21 +1754,104 @@ Plot an array of correlograms.
 
     A `(n_clusters, n_clusters, n_bins)` array.
 
+* `lines` ( ndarray)
+
+    Array of x coordinates where to put vertical lines (in number of
+    samples).
+
 * `colors` (array-like (optional))
 
     A list of colors as RGB tuples.
 
 ##### `phy.plot.plot_features(*args, **kwargs)`
 
+Plot features.
 
+*Parameters*
+
+
+* `features` (ndarray)
+
+    The features to plot. A `(n_spikes, n_channels, n_features)` array.
+
+* `spike_clusters` (ndarray (optional))
+
+    A `(n_spikes,)` int array with the spike clusters.
+
+* `masks` (ndarray (optional))
+
+    A `(n_spikes, n_channels)` float array with the spike masks.
+
+* `n_rows` (int)
+
+    Number of rows (= number of columns) in the grid view.
+
+* `x_dimensions` (list)
+
+    List of dimensions for the x axis.
+
+* `y_dimensions` (list)
+
+    List of dimensions for the yœ axis.
+
+* `extra_features` (dict)
+
+    A dictionary `{feature_name: array}` where `array` has
+    `n_spikes` elements.
+
+* `background_features` (ndarray)
+
+    The background features. A `(n_spikes, n_channels, n_features)` array.
 
 ##### `phy.plot.plot_traces(*args, **kwargs)`
 
+Plot traces.
 
+*Parameters*
+
+
+* `traces` (ndarray)
+
+    The traces to plot. A `(n_samples, n_channels)` array.
+
+* `spike_samples` (ndarray (optional))
+
+    A `(n_spikes,)` int array with the spike times in number of samples.
+
+* `spike_clusters` (ndarray (optional))
+
+    A `(n_spikes,)` int array with the spike clusters.
+
+* `masks` (ndarray (optional))
+
+    A `(n_spikes, n_channels)` float array with the spike masks.
+
+* `n_samples_per_spike` (int)
+
+    Waveform size in number of samples.
 
 ##### `phy.plot.plot_waveforms(*args, **kwargs)`
 
+Plot waveforms.
 
+*Parameters*
+
+
+* `waveforms` (ndarray)
+
+    The waveforms to plot. A `(n_spikes, n_samples, n_channels)` array.
+
+* `spike_clusters` (ndarray (optional))
+
+    A `(n_spikes,)` int array with the spike clusters.
+
+* `masks` (ndarray (optional))
+
+    A `(n_spikes, n_channels)` float array with the spike masks.
+
+* `channel_positions` (ndarray)
+
+    A `(n_channels, 2)` array with the channel positions.
 
 ### phy.plot.BaseSpikeCanvas
 
@@ -2201,11 +2404,15 @@ Handle mouse wheel events.
 
 Resize the OpenGL context.
 
-##### `WaveformView.set_data(waveforms=None, masks=None, spike_clusters=None, channel_positions=None, channel_order=None, colors=None)`
+##### `WaveformView.set_data(waveforms=None, masks=None, spike_clusters=None, channel_positions=None, channel_order=None, colors=None, **kwargs)`
 
 
 
 #### Properties
+
+##### `WaveformView.alpha`
+
+Opacity.
 
 ##### `WaveformView.box_scale`
 
@@ -2412,6 +2619,22 @@ Class that emits events and accepts registered callbacks.
 Derive from this class to emit events and let other classes know
 of occurrences of actions and events.
 
+*Example*
+
+```python
+class MyClass(EventEmitter):
+    def f(self):
+        self.emit('my_event', 1, key=2)
+
+o = MyClass()
+
+# The following function will be called when `o.f()` is called.
+@o.connect
+def on_my_event(arg, key=None):
+    print(arg, key)
+
+```
+
 #### Methods
 
 ##### `EventEmitter.connect(func=None, event=None, set_method=False)`
@@ -2444,7 +2667,7 @@ Return the list of callback return results.
 
 ##### `EventEmitter.reset()`
 
-
+Remove all registered callbacks.
 
 ##### `EventEmitter.unconnect(*funcs)`
 
@@ -2455,6 +2678,21 @@ Unconnect specified callback functions.
 ### phy.utils.ProgressReporter
 
 A class that reports progress done.
+
+*Example*
+
+```python
+pr = ProgressReporter()
+pr.set_progress_message("Progress: {progress}%...")
+pr.set_complete_message("Completed!")
+pr.value_max = 10
+
+for i in range(10):
+    pr.value += 1  # or pr.increment()
+```
+
+You can also add custom keyword arguments in `pr.increment()`: these
+will be replaced in the message string.
 
 *Emits*
 
@@ -2493,15 +2731,18 @@ Return the list of callback return results.
 
 ##### `ProgressReporter.increment(**kwargs)`
 
+Equivalent to `self.value += 1`.
 
+Custom keywoard arguments can also be passed to be processed in the
+progress message format string.
 
 ##### `ProgressReporter.is_complete()`
 
-Return wheter the task has completed.
+Return whether the task has completed.
 
 ##### `ProgressReporter.reset(value_max=None)`
 
-
+Reset the value to 0 and the value max to a given value.
 
 ##### `ProgressReporter.set_complete(**kwargs)`
 
@@ -2525,7 +2766,7 @@ Unconnect specified callback functions.
 
 ##### `ProgressReporter.progress`
 
-Return the current progress.
+Return the current progress as a float value in `[0, 1]`.
 
 ##### `ProgressReporter.value`
 
@@ -2533,7 +2774,7 @@ Current value (integer).
 
 ##### `ProgressReporter.value_max`
 
-Maximum value.
+Maximum value (integer).
 
 ### phy.utils.Settings
 
