@@ -1,14 +1,14 @@
-## Working with Kwik files
+## Working with KWIK files
 
-> phy 0.2.0 only supports files in the Kwik format. Future versions may support other file formats.
+> phy 0.2.0 only supports files in the [KWIK format](kwik-format.md). Future versions may support other file formats.
 
-The [**Kwik format**](kwik-format.md) features several files:
+The [**KWIK format**](kwik-format.md) features several files:
 
 * `.kwik`: metadata, spikes, clusters
 * `.kwx`: masks, features
 * `.dat`: raw extracellular traces
 
-> OpenEphys can also generate Kwik files. Feel free to contact us if you get any problem or incompatibility.
+> OpenEphys can also generate KWIK files. Feel free to contact us if you get any problem or incompatibility.
 
 
 ### Opening a dataset
