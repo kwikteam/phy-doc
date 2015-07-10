@@ -1,7 +1,7 @@
 site_name: phy
 pages:
-- Home: 'index.md'
-- Installation: 'install.md'
+- Home / quick install: 'index.md'
+- Advanced install: 'install.md'
 - User Guide:
    - 'Quick start: spike sorting': 'quick-start.md'
    - 'Working with Kwik files': 'kwik-model.md'
