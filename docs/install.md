@@ -1,4 +1,4 @@
-* For quick install instructions, please see the [homepage](index.md). **
+** For quick install instructions, please see the [homepage](index.md). **
 
 phy is written in pure Python. It works with Python 2.7, 3.3, and 3.4 on Windows, Mac OS X, and Linux.
 
@@ -27,7 +27,7 @@ On Windows, you will need [PowerShell](http://social.technet.microsoft.com/wiki/
 * Install Miniconda (**no need for root privileges**), for example with:
 
 ```
-bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
+bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
 (or choose any other path)
@@ -53,7 +53,7 @@ To install the development version (you must have **git** installed, for example
 ```
 git clone git://github.com/kwikteam/phy.git ~/phy && cd ~/phy && python setup.py develop
 ```
-This will keep your working copy in `~/phy` (`~` is a link to your home folder) can change the directory 
+This will keep your working copy in `~/phy` (`~` is a link to your home folder). You can modify the directory by changing both references to this: ```git clone git://github.com/kwikteam/phy.git /mnt/myserver/phy && cd /mnt/myserver/phy && python setup.py develop``` will install `phy` to an example directory `/mnt/myserver/phy`.
 
 ### Dependencies
 
@@ -104,4 +104,4 @@ from vispy.app import use_app
 use_app('ipynb_webgl')
 ```
 
-In the near future we'll work particularly on this, so that you can use phy in the browser without installing the software or downloading the data.
+In the future this will be developed further, so that you can use phy in the browser without installing the software or downloading the data.

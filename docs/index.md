@@ -49,4 +49,4 @@ Replace the last line with `bash latest.sh -h` to list the available options.
 iex ((new-object net.webclient).DownloadString('http://phy.cortexlab.net/install/latest.ps1'))
 ```
 
-For other platforms or more detailed installation instructions, see [the Installation page](install.md).
+For other platforms or more detailed installation instructions, see [the advanced installation page](install.md).
