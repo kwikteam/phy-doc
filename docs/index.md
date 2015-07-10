@@ -23,20 +23,26 @@ Please subscribe to the [mailing list](https://groups.google.com/forum/#!forum/k
 
 ## Quick install
 
-This will install **miniconda** (a lightweight scientific Python distribution) and **phy** in your `$HOME/miniconda` by default (normally `/home/username/miniconda` on Linux/Mac OS X, and `C:\Users\Username\miniconda\` on Windows).
+This will install **miniconda** (a lightweight scientific Python distribution) and **phy** in a subdirectory called "miniconda" of your home directory.
 
-### Linux (in "Terminal" / "XTerm"):
+### Linux
+Open Terminal (or "XTerm"), and copy-paste the following:
 ```
 wget http://phy.cortexlab.net/install/latest.sh
 bash latest.sh
 ```
+Then close and re-open the terminal before continuing.
+
 Replace the last line with `bash latest.sh -h` to list the available options.
 
-### Mac OS X (in "Terminal"):
+### Mac OS X:
+Press Command + Space, type "Terminal", press Enter, then copy-paste the following:
 ```
 curl -LO http://phy.cortexlab.net/install/latest.sh
 bash latest.sh
 ```
+Then close and re-open the terminal before continuing.
+
 Replace the last line with `bash latest.sh -h` to list the available options.
 
 ### Windows (in "PowerShell"):
@@ -45,8 +51,12 @@ Replace the last line with `bash latest.sh -h` to list the available options.
 - [PowerShell](http://social.technet.microsoft.com/wiki/contents/articles/21016.how-to-install-windows-powershell-4-0.aspx).
 - [Microsoft Visual C++ 2010 Redistributable](https://www.microsoft.com/en-gb/download/details.aspx?id=14632)
 
+Open up "PowerShell" (you should be able to find this in your list of applications - if not, download it from the link above). Then copy-paste the following:
+
 ```
 iex ((new-object net.webclient).DownloadString('http://phy.cortexlab.net/install/latest.ps1'))
 ```
 
 For other platforms or more detailed installation instructions, see [the advanced installation page](install.md).
+
+When you've done installing, get started with the [quick start guide](quick-start.md)!

@@ -34,7 +34,7 @@ All files are in HDF5.
           * events, event_types
           * aesthetic information, user data, application data
       * the **KWX** file contains the **spiking data**: features, masks
-      * the **KWD** files (deprecated in `phy` in favour of reading off the raw data file) contains the **raw/filtered recordings**
+      * the **KWD** files (deprecated in `phy` in favour of reading directly off the raw data file in a flat binary format) contains the **raw/filtered recordings**
 
   * Once spike sorting is finished, one can discard the KWX and KWD files and just keep the KWIK file for subsequent analysis (where spike sorting information like features, waveforms... are not necessary).
 
