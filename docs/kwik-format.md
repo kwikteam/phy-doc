@@ -6,7 +6,7 @@ This document describes the current working version of the "KWIK format" as impl
 
 ## Quick info
 
-You can open all the KWIK files in recent versions of MATLAB (they have [native support for HDF5](http://www.mathworks.fr/fr/help/matlab/hdf5.html)).
+You can open all the KWIK files in recent versions of MATLAB (they have [native support for HDF5](http://uk.mathworks.com/help/matlab/hdf5.html)).
 
 To read the spike times and cluster numbers, type (`filename` is the `.kwik` file):
 
@@ -34,7 +34,7 @@ All files are in HDF5.
           * events, event_types
           * aesthetic information, user data, application data
       * the **KWX** file contains the **spiking data**: features, masks
-      * the **KWD** files contains the **raw/filtered recordings**
+      * the **KWD** files (deprecated in `phy` in favour of reading off the raw data file) contains the **raw/filtered recordings**
 
   * Once spike sorting is finished, one can discard the KWX and KWD files and just keep the KWIK file for subsequent analysis (where spike sorting information like features, waveforms... are not necessary).
 

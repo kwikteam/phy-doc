@@ -14,7 +14,9 @@ Here are the installation instructions when you're starting from scratch:
 
 #### 1. Open a terminal
 
-* Windows: press `Windows` + `R`, type `cmd`, and press `Enter`.
+On Windows, you will need [PowerShell](http://social.technet.microsoft.com/wiki/contents/articles/21016.how-to-install-windows-powershell-4-0.aspx) and the [Microsoft Visual C++ 2010 Redistributable](https://www.microsoft.com/en-gb/download/details.aspx?id=14632) installed.
+
+* Windows: press `Windows` + `R`, type `powershell`, and press `Enter`.
 * Mac OS X: press `Command` + `Space`, type `Terminal`, and press `Enter`.
 * Linux: you probably already know how to do it.
 
@@ -34,7 +36,7 @@ On Windows, launch the GUI Miniconda installer.
 
 #### 3. Install dependencies
 
-```bash
+```
 conda install conda python=3 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests --yes && conda install -c http://conda.binstar.org/kwikteam klustakwik2 --yes && pip install vispy
 ```
 
@@ -49,9 +51,9 @@ pip install phy
 To install the development version (you must have **git** installed, for example using the GitHub desktop client):
 
 ```
-git clone git://github.com/kwikteam/phy.git && cd phy && python setup.py develop
+git clone git://github.com/kwikteam/phy.git ~/phy && cd ~/phy && python setup.py develop
 ```
-
+This will keep your working copy in `~/phy` (`~` is a link to your home folder) can change the directory 
 
 ### Dependencies
 
