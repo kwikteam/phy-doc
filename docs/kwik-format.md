@@ -1,13 +1,12 @@
-# Kwik format
+# KWIK format
 
-**NOTE: this format is still experimental and subject to future changes. Subscribe to the Klustaviewas mailing list to be kept up to date.**
+**NOTE: this format occasionally changes. Subscribe to the [Klustaviewas mailing list](https://groups.google.com/forum/#!forum/klustaviewas) to be kept up to date.**
 
-TODO: update this document.
-TODO: move descriptions of PRB/PRM in another file?
+This document describes the current working version of the "KWIK format" as implemented in `phy`. This is almost identical to that in **KlustaViewa 0.3.0** with the major change being the omission of stored waveforms in the `KWX` file; these are instead loaded dynamically from raw data on-the-fly. Files created in `phy` are thus untested in KlustaViewa and unlikely to work correctly.
 
 ## Quick info
 
-You can open the Kwik files in recent versions of MATLAB (they have [native support for HDF5](http://www.mathworks.fr/fr/help/matlab/hdf5.html)).
+You can open all the KWIK files in recent versions of MATLAB (they have [native support for HDF5](http://uk.mathworks.com/help/matlab/hdf5.html)).
 
 To read the spike times and cluster numbers, type (`filename` is the `.kwik` file):
 
@@ -34,8 +33,8 @@ All files are in HDF5.
           * information about cluster groups
           * events, event_types
           * aesthetic information, user data, application data
-      * the **KWX** file contains the **spiking data**: features, masks, waveforms
-      * the **KWD** files contain the **raw/filtered recordings**
+      * the **KWX** file contains the **spiking data**: features, masks
+      * the **KWD** files (deprecated in `phy` in favour of reading off the raw data file) contains the **raw/filtered recordings**
 
   * Once spike sorting is finished, one can discard the KWX and KWD files and just keep the KWIK file for subsequent analysis (where spike sorting information like features, waveforms... are not necessary).
 
@@ -155,8 +154,8 @@ The **KWX** file contains spike-sorting-related information.
     /channel_groups
         [X]
             features_masks* [(N x NFEATURES x 2) EArray of Float32]
-            waveforms_raw* [(N x NWAVESAMPLES x NCHANNELS) EArray of Int16]
-            waveforms_filtered* [(N x NWAVESAMPLES x NCHANNELS) EArray of Int16]
+            waveforms_raw* [(N x NWAVESAMPLES x NCHANNELS) EArray of Int16] # DEPRECATED IN PHY
+            waveforms_filtered* [(N x NWAVESAMPLES x NCHANNELS) EArray of Int16] # DEPRECATED IN PHY
 
 ### KWD
 
@@ -216,20 +215,38 @@ Example:
 
 This Python script defines all parameters necessary for the programs to process, open and display the data.
 
-    EXPERIMENT_NAME = 'myexperiment'
-    RAW_DATA_FILES = ['n6mab041109blahblah1.dat', 'n6mab041109blahblah2.dat']
-    PRB_FILE = 'buzsaki32.probe'
-    NCHANNELS = 32
-    SAMPLE_RATE = 20000.
-    NBITS = 16
-    VOLTAGE_GAIN = 10.
-    WAVEFORMS_NSAMPLES = 20  # or a dictionary {channel_group: nsamples}
-    NFEATURES_PER_CHANNEL = 3  # or a dictionary {channel_group: fetdim}
-    # ...
+    experiment_name = 'hybrid_10sec'
+    prb_file = '1x32_buzsaki'
 
-    # SpikeDetekt parameters
-    # ...
+    traces = dict(
+        raw_data_files=[experiment_name + '.dat'],
+        voltage_gain=10.,
+        sample_rate=20000,
+        n_channels=32,
+    )
 
+    spikedetekt = dict(
+        filter_low=500.,  # Low pass frequency (Hz)
+        filter_high_factor=0.95 * .5,
+        filter_butter_order=3,  # Order of Butterworth filter.
 
-    # KlustaKwik parameters
-    # ...
+        filter_lfp_low=0,  # LFP filter low-pass frequency
+        filter_lfp_high=300,  # LFP filter high-pass frequency
+
+        chunk_size_seconds=1,
+        chunk_overlap_seconds=.015,
+
+        n_excerpts=50,
+        excerpt_size_seconds=1,
+        threshold_strong_std_factor=4.5,
+        threshold_weak_std_factor=2.,
+        detect_spikes='negative',
+
+        connected_component_join_size=1,
+
+        extract_s_before=16,
+        extract_s_after=16,
+
+        n_features_per_channel=3,  # Number of features per channel.
+        pca_n_waveforms_max=10000,
+    )

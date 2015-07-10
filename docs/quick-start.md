@@ -7,13 +7,13 @@ Here is a short tutorial for phy, showing how to spikesort a sample data file, f
 
 ## Installation
 
-We assume that *phy* has been correctly installed on your computer (see [install instructions here](install.md)). To check that this is the case, open a terminal and type:
+We assume that *phy* has been correctly installed on your computer (see the [quick install](index.md) or [advanced install](install.md) instructions). To check that this is the case, open a terminal and type:
 
 ```bash
 $ phy -v
-0.2.0
 ```
 
+`0.2.0` should be displayed (sometimes followed by other characters). If this is not the case, please make sure you have activated your virtual environment (if created), follow the installation instructions again, or [file an issue](http://github.com/kwikteam/phy/issues/).
 
 ## Download a sample dataset
 

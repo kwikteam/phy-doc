@@ -1,7 +1,7 @@
 site_name: phy
 pages:
-- Home: 'index.md'
-- Installation: 'install.md'
+- Home / quick install: 'index.md'
+- Advanced install: 'install.md'
 - User Guide:
    - 'Quick start: spike sorting': 'quick-start.md'
    - 'Working with Kwik files': 'kwik-model.md'
@@ -9,6 +9,6 @@ pages:
    - 'Spike sorting session': 'cluster-auto.md'
    - 'Manual clustering GUI': 'cluster-manual.md'
 - API reference: 'api.md'
-- Kwik format description: 'kwik-format.md'
+- KWIK format description: 'kwik-format.md'
 - Contact: 'contact.md'
 theme: readthedocs
