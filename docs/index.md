@@ -21,13 +21,30 @@ The API is highly modular, and you can extend the library in many ways.
 
 ## Quick install
 
-On Linux or Mac OS X, run this in a console:
+This will install **miniconda** (a lightweight scientific Python distribution) and **phy** in your `$HOME/miniconda` by default (normally `/home/username/miniconda` on Linux/Mac OS X, and `C:\Users\Username\miniconda\` on Windows).
 
+### Linux (in "Terminal" / "XTerm"):
 ```
-curl -O http://phy.cortexlab.net/install/latest.sh
+wget http://phy.cortexlab.net/install/latest.sh
 bash latest.sh
 ```
+Replace the last line with `bash latest.sh -h` to list the available options.
 
-This will install **miniconda** (a lightweight scientific Python distribution) and **phy** in your `$HOME/miniconda` by default. To install phy without reinstalling miniconda, use `bash latest.sh -s`. For more options, run `bash latest.sh -h`.
+### Mac OS X (in "Terminal"):
+```
+curl -LO http://phy.cortexlab.net/install/latest.sh
+bash latest.sh
+```
+Replace the last line with `bash latest.sh -h` to list the available options.
+
+### Windows (in "PowerShell"):
+
+#### Prerequisites:
+- [PowerShell](http://social.technet.microsoft.com/wiki/contents/articles/21016.how-to-install-windows-powershell-4-0.aspx).
+- [Microsoft Visual C++ 2010 Redistributable](https://www.microsoft.com/en-gb/download/details.aspx?id=14632)
+
+```
+iex ((new-object net.webclient).DownloadString('http://phy.cortexlab.net/install/latest.ps1'))
+```
 
 For other platforms or more detailed installation instructions, see [the Installation page](install.md).

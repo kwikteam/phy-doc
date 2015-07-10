@@ -1,31 +1,4 @@
-### Quick-install (Linux and Mac OS X)
-
-Run this in a console:
-
-```
-curl -O http://phy.cortexlab.net/install/latest.sh
-bash latest.sh
-```
-
-This will install **miniconda** (a Python distribution) and **phy** in your `$HOME/miniconda` by default. To install phy without reinstalling miniconda, use `bash latest.sh -s`. For more options, run `bash latest.sh -h`.
-
-To use the `klustakwik2` clustering algorithm (currently the only algorithm integrated with `phy`), you must install this separately:
-
-On Windows, install the binary klustakwik2 package:
-```
-conda install -c http://conda.binstar.org/kwikteam klustakwik2
-```
-
-On Mac / Linux (or if you want to compile from source in Windows)
-```
-pip install klustakwik2
-```
-
-Below are more detailed instructions if you don't want to use the automatic installer.
-
-> We will provide Windows and GUI installers in the near future.
-
-### Detailed instructions
+* For quick install instructions, please see the [homepage](index.md). **
 
 phy is written in pure Python. It works with Python 2.7, 3.3, and 3.4 on Windows, Mac OS X, and Linux.
 
@@ -57,23 +30,27 @@ bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
 
 (or choose any other path)
 
-#### 3. Install phy and its dependencies
+On Windows, launch the GUI Miniconda installer.
+
+#### 3. Install dependencies
 
 ```bash
-conda install conda python=3 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests && pip install vispy phy
+conda install conda python=3 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests --yes && conda install -c http://conda.binstar.org/kwikteam klustakwik2 --yes && pip install vispy
 ```
 
-On Windows, install the binary klustakwik2 package:
+#### 4. Install phy
+
+To install the latest stable version:
+
 ```
-conda install -c http://conda.binstar.org/kwikteam klustakwik2
+pip install phy
 ```
 
-On Mac / Linux (or if you want to compile from source in Windows)
-```
-pip install klustakwik2
-```
+To install the development version (you must have **git** installed, for example using the GitHub desktop client):
 
-> Advanced users can use the development version with `git clone git://github.com/kwikteam/phy.git && cd phy && python setup.py develop`.
+```
+git clone git://github.com/kwikteam/phy.git && cd phy && python setup.py develop
+```
 
 
 ### Dependencies
