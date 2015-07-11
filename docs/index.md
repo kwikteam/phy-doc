@@ -9,7 +9,7 @@ _Spike sorting and ephys data analysis for 1000 channels and beyond._
 
 This library allows you to spike-sort, analyze, and visualize your data interactively. It is currently based on the [KWIK format](kwik-format.md). *phy* provides:
 
-* Full I/O support of the KWIK format](kwik-format.md)
+* Full I/O support of the [KWIK format](kwik-format.md)
 * High-performance plotting tools
 * Spike detection algorithms (*SpikeDetekt*)
 * Automatic clustering algorithms (*KlustaKwik2*)
@@ -51,7 +51,7 @@ Replace the last line with `bash latest.sh -h` to list the available options.
 - [PowerShell](http://social.technet.microsoft.com/wiki/contents/articles/21016.how-to-install-windows-powershell-4-0.aspx).
 - [Microsoft Visual C++ 2010 Redistributable](https://www.microsoft.com/en-gb/download/details.aspx?id=14632)
 
-Open up "PowerShell" (you should be able to find this in your list of applications - if not, download it from the link above). Then copy-paste the following:
+Open up "PowerShell" (you should be able to find this in your list of applications - if not, download it from the link above). Then copy-paste the following (in Powershell, you can paste with a right-click in the terminal):
 
 ```
 iex ((new-object net.webclient).DownloadString('http://phy.cortexlab.net/install/latest.ps1'))
