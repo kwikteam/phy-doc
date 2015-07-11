@@ -2,7 +2,7 @@
 
 Here is a short tutorial for phy, showing how to spikesort a sample data file, from raw data to manually-refined spike trains.
 
-> This quick-start guide shows how to use the command-line interface for spike sorting. For more advanced use-cases, you are encouraged to use phy's Python API. This will give you more control and flexibility. Also, some analysis features are most useful in the context of an interactive session with IPython.
+> This quick-start guide shows how to use the command-line interface for spike sorting. For more advanced use-cases, you are encouraged to use phy's Python API. This will give you more control and flexibility. Also, some analysis features are most useful in the context of an interactive session with IPython. You will find more details about the API in the next sections.
 
 
 ## Installation
@@ -25,7 +25,7 @@ $ phy download hybrid_10sec.dat
 
 This will download a raw data file containing a 10-seconds-long recordings with 32 channels.
 
-> `hybrid_10sec.dat` is a flat binary file containing `int16` samples. The first 32 numbers correspond to the first time sample, all 32 channels, etc.
+> `hybrid_10sec.dat` is a flat binary file containing `int16` samples. The first 32 numbers correspond to the first time sample and all 32 channels, etc.
 
 
 ## Download and edit the parameters file
@@ -54,3 +54,4 @@ This will take a few minutes to complete. The spike detection and automatic clus
 $ phy cluster-manual hybrid_10sec.kwik
 ```
 
+This will open the manual sorting GUI.

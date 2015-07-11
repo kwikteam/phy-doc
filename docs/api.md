@@ -118,7 +118,7 @@ Spike sorting and ephys data analysis for 1000 channels and beyond.
 
 Automatic and manual clustering facilities.
 
-##### `phy.cluster.cluster(model, algorithm='klustakwik', spike_ids=None, **kwargs)`
+##### phy.cluster.cluster(model, algorithm='klustakwik', spike_ids=None, **kwargs)
 
 Launch an automatic clustering algorithm on the model.
 
@@ -141,89 +141,89 @@ Interface between a view and a model.
 
 #### Methods
 
-##### `BaseClusterViewModel.close()`
+##### BaseClusterViewModel.close()
 
 Close the view.
 
-##### `BaseClusterViewModel.connect(*args, **kwargs)`
+##### BaseClusterViewModel.connect(*args, **kwargs)
 
 Connect a callback function.
 
-##### `BaseClusterViewModel.emit(*args, **kwargs)`
+##### BaseClusterViewModel.emit(*args, **kwargs)
 
 Emit an event.
 
-##### `BaseClusterViewModel.exported_params(save_size_pos=True)`
+##### BaseClusterViewModel.exported_params(save_size_pos=True)
 
 Return a dictionary of variables to save when the view is closed.
 
-##### `BaseClusterViewModel.get_params(cls, settings)`
+##### BaseClusterViewModel.get_params(cls, settings)
 
 Return the parameter values for the creation of the view.
 
-##### `BaseClusterViewModel.imported_params(cls)`
+##### BaseClusterViewModel.imported_params(cls)
 
 All parameter names to be imported on object creation.
 
-##### `BaseClusterViewModel.on_close()`
+##### BaseClusterViewModel.on_close()
 
 Called when the model is closed.
 
 May be overriden.
 
-##### `BaseClusterViewModel.on_cluster(up)`
+##### BaseClusterViewModel.on_cluster(up)
 
 Called when a clustering action occurs.
 
 May be overriden.
 
-##### `BaseClusterViewModel.on_open()`
+##### BaseClusterViewModel.on_open()
 
 Initialize the view after the model has been loaded.
 
 May be overriden.
 
-##### `BaseClusterViewModel.on_select(cluster_ids, **kwargs)`
+##### BaseClusterViewModel.on_select(cluster_ids, **kwargs)
 
 Update the view after a new selection has been made.
 
 Must be overriden.
 
-##### `BaseClusterViewModel.select(cluster_ids, **kwargs)`
+##### BaseClusterViewModel.select(cluster_ids, **kwargs)
 
 Select a list of clusters.
 
-##### `BaseClusterViewModel.show()`
+##### BaseClusterViewModel.show()
 
 Show the view.
 
 #### Properties
 
-##### `BaseClusterViewModel.cluster_ids`
+##### BaseClusterViewModel.cluster_ids
 
 Selected clusters.
 
-##### `BaseClusterViewModel.model`
+##### BaseClusterViewModel.model
 
 The model.
 
-##### `BaseClusterViewModel.n_clusters`
+##### BaseClusterViewModel.n_clusters
 
 Number of selected clusters.
 
-##### `BaseClusterViewModel.name`
+##### BaseClusterViewModel.name
 
 The view model's name.
 
-##### `BaseClusterViewModel.store`
+##### BaseClusterViewModel.store
 
 The cluster store.
 
-##### `BaseClusterViewModel.view`
+##### BaseClusterViewModel.view
 
 The underlying view.
 
-##### `BaseClusterViewModel.wizard`
+##### BaseClusterViewModel.wizard
 
 The wizard.
 
@@ -233,7 +233,7 @@ Correlograms.
 
 #### Methods
 
-##### `CorrelogramViewModel.change_bins(bin=None, half_width=None)`
+##### CorrelogramViewModel.change_bins(bin=None, half_width=None)
 
 Change the parameters of the correlograms.
 
@@ -247,121 +247,121 @@ Change the parameters of the correlograms.
 
     Half window size.
 
-##### `CorrelogramViewModel.close()`
+##### CorrelogramViewModel.close()
 
 Close the view.
 
-##### `CorrelogramViewModel.connect(*args, **kwargs)`
+##### CorrelogramViewModel.connect(*args, **kwargs)
 
 Connect a callback function.
 
-##### `CorrelogramViewModel.emit(*args, **kwargs)`
+##### CorrelogramViewModel.emit(*args, **kwargs)
 
 Emit an event.
 
-##### `CorrelogramViewModel.exported_params(save_size_pos=True)`
+##### CorrelogramViewModel.exported_params(save_size_pos=True)
 
 Parameters to save automatically when the view is closed.
 
-##### `CorrelogramViewModel.get_params(cls, settings)`
+##### CorrelogramViewModel.get_params(cls, settings)
 
 Return the parameter values for the creation of the view.
 
-##### `CorrelogramViewModel.imported_params(cls)`
+##### CorrelogramViewModel.imported_params(cls)
 
 All parameter names to be imported on object creation.
 
-##### `CorrelogramViewModel.on_close()`
+##### CorrelogramViewModel.on_close()
 
 Clear the view when the model is closed.
 
-##### `CorrelogramViewModel.on_cluster(up)`
+##### CorrelogramViewModel.on_cluster(up)
 
 Called when a clustering action occurs.
 
 May be overriden.
 
-##### `CorrelogramViewModel.on_key_press(event)`
+##### CorrelogramViewModel.on_key_press(event)
 
 Called when a key is pressed.
 
-##### `CorrelogramViewModel.on_open()`
+##### CorrelogramViewModel.on_open()
 
 Initialize the view after the model has been loaded.
 
 May be overriden.
 
-##### `CorrelogramViewModel.on_select(clusters, **kwargs)`
+##### CorrelogramViewModel.on_select(clusters, **kwargs)
 
 Update the view when the selection changes.
 
-##### `CorrelogramViewModel.select(cluster_ids, **kwargs)`
+##### CorrelogramViewModel.select(cluster_ids, **kwargs)
 
 Select a set of clusters.
 
-##### `CorrelogramViewModel.show()`
+##### CorrelogramViewModel.show()
 
 Show the view.
 
-##### `CorrelogramViewModel.toggle_normalization()`
+##### CorrelogramViewModel.toggle_normalization()
 
 Change the correlogram normalization.
 
-##### `CorrelogramViewModel.update()`
+##### CorrelogramViewModel.update()
 
 Update the view.
 
-##### `CorrelogramViewModel.update_spike_clusters(spikes=None, spike_clusters=None)`
+##### CorrelogramViewModel.update_spike_clusters(spikes=None, spike_clusters=None)
 
 Update the spike clusters and cluster colors.
 
 #### Properties
 
-##### `CorrelogramViewModel.cluster_ids`
+##### CorrelogramViewModel.cluster_ids
 
 Selected clusters.
 
-##### `CorrelogramViewModel.lines`
+##### CorrelogramViewModel.lines
 
 
 
-##### `CorrelogramViewModel.model`
+##### CorrelogramViewModel.model
 
 The model.
 
-##### `CorrelogramViewModel.n_clusters`
+##### CorrelogramViewModel.n_clusters
 
 Number of selected clusters.
 
-##### `CorrelogramViewModel.n_spikes`
+##### CorrelogramViewModel.n_spikes
 
 Number of selected spikes.
 
-##### `CorrelogramViewModel.name`
+##### CorrelogramViewModel.name
 
 The view model's name.
 
-##### `CorrelogramViewModel.normalization`
+##### CorrelogramViewModel.normalization
 
 Correlogram normalization: `equal` or `independent`.
 
-##### `CorrelogramViewModel.selector`
+##### CorrelogramViewModel.selector
 
 A Selector instance managing the selected spikes and clusters.
 
-##### `CorrelogramViewModel.spike_ids`
+##### CorrelogramViewModel.spike_ids
 
 Selected spikes.
 
-##### `CorrelogramViewModel.store`
+##### CorrelogramViewModel.store
 
 The cluster store.
 
-##### `CorrelogramViewModel.view`
+##### CorrelogramViewModel.view
 
 The underlying view.
 
-##### `CorrelogramViewModel.wizard`
+##### CorrelogramViewModel.wizard
 
 The wizard.
 
@@ -371,7 +371,7 @@ Feature view with a single subplot.
 
 #### Methods
 
-##### `FeatureViewModel.add_extra_feature(name, array)`
+##### FeatureViewModel.add_extra_feature(name, array)
 
 Add an extra feature.
 
@@ -386,146 +386,146 @@ Add an extra feature.
 
     A `(n_spikes,)` array with the feature's value for every spike.
 
-##### `FeatureViewModel.close()`
+##### FeatureViewModel.close()
 
 Close the view.
 
-##### `FeatureViewModel.connect(*args, **kwargs)`
+##### FeatureViewModel.connect(*args, **kwargs)
 
 Connect a callback function.
 
-##### `FeatureViewModel.dimensions_for_clusters(cluster_ids)`
+##### FeatureViewModel.dimensions_for_clusters(cluster_ids)
 
 Current dimensions.
 
-##### `FeatureViewModel.emit(*args, **kwargs)`
+##### FeatureViewModel.emit(*args, **kwargs)
 
 Emit an event.
 
-##### `FeatureViewModel.exported_params(save_size_pos=True)`
+##### FeatureViewModel.exported_params(save_size_pos=True)
 
 Parameters to save automatically when the view is closed.
 
-##### `FeatureViewModel.get_params(cls, settings)`
+##### FeatureViewModel.get_params(cls, settings)
 
 Return the parameter values for the creation of the view.
 
-##### `FeatureViewModel.imported_params(cls)`
+##### FeatureViewModel.imported_params(cls)
 
 All parameter names to be imported on object creation.
 
-##### `FeatureViewModel.on_close()`
+##### FeatureViewModel.on_close()
 
 Clear the view when the model is closed.
 
-##### `FeatureViewModel.on_cluster(up)`
+##### FeatureViewModel.on_cluster(up)
 
 Called when a clustering action occurs.
 
 May be overriden.
 
-##### `FeatureViewModel.on_key_press(event)`
+##### FeatureViewModel.on_key_press(event)
 
 Handle key press events.
 
-##### `FeatureViewModel.on_open()`
+##### FeatureViewModel.on_open()
 
 Initialize the view when the model is opened.
 
-##### `FeatureViewModel.on_select(clusters, auto_update=True)`
+##### FeatureViewModel.on_select(clusters, auto_update=True)
 
 Update the view when the selection changes.
 
-##### `FeatureViewModel.select(cluster_ids, **kwargs)`
+##### FeatureViewModel.select(cluster_ids, **kwargs)
 
 Select a set of clusters.
 
-##### `FeatureViewModel.set_dimension(axis, dim, smart=True)`
+##### FeatureViewModel.set_dimension(axis, dim, smart=True)
 
 Set a (smart) dimension.
 
 "smart" means that the dimension may be changed if it is the same
 than the other dimension, to avoid x=y.
 
-##### `FeatureViewModel.show()`
+##### FeatureViewModel.show()
 
 Show the view.
 
-##### `FeatureViewModel.spikes_in_lasso()`
+##### FeatureViewModel.spikes_in_lasso()
 
 Return the spike ids from the selected clusters within the lasso.
 
-##### `FeatureViewModel.update()`
+##### FeatureViewModel.update()
 
 Update the view.
 
-##### `FeatureViewModel.update_spike_clusters(spikes=None, spike_clusters=None)`
+##### FeatureViewModel.update_spike_clusters(spikes=None, spike_clusters=None)
 
 Update the spike clusters and cluster colors.
 
 #### Properties
 
-##### `FeatureViewModel.cluster_ids`
+##### FeatureViewModel.cluster_ids
 
 Selected clusters.
 
-##### `FeatureViewModel.lasso`
+##### FeatureViewModel.lasso
 
 The spike lasso visual.
 
-##### `FeatureViewModel.marker_size`
+##### FeatureViewModel.marker_size
 
 Marker size, in pixels.
 
-##### `FeatureViewModel.model`
+##### FeatureViewModel.model
 
 The model.
 
-##### `FeatureViewModel.n_clusters`
+##### FeatureViewModel.n_clusters
 
 Number of selected clusters.
 
-##### `FeatureViewModel.n_features`
+##### FeatureViewModel.n_features
 
 Number of features.
 
-##### `FeatureViewModel.n_rows`
+##### FeatureViewModel.n_rows
 
 Number of rows.
 
-##### `FeatureViewModel.n_spikes`
+##### FeatureViewModel.n_spikes
 
 Number of selected spikes.
 
-##### `FeatureViewModel.name`
+##### FeatureViewModel.name
 
 The view model's name.
 
-##### `FeatureViewModel.selector`
+##### FeatureViewModel.selector
 
 A Selector instance managing the selected spikes and clusters.
 
-##### `FeatureViewModel.spike_ids`
+##### FeatureViewModel.spike_ids
 
 Selected spikes.
 
-##### `FeatureViewModel.store`
+##### FeatureViewModel.store
 
 The cluster store.
 
-##### `FeatureViewModel.view`
+##### FeatureViewModel.view
 
 The underlying view.
 
-##### `FeatureViewModel.wizard`
+##### FeatureViewModel.wizard
 
 The wizard.
 
-##### `FeatureViewModel.x_dim`
+##### FeatureViewModel.x_dim
 
 x dimension.
 
-##### `FeatureViewModel.y_dim`
+##### FeatureViewModel.y_dim
 
 y dimension.
 
@@ -535,101 +535,101 @@ HTML view model that displays per-cluster information.
 
 #### Methods
 
-##### `HTMLClusterViewModel.close()`
+##### HTMLClusterViewModel.close()
 
 Close the view.
 
-##### `HTMLClusterViewModel.connect(*args, **kwargs)`
+##### HTMLClusterViewModel.connect(*args, **kwargs)
 
 Connect a callback function.
 
-##### `HTMLClusterViewModel.emit(*args, **kwargs)`
+##### HTMLClusterViewModel.emit(*args, **kwargs)
 
 Emit an event.
 
-##### `HTMLClusterViewModel.exported_params(save_size_pos=True)`
+##### HTMLClusterViewModel.exported_params(save_size_pos=True)
 
 Return a dictionary of variables to save when the view is closed.
 
-##### `HTMLClusterViewModel.get_css(**kwargs)`
+##### HTMLClusterViewModel.get_css(**kwargs)
 
 
 
-##### `HTMLClusterViewModel.get_html(**kwargs)`
+##### HTMLClusterViewModel.get_html(**kwargs)
 
 Return the non-formatted HTML contents of the view.
 
-##### `HTMLClusterViewModel.get_params(cls, settings)`
+##### HTMLClusterViewModel.get_params(cls, settings)
 
 Return the parameter values for the creation of the view.
 
-##### `HTMLClusterViewModel.imported_params(cls)`
+##### HTMLClusterViewModel.imported_params(cls)
 
 All parameter names to be imported on object creation.
 
-##### `HTMLClusterViewModel.isVisible()`
+##### HTMLClusterViewModel.isVisible()
 
 
 
-##### `HTMLClusterViewModel.on_close()`
+##### HTMLClusterViewModel.on_close()
 
 Called when the model is closed.
 
 May be overriden.
 
-##### `HTMLClusterViewModel.on_cluster(up)`
+##### HTMLClusterViewModel.on_cluster(up)
 
 Update the view after a clustering action.
 
-##### `HTMLClusterViewModel.on_open()`
+##### HTMLClusterViewModel.on_open()
 
 Initialize the view after the model has been loaded.
 
 May be overriden.
 
-##### `HTMLClusterViewModel.on_select(cluster_ids, **kwargs)`
+##### HTMLClusterViewModel.on_select(cluster_ids, **kwargs)
 
 Update the view after a new selection has been made.
 
-##### `HTMLClusterViewModel.select(cluster_ids, **kwargs)`
+##### HTMLClusterViewModel.select(cluster_ids, **kwargs)
 
 Select a list of clusters.
 
-##### `HTMLClusterViewModel.show()`
+##### HTMLClusterViewModel.show()
 
 Show the view.
 
-##### `HTMLClusterViewModel.update(**kwargs)`
+##### HTMLClusterViewModel.update(**kwargs)
 
 Update the widget's HTML contents.
 
 #### Properties
 
-##### `HTMLClusterViewModel.cluster_ids`
+##### HTMLClusterViewModel.cluster_ids
 
 Selected clusters.
 
-##### `HTMLClusterViewModel.model`
+##### HTMLClusterViewModel.model
 
 The model.
 
-##### `HTMLClusterViewModel.n_clusters`
+##### HTMLClusterViewModel.n_clusters
 
 Number of selected clusters.
 
-##### `HTMLClusterViewModel.name`
+##### HTMLClusterViewModel.name
 
 The view model's name.
 
-##### `HTMLClusterViewModel.store`
+##### HTMLClusterViewModel.store
 
 The cluster store.
 
-##### `HTMLClusterViewModel.view`
+##### HTMLClusterViewModel.view
 
 The underlying view.
 
-##### `HTMLClusterViewModel.wizard`
+##### HTMLClusterViewModel.wizard
 
 The wizard.
 
@@ -639,7 +639,7 @@ KlustaKwik automatic clustering algorithm.
 
 #### Methods
 
-##### `KlustaKwik.cluster(model=None, spike_ids=None, features=None, masks=None)`
+##### KlustaKwik.cluster(model=None, spike_ids=None, features=None, masks=None)
 
 Run the clustering algorithm on the model, or on any features
 and masks.
@@ -648,7 +648,7 @@ Return the `spike_clusters` assignements.
 
 Emit the `iter` event at every KlustaKwik iteration.
 
-##### `KlustaKwik.connect(func=None, event=None, set_method=False)`
+##### KlustaKwik.connect(func=None, event=None, set_method=False)
 
 Register a callback function to a given event.
 
@@ -667,7 +667,7 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `KlustaKwik.emit(event, *args, **kwargs)`
+##### KlustaKwik.emit(event, *args, **kwargs)
 
 Call all callback functions registered with an event.
 
@@ -676,11 +676,11 @@ be fowarded to the callback functions.
 
 Return the list of callback return results.
 
-##### `KlustaKwik.reset()`
+##### KlustaKwik.reset()
 
 Remove all registered callbacks.
 
-##### `KlustaKwik.unconnect(*funcs)`
+##### KlustaKwik.unconnect(*funcs)
 
 Unconnect specified callback functions.
 
@@ -703,19 +703,19 @@ all common actions:
 
 #### Methods
 
-##### `Session.change_channel_group(channel_group)`
+##### Session.change_channel_group(channel_group)
 
 Change the current channel group.
 
-##### `Session.change_clustering(clustering)`
+##### Session.change_clustering(clustering)
 
 Change the current clustering.
 
-##### `Session.close()`
+##### Session.close()
 
 Close the currently-open dataset.
 
-##### `Session.cluster(clustering=None, algorithm='klustakwik', spike_ids=None, **kwargs)`
+##### Session.cluster(clustering=None, algorithm='klustakwik', spike_ids=None, **kwargs)
 
 Run an automatic clustering algorithm on all or some of the spikes.
 
@@ -741,7 +741,7 @@ Run an automatic clustering algorithm on all or some of the spikes.
 
     The spike_clusters assignements returned by the algorithm.
 
-##### `Session.connect(func=None, event=None, set_method=False)`
+##### Session.connect(func=None, event=None, set_method=False)
 
 Register a callback function to a given event.
 
@@ -760,7 +760,7 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `Session.detect(traces=None, interval=None, algorithm='spikedetekt', **kwargs)`
+##### Session.detect(traces=None, interval=None, algorithm='spikedetekt', **kwargs)
 
 Detect spikes in traces.
 
@@ -794,7 +794,7 @@ Detect spikes in traces.
     * `spike_times` : the spike times (in seconds).
     * `masks`: the masks of the spikes `(n_spikes, n_channels)`.
 
-##### `Session.emit(event, *args, **kwargs)`
+##### Session.emit(event, *args, **kwargs)
 
 Call all callback functions registered with an event.
 
@@ -803,19 +803,19 @@ be fowarded to the callback functions.
 
 Return the list of callback return results.
 
-##### `Session.on_close()`
+##### Session.on_close()
 
 
 
-##### `Session.on_open()`
+##### Session.on_open()
 
 
 
-##### `Session.open(kwik_path=None, model=None)`
+##### Session.open(kwik_path=None, model=None)
 
 Open a `.kwik` file.
 
-##### `Session.register_statistic(func=None, shape=(-1,))`
+##### Session.register_statistic(func=None, shape=(-1,))
 
 Decorator registering a custom cluster statistic.
 
@@ -833,52 +833,52 @@ This function will be called on every cluster when a dataset is opened.
 It is also automatically called on new clusters when clusters change.
 You can access the data from the model and from the cluster store.
 
-##### `Session.reopen()`
+##### Session.reopen()
 
 
 
-##### `Session.reset()`
+##### Session.reset()
 
 Remove all registered callbacks.
 
-##### `Session.save()`
+##### Session.save()
 
 
 
-##### `Session.save_view_params(vm, save_size_pos=True)`
+##### Session.save_view_params(vm, save_size_pos=True)
 
 Save the parameters exported by a view model instance.
 
-##### `Session.show_gui(**kwargs)`
+##### Session.show_gui(**kwargs)
 
 Show a GUI.
 
-##### `Session.unconnect(*funcs)`
+##### Session.unconnect(*funcs)
 
 Unconnect specified callback functions.
 
 #### Properties
 
-##### `Session.cluster_ids`
+##### Session.cluster_ids
 
 Array of all cluster ids used in the current clustering.
 
-##### `Session.has_unsaved_changes`
+##### Session.has_unsaved_changes
 
 Whether there are unsaved changes in the model.
 
 If true, a prompt message for saving will be displayed when closing
 the GUI.
 
-##### `Session.kwik_path`
+##### Session.kwik_path
 
 Path to the `.kwik` file.
 
-##### `Session.n_clusters`
+##### Session.n_clusters
 
 Number of clusters in the current clustering.
 
-##### `Session.n_spikes`
+##### Session.n_spikes
 
 Number of spikes in the current channel group.
 
@@ -904,11 +904,11 @@ Spike detection class.
 
 #### Methods
 
-##### `SpikeDetekt.apply_filter(data)`
+##### SpikeDetekt.apply_filter(data)
 
 Filter the traces.
 
-##### `SpikeDetekt.connect(func=None, event=None, set_method=False)`
+##### SpikeDetekt.connect(func=None, event=None, set_method=False)
 
 Register a callback function to a given event.
 
@@ -927,7 +927,7 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `SpikeDetekt.detect(traces_f, thresholds=None, dead_channels=None)`
+##### SpikeDetekt.detect(traces_f, thresholds=None, dead_channels=None)
 
 Detect connected waveform components in filtered traces.
 
@@ -953,7 +953,7 @@ Detect connected waveform components in filtered traces.
 
     A list of `(n, 2)` arrays with `sample, channel` pairs.
 
-##### `SpikeDetekt.emit(event, *args, **kwargs)`
+##### SpikeDetekt.emit(event, *args, **kwargs)
 
 Call all callback functions registered with an event.
 
@@ -962,7 +962,7 @@ be fowarded to the callback functions.
 
 Return the list of callback return results.
 
-##### `SpikeDetekt.extract_spikes(components, traces_f, thresholds=None)`
+##### SpikeDetekt.extract_spikes(components, traces_f, thresholds=None)
 
 Extract spikes from connected components.
 
@@ -995,7 +995,7 @@ Extract spikes from connected components.
 
     An `(n_spikes, n_channels)` array.
 
-##### `SpikeDetekt.features(waveforms, pcs)`
+##### SpikeDetekt.features(waveforms, pcs)
 
 Extract features from waveforms.
 
@@ -1006,62 +1006,62 @@ Extract features from waveforms.
 
     An `(n_spikes, n_channels, n_features)` array.
 
-##### `SpikeDetekt.find_thresholds(traces)`
+##### SpikeDetekt.find_thresholds(traces)
 
 Find weak and strong thresholds in filtered traces.
 
-##### `SpikeDetekt.iter_chunks(n_samples)`
+##### SpikeDetekt.iter_chunks(n_samples)
 
 Iterate over chunks.
 
 Yield tuples `(s_start, s_end, keep_start, keep_end)`, in number
 of samples.
 
-##### `SpikeDetekt.n_chunks(n_samples)`
+##### SpikeDetekt.n_chunks(n_samples)
 
 Number of chunks.
 
-##### `SpikeDetekt.output_data(n_samples, n_channels, groups=None, spike_counts=None)`
+##### SpikeDetekt.output_data(n_samples, n_channels, groups=None, spike_counts=None)
 
 Bunch of values to be returned by the algorithm.
 
-##### `SpikeDetekt.reset()`
+##### SpikeDetekt.reset()
 
 Remove all registered callbacks.
 
-##### `SpikeDetekt.run_serial(traces, interval_samples=None)`
+##### SpikeDetekt.run_serial(traces, interval_samples=None)
 
 Run SpikeDetekt using one CPU.
 
-##### `SpikeDetekt.step_detect(bounds, chunk_data, chunk_data_keep, thresholds=None)`
+##### SpikeDetekt.step_detect(bounds, chunk_data, chunk_data_keep, thresholds=None)
 
 Detection step.
 
-##### `SpikeDetekt.step_extract(bounds, components, n_spikes_total=None, n_channels=None, thresholds=None)`
+##### SpikeDetekt.step_extract(bounds, components, n_spikes_total=None, n_channels=None, thresholds=None)
 
 Extraction step.
 
 Return the waveforms to keep for each chunk for PCA.
 
-##### `SpikeDetekt.step_features(bounds, pcs_per_group, spike_counts)`
+##### SpikeDetekt.step_features(bounds, pcs_per_group, spike_counts)
 
 Feature step.
 
-##### `SpikeDetekt.step_pca(chunk_waveforms)`
+##### SpikeDetekt.step_pca(chunk_waveforms)
 
 PCA step.
 
 Return the PCs.
 
-##### `SpikeDetekt.unconnect(*funcs)`
+##### SpikeDetekt.unconnect(*funcs)
 
 Unconnect specified callback functions.
 
-##### `SpikeDetekt.update_params(**kwargs)`
+##### SpikeDetekt.update_params(**kwargs)
 
 
 
-##### `SpikeDetekt.waveform_pcs(waveforms, masks)`
+##### SpikeDetekt.waveform_pcs(waveforms, masks)
 
 Compute waveform principal components.
 
@@ -1080,101 +1080,101 @@ Display cluster statistics.
 
 #### Methods
 
-##### `StatsViewModel.close()`
+##### StatsViewModel.close()
 
 Close the view.
 
-##### `StatsViewModel.connect(*args, **kwargs)`
+##### StatsViewModel.connect(*args, **kwargs)
 
 Connect a callback function.
 
-##### `StatsViewModel.emit(*args, **kwargs)`
+##### StatsViewModel.emit(*args, **kwargs)
 
 Emit an event.
 
-##### `StatsViewModel.exported_params(save_size_pos=True)`
+##### StatsViewModel.exported_params(save_size_pos=True)
 
 Return a dictionary of variables to save when the view is closed.
 
-##### `StatsViewModel.get_css(cluster_ids=None, up=None)`
+##### StatsViewModel.get_css(cluster_ids=None, up=None)
 
 
 
-##### `StatsViewModel.get_html(cluster_ids=None, up=None)`
+##### StatsViewModel.get_html(cluster_ids=None, up=None)
 
 Return the HTML table with the cluster statistics.
 
-##### `StatsViewModel.get_params(cls, settings)`
+##### StatsViewModel.get_params(cls, settings)
 
 Return the parameter values for the creation of the view.
 
-##### `StatsViewModel.imported_params(cls)`
+##### StatsViewModel.imported_params(cls)
 
 All parameter names to be imported on object creation.
 
-##### `StatsViewModel.isVisible()`
+##### StatsViewModel.isVisible()
 
 
 
-##### `StatsViewModel.on_close()`
+##### StatsViewModel.on_close()
 
 Called when the model is closed.
 
 May be overriden.
 
-##### `StatsViewModel.on_cluster(up)`
+##### StatsViewModel.on_cluster(up)
 
 Update the view after a clustering action.
 
-##### `StatsViewModel.on_open()`
+##### StatsViewModel.on_open()
 
 Initialize the view after the model has been loaded.
 
 May be overriden.
 
-##### `StatsViewModel.on_select(cluster_ids, **kwargs)`
+##### StatsViewModel.on_select(cluster_ids, **kwargs)
 
 Update the view after a new selection has been made.
 
-##### `StatsViewModel.select(cluster_ids, **kwargs)`
+##### StatsViewModel.select(cluster_ids, **kwargs)
 
 Select a list of clusters.
 
-##### `StatsViewModel.show()`
+##### StatsViewModel.show()
 
 Show the view.
 
-##### `StatsViewModel.update(**kwargs)`
+##### StatsViewModel.update(**kwargs)
 
 Update the widget's HTML contents.
 
 #### Properties
 
-##### `StatsViewModel.cluster_ids`
+##### StatsViewModel.cluster_ids
 
 Selected clusters.
 
-##### `StatsViewModel.model`
+##### StatsViewModel.model
 
 The model.
 
-##### `StatsViewModel.n_clusters`
+##### StatsViewModel.n_clusters
 
 Number of selected clusters.
 
-##### `StatsViewModel.name`
+##### StatsViewModel.name
 
 The view model's name.
 
-##### `StatsViewModel.store`
+##### StatsViewModel.store
 
 The cluster store.
 
-##### `StatsViewModel.view`
+##### StatsViewModel.view
 
 The underlying view.
 
-##### `StatsViewModel.wizard`
+##### StatsViewModel.wizard
 
 The wizard.
 
@@ -1184,127 +1184,127 @@ Traces.
 
 #### Methods
 
-##### `TraceViewModel.close()`
+##### TraceViewModel.close()
 
 Close the view.
 
-##### `TraceViewModel.connect(*args, **kwargs)`
+##### TraceViewModel.connect(*args, **kwargs)
 
 Connect a callback function.
 
-##### `TraceViewModel.emit(*args, **kwargs)`
+##### TraceViewModel.emit(*args, **kwargs)
 
 Emit an event.
 
-##### `TraceViewModel.exported_params(save_size_pos=True)`
+##### TraceViewModel.exported_params(save_size_pos=True)
 
 Parameters to save automatically when the view is closed.
 
-##### `TraceViewModel.get_params(cls, settings)`
+##### TraceViewModel.get_params(cls, settings)
 
 Return the parameter values for the creation of the view.
 
-##### `TraceViewModel.imported_params(cls)`
+##### TraceViewModel.imported_params(cls)
 
 All parameter names to be imported on object creation.
 
-##### `TraceViewModel.move(amount)`
+##### TraceViewModel.move(amount)
 
 Move the current interval by a given amount (in samples).
 
-##### `TraceViewModel.move_left(fraction=0.05)`
+##### TraceViewModel.move_left(fraction=0.05)
 
 Move the current interval to the left.
 
-##### `TraceViewModel.move_right(fraction=0.05)`
+##### TraceViewModel.move_right(fraction=0.05)
 
 Move the current interval to the right.
 
-##### `TraceViewModel.on_close()`
+##### TraceViewModel.on_close()
 
 Clear the view when the model is closed.
 
-##### `TraceViewModel.on_cluster(up)`
+##### TraceViewModel.on_cluster(up)
 
 Called when a clustering action occurs.
 
 May be overriden.
 
-##### `TraceViewModel.on_key_press(event)`
+##### TraceViewModel.on_key_press(event)
 
 Called when a key is pressed.
 
-##### `TraceViewModel.on_open()`
+##### TraceViewModel.on_open()
 
 Initialize the view when the model is opened.
 
-##### `TraceViewModel.on_select(clusters, **kwargs)`
+##### TraceViewModel.on_select(clusters, **kwargs)
 
 Update the view when the selection changes.
 
-##### `TraceViewModel.select(cluster_ids, **kwargs)`
+##### TraceViewModel.select(cluster_ids, **kwargs)
 
 Select a set of clusters.
 
-##### `TraceViewModel.show()`
+##### TraceViewModel.show()
 
 Show the view.
 
-##### `TraceViewModel.update()`
+##### TraceViewModel.update()
 
 Update the view.
 
-##### `TraceViewModel.update_spike_clusters(spikes=None, spike_clusters=None)`
+##### TraceViewModel.update_spike_clusters(spikes=None, spike_clusters=None)
 
 Update the spike clusters and cluster colors.
 
 #### Properties
 
-##### `TraceViewModel.channel_scale`
+##### TraceViewModel.channel_scale
 
 Vertical scale of the traces.
 
-##### `TraceViewModel.cluster_ids`
+##### TraceViewModel.cluster_ids
 
 Selected clusters.
 
-##### `TraceViewModel.interval`
+##### TraceViewModel.interval
 
 The interval of the view, in unit of sample.
 
-##### `TraceViewModel.model`
+##### TraceViewModel.model
 
 The model.
 
-##### `TraceViewModel.n_clusters`
+##### TraceViewModel.n_clusters
 
 Number of selected clusters.
 
-##### `TraceViewModel.n_spikes`
+##### TraceViewModel.n_spikes
 
 Number of selected spikes.
 
-##### `TraceViewModel.name`
+##### TraceViewModel.name
 
 The view model's name.
 
-##### `TraceViewModel.selector`
+##### TraceViewModel.selector
 
 A Selector instance managing the selected spikes and clusters.
 
-##### `TraceViewModel.spike_ids`
+##### TraceViewModel.spike_ids
 
 Selected spikes.
 
-##### `TraceViewModel.store`
+##### TraceViewModel.store
 
 The cluster store.
 
-##### `TraceViewModel.view`
+##### TraceViewModel.view
 
 The underlying view.
 
-##### `TraceViewModel.wizard`
+##### TraceViewModel.wizard
 
 The wizard.
 
@@ -1314,127 +1314,127 @@ Waveforms.
 
 #### Methods
 
-##### `WaveformViewModel.close()`
+##### WaveformViewModel.close()
 
 Close the view.
 
-##### `WaveformViewModel.connect(*args, **kwargs)`
+##### WaveformViewModel.connect(*args, **kwargs)
 
 Connect a callback function.
 
-##### `WaveformViewModel.emit(*args, **kwargs)`
+##### WaveformViewModel.emit(*args, **kwargs)
 
 Emit an event.
 
-##### `WaveformViewModel.exported_params(save_size_pos=True)`
+##### WaveformViewModel.exported_params(save_size_pos=True)
 
 Parameters to save automatically when the view is closed.
 
-##### `WaveformViewModel.get_params(cls, settings)`
+##### WaveformViewModel.get_params(cls, settings)
 
 Return the parameter values for the creation of the view.
 
-##### `WaveformViewModel.imported_params(cls)`
+##### WaveformViewModel.imported_params(cls)
 
 All parameter names to be imported on object creation.
 
-##### `WaveformViewModel.on_close()`
+##### WaveformViewModel.on_close()
 
 Clear the view when the model is closed.
 
-##### `WaveformViewModel.on_cluster(up)`
+##### WaveformViewModel.on_cluster(up)
 
 Called when a clustering action occurs.
 
 May be overriden.
 
-##### `WaveformViewModel.on_key_press(event)`
+##### WaveformViewModel.on_key_press(event)
 
 Called when a key is pressed.
 
-##### `WaveformViewModel.on_open()`
+##### WaveformViewModel.on_open()
 
 Initialize the view when the model is opened.
 
-##### `WaveformViewModel.on_select(clusters, **kwargs)`
+##### WaveformViewModel.on_select(clusters, **kwargs)
 
 Update the view when the selection changes.
 
-##### `WaveformViewModel.select(cluster_ids, **kwargs)`
+##### WaveformViewModel.select(cluster_ids, **kwargs)
 
 Select a set of clusters.
 
-##### `WaveformViewModel.show()`
+##### WaveformViewModel.show()
 
 Show the view.
 
-##### `WaveformViewModel.update()`
+##### WaveformViewModel.update()
 
 Update the view.
 
-##### `WaveformViewModel.update_spike_clusters(spikes=None)`
+##### WaveformViewModel.update_spike_clusters(spikes=None)
 
 Update the view's spike clusters.
 
 #### Properties
 
-##### `WaveformViewModel.box_scale`
+##### WaveformViewModel.box_scale
 
 Scale of the waveforms.
 
 This is a pair of scalars.
 
-##### `WaveformViewModel.cluster_ids`
+##### WaveformViewModel.cluster_ids
 
 Selected clusters.
 
-##### `WaveformViewModel.model`
+##### WaveformViewModel.model
 
 The model.
 
-##### `WaveformViewModel.n_clusters`
+##### WaveformViewModel.n_clusters
 
 Number of selected clusters.
 
-##### `WaveformViewModel.n_spikes`
+##### WaveformViewModel.n_spikes
 
 Number of selected spikes.
 
-##### `WaveformViewModel.name`
+##### WaveformViewModel.name
 
 The view model's name.
 
-##### `WaveformViewModel.overlap`
+##### WaveformViewModel.overlap
 
 Whether to overlap waveforms.
 
-##### `WaveformViewModel.probe_scale`
+##### WaveformViewModel.probe_scale
 
 Scale of the probe.
 
 This is a pair of scalars.
 
-##### `WaveformViewModel.selector`
+##### WaveformViewModel.selector
 
 A Selector instance managing the selected spikes and clusters.
 
-##### `WaveformViewModel.show_mean`
+##### WaveformViewModel.show_mean
 
 Whether to show mean waveforms.
 
-##### `WaveformViewModel.spike_ids`
+##### WaveformViewModel.spike_ids
 
 Selected spikes.
 
-##### `WaveformViewModel.store`
+##### WaveformViewModel.store
 
 The cluster store.
 
-##### `WaveformViewModel.view`
+##### WaveformViewModel.view
 
 The underlying view.
 
-##### `WaveformViewModel.wizard`
+##### WaveformViewModel.wizard
 
 The wizard.
 
@@ -1460,15 +1460,15 @@ request_save
 
 #### Methods
 
-##### `ClusterManualGUI.add_view(item, title=None, **kwargs)`
+##### ClusterManualGUI.add_view(item, title=None, **kwargs)
 
 Add a new view instance to the GUI.
 
-##### `ClusterManualGUI.close()`
+##### ClusterManualGUI.close()
 
 Close the GUI.
 
-##### `ClusterManualGUI.connect(func=None, event=None, set_method=False)`
+##### ClusterManualGUI.connect(func=None, event=None, set_method=False)
 
 Register a callback function to a given event.
 
@@ -1487,16 +1487,16 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `ClusterManualGUI.connect_views(name_0, name_1)`
+##### ClusterManualGUI.connect_views(name_0, name_1)
 
 Decorator for a function called on every pair of views of a
 given type.
 
-##### `ClusterManualGUI.disable_snippet_mode()`
+##### ClusterManualGUI.disable_snippet_mode()
 
 
 
-##### `ClusterManualGUI.emit(event, *args, **kwargs)`
+##### ClusterManualGUI.emit(event, *args, **kwargs)
 
 Call all callback functions registered with an event.
 
@@ -1505,35 +1505,35 @@ be fowarded to the callback functions.
 
 Return the list of callback return results.
 
-##### `ClusterManualGUI.enable_snippet_mode()`
+##### ClusterManualGUI.enable_snippet_mode()
 
 
 
-##### `ClusterManualGUI.exit()`
+##### ClusterManualGUI.exit()
 
 Close the GUI.
 
-##### `ClusterManualGUI.first()`
+##### ClusterManualGUI.first()
 
 Go to the first cluster proposed by the wizard.
 
-##### `ClusterManualGUI.get_views(*names)`
+##### ClusterManualGUI.get_views(*names)
 
 Return the list of views of a given type.
 
-##### `ClusterManualGUI.isVisible()`
+##### ClusterManualGUI.isVisible()
 
 
 
-##### `ClusterManualGUI.last()`
+##### ClusterManualGUI.last()
 
 Go to the last cluster proposed by the wizard.
 
-##### `ClusterManualGUI.merge(clusters=None)`
+##### ClusterManualGUI.merge(clusters=None)
 
 Merge some clusters.
 
-##### `ClusterManualGUI.move(clusters, group)`
+##### ClusterManualGUI.move(clusters, group)
 
 Move some clusters to a cluster group.
 
@@ -1544,65 +1544,65 @@ Here is the list of cluster groups:
 * 2=Good
 * 3=Unsorted
 
-##### `ClusterManualGUI.next()`
+##### ClusterManualGUI.next()
 
 Go to the next cluster proposed by the wizard.
 
-##### `ClusterManualGUI.on_open()`
+##### ClusterManualGUI.on_open()
 
 Reinitialize the GUI after new data has been loaded.
 
-##### `ClusterManualGUI.pin()`
+##### ClusterManualGUI.pin()
 
 Pin the current best cluster.
 
-##### `ClusterManualGUI.previous()`
+##### ClusterManualGUI.previous()
 
 Go to the previous cluster proposed by the wizard.
 
-##### `ClusterManualGUI.process_snippet(snippet)`
+##### ClusterManualGUI.process_snippet(snippet)
 
 Processes a snippet.
 
 May be overriden.
 
-##### `ClusterManualGUI.redo()`
+##### ClusterManualGUI.redo()
 
 Redo the last undone action.
 
-##### `ClusterManualGUI.reset()`
+##### ClusterManualGUI.reset()
 
 Remove all registered callbacks.
 
-##### `ClusterManualGUI.reset_gui()`
+##### ClusterManualGUI.reset_gui()
 
 Reset the GUI configuration.
 
-##### `ClusterManualGUI.reset_wizard()`
+##### ClusterManualGUI.reset_wizard()
 
 Restart the wizard.
 
-##### `ClusterManualGUI.save()`
+##### ClusterManualGUI.save()
 
 Save the changes.
 
-##### `ClusterManualGUI.select(cluster_ids, **kwargs)`
+##### ClusterManualGUI.select(cluster_ids, **kwargs)
 
 Select clusters.
 
-##### `ClusterManualGUI.show()`
+##### ClusterManualGUI.show()
 
 Show the GUI
 
-##### `ClusterManualGUI.show_features_time()`
+##### ClusterManualGUI.show_features_time()
 
 Set the x dimension to time in all feature views.
 
-##### `ClusterManualGUI.show_shortcuts()`
+##### ClusterManualGUI.show_shortcuts()
 
 Show the list of all keyboard shortcuts.
 
-##### `ClusterManualGUI.split(spikes=None)`
+##### ClusterManualGUI.split(spikes=None)
 
 Make a new cluster out of some spikes.
 
@@ -1612,65 +1612,65 @@ Spikes belonging to affected clusters, but not part of the `spikes`
 array, will move to brand new cluster ids. This is because a new
 cluster id must be used as soon as a cluster changes.
 
-##### `ClusterManualGUI.start()`
+##### ClusterManualGUI.start()
 
 Start the wizard.
 
-##### `ClusterManualGUI.toggle_correlogram_normalization()`
+##### ClusterManualGUI.toggle_correlogram_normalization()
 
 Toggle CCG normalization in the correlograms views.
 
-##### `ClusterManualGUI.toggle_waveforms_mean()`
+##### ClusterManualGUI.toggle_waveforms_mean()
 
 Toggle mean mode in the waveform views.
 
-##### `ClusterManualGUI.toggle_waveforms_overlap()`
+##### ClusterManualGUI.toggle_waveforms_overlap()
 
 Toggle cluster overlap in the waveform views.
 
-##### `ClusterManualGUI.unconnect(*funcs)`
+##### ClusterManualGUI.unconnect(*funcs)
 
 Unconnect specified callback functions.
 
-##### `ClusterManualGUI.undo()`
+##### ClusterManualGUI.undo()
 
 Undo the last clustering action.
 
-##### `ClusterManualGUI.unpin()`
+##### ClusterManualGUI.unpin()
 
 Unpin the current best cluster.
 
-##### `ClusterManualGUI.view_count()`
+##### ClusterManualGUI.view_count()
 
 Number of views of each type.
 
 #### Properties
 
-##### `ClusterManualGUI.cluster_ids`
+##### ClusterManualGUI.cluster_ids
 
 Array of all cluster ids used in the current clustering.
 
-##### `ClusterManualGUI.main_window`
+##### ClusterManualGUI.main_window
 
 Main Qt window.
 
-##### `ClusterManualGUI.n_clusters`
+##### ClusterManualGUI.n_clusters
 
 Number of clusters in the current clustering.
 
-##### `ClusterManualGUI.selected_clusters`
+##### ClusterManualGUI.selected_clusters
 
 The list of selected clusters.
 
-##### `ClusterManualGUI.status_message`
+##### ClusterManualGUI.status_message
 
 Message in the status bar.
 
-##### `ClusterManualGUI.title`
+##### ClusterManualGUI.title
 
 Title of the main window.
 
-##### `ClusterManualGUI.views`
+##### ClusterManualGUI.views
 
 List of all open views.
 
@@ -1745,7 +1745,7 @@ The keys are the following:
 
 #### Methods
 
-##### `Clustering.assign(spike_ids, spike_clusters_rel=0)`
+##### Clustering.assign(spike_ids, spike_clusters_rel=0)
 
 Make new spike cluster assignements.
 
@@ -1791,7 +1791,7 @@ where this is not true is when whole clusters change: this is called
 a merge. It is implemented in a separate `merge()` method because it
 is logically much simpler, and faster to execute.
 
-##### `Clustering.merge(cluster_ids, to=None)`
+##### Clustering.merge(cluster_ids, to=None)
 
 Merge several clusters to a new cluster.
 
@@ -1812,13 +1812,13 @@ Merge several clusters to a new cluster.
 * `up` (UpdateInfo instance)
 
 
-##### `Clustering.new_cluster_id()`
+##### Clustering.new_cluster_id()
 
 Generate a brand new cluster id.
 
 This is `maximum cluster id + 1`.
 
-##### `Clustering.redo()`
+##### Clustering.redo()
 
 Redo the last cluster assignement operation.
 
@@ -1828,17 +1828,17 @@ Redo the last cluster assignement operation.
 * `up` (UpdateInfo instance of the changes done by this operation.)
 
 
-##### `Clustering.reset()`
+##### Clustering.reset()
 
 Reset the clustering to the original clustering.
 
 All changes are lost.
 
-##### `Clustering.spikes_in_clusters(clusters)`
+##### Clustering.spikes_in_clusters(clusters)
 
 Return the array of spike ids belonging to a list of clusters.
 
-##### `Clustering.split(spike_ids)`
+##### Clustering.split(spike_ids)
 
 Split a number of spikes into a new cluster.
 
@@ -1863,7 +1863,7 @@ The note in the `assign()` method applies here as well. The list
 of spikes affected by the split is almost always a strict superset
 of the spike_ids parameter.
 
-##### `Clustering.undo()`
+##### Clustering.undo()
 
 Undo the last cluster assignement operation.
 
@@ -1875,31 +1875,31 @@ Undo the last cluster assignement operation.
 
 #### Properties
 
-##### `Clustering.cluster_counts`
+##### Clustering.cluster_counts
 
 Dictionary with the number of spikes in each cluster.
 
-##### `Clustering.cluster_ids`
+##### Clustering.cluster_ids
 
 Ordered list of ids of all non-empty clusters.
 
-##### `Clustering.n_clusters`
+##### Clustering.n_clusters
 
 Total number of clusters.
 
-##### `Clustering.n_spikes`
+##### Clustering.n_spikes
 
 Number of spikes.
 
-##### `Clustering.spike_clusters`
+##### Clustering.spike_clusters
 
 A n_spikes-long vector containing the cluster ids of all spikes.
 
-##### `Clustering.spike_ids`
+##### Clustering.spike_ids
 
 Array of all spike ids.
 
-##### `Clustering.spikes_per_cluster`
+##### Clustering.spikes_per_cluster
 
 A dictionary `{cluster: spikes}`.
 
@@ -1909,129 +1909,129 @@ Propose a selection of high-quality clusters and merge candidates.
 
 #### Methods
 
-##### `Wizard.best_clusters(n_max=None, quality=None)`
+##### Wizard.best_clusters(n_max=None, quality=None)
 
 Return the list of best clusters sorted by decreasing quality.
 
 The default quality function is the registered one.
 
-##### `Wizard.first()`
+##### Wizard.first()
 
 First match or first best.
 
-##### `Wizard.get_panel_params()`
+##### Wizard.get_panel_params()
 
 Return the parameters for the HTML panel.
 
-##### `Wizard.last()`
+##### Wizard.last()
 
 Last match or last best.
 
-##### `Wizard.most_similar_clusters(cluster=None, n_max=None, similarity=None)`
+##### Wizard.most_similar_clusters(cluster=None, n_max=None, similarity=None)
 
 Return the `n_max` most similar clusters to a given cluster.
 
 The default similarity function is the registered one.
 
-##### `Wizard.next()`
+##### Wizard.next()
 
 Next cluster proposition.
 
-##### `Wizard.next_best()`
+##### Wizard.next_best()
 
 Select the next best cluster.
 
-##### `Wizard.next_match()`
+##### Wizard.next_match()
 
 Select the next match.
 
-##### `Wizard.on_cluster(up)`
+##### Wizard.on_cluster(up)
 
 
 
-##### `Wizard.pin(cluster=None)`
+##### Wizard.pin(cluster=None)
 
 Pin the current best cluster and set the list of closest matches.
 
-##### `Wizard.previous()`
+##### Wizard.previous()
 
 Previous cluster proposition.
 
-##### `Wizard.previous_best()`
+##### Wizard.previous_best()
 
 Select the previous best in cluster.
 
-##### `Wizard.previous_match()`
+##### Wizard.previous_match()
 
 Select the previous match.
 
-##### `Wizard.reset()`
+##### Wizard.reset()
 
 
 
-##### `Wizard.set_quality_function(func)`
+##### Wizard.set_quality_function(func)
 
 Register a function returning the quality of a cluster.
 
 Can be used as a decorator.
 
-##### `Wizard.set_similarity_function(func)`
+##### Wizard.set_similarity_function(func)
 
 Register a function returning the similarity between two clusters.
 
 Can be used as a decorator.
 
-##### `Wizard.start()`
+##### Wizard.start()
 
 Start the wizard by setting the list of best clusters.
 
-##### `Wizard.unpin()`
+##### Wizard.unpin()
 
 Unpin the current cluster.
 
 #### Properties
 
-##### `Wizard.best`
+##### Wizard.best
 
 Currently-selected best cluster.
 
-##### `Wizard.best_list`
+##### Wizard.best_list
 
 Current list of best clusters, by decreasing quality.
 
-##### `Wizard.cluster_groups`
+##### Wizard.cluster_groups
 
 Dictionary with the groups of each cluster.
 
 The groups are: `None` (corresponds to unsorted), `good`, or `ignored`.
 
-##### `Wizard.cluster_ids`
+##### Wizard.cluster_ids
 
 Array of cluster ids in the current clustering.
 
-##### `Wizard.has_started`
+##### Wizard.has_started
 
 
 
-##### `Wizard.match`
+##### Wizard.match
 
 Currently-selected closest match.
 
-##### `Wizard.match_list`
+##### Wizard.match_list
 
 Current list of closest matches, by decreasing similarity.
 
-##### `Wizard.n_clusters`
+##### Wizard.n_clusters
 
 Total number of clusters.
 
-##### `Wizard.n_processed`
+##### Wizard.n_processed
 
 Numbered of processed clusters so far.
 
 A cluster is considered processed if its group is not `None`.
 
-##### `Wizard.selection`
+##### Wizard.selection
 
 Return the current best/match cluster selection.
 
@@ -2039,7 +2039,7 @@ Return the current best/match cluster selection.
 
 Electrodes.
 
-##### `phy.electrode.load_probe(name)`
+##### phy.electrode.load_probe(name)
 
 Load one of the built-in probes.
 
@@ -2055,25 +2055,25 @@ There are two modes:
 
 #### Methods
 
-##### `MEA.change_channel_group(group)`
+##### MEA.change_channel_group(group)
 
 Change the current channel group.
 
 #### Properties
 
-##### `MEA.adjacency`
+##### MEA.adjacency
 
 Adjacency graph in the current channel group.
 
-##### `MEA.channels`
+##### MEA.channels
 
 Channel ids in the current channel group.
 
-##### `MEA.n_channels`
+##### MEA.n_channels
 
 Number of channels in the current channel group.
 
-##### `MEA.positions`
+##### MEA.positions
 
 Channel positions in the current channel group.
 
@@ -2081,19 +2081,19 @@ Channel positions in the current channel group.
 
 GUI routines.
 
-##### `phy.gui.enable_qt()`
+##### phy.gui.enable_qt()
 
 
 
-##### `phy.gui.qt_app(*args, **kwds)`
+##### phy.gui.qt_app(*args, **kwds)
 
 Context manager to ensure that a Qt app is running.
 
-##### `phy.gui.run_qt_app()`
+##### phy.gui.run_qt_app()
 
 Start the Qt application's event loop.
 
-##### `phy.gui.start_qt_app()`
+##### phy.gui.start_qt_app()
 
 Start a Qt application if necessary.
 
@@ -2137,15 +2137,15 @@ reset_gui
 
 #### Methods
 
-##### `BaseGUI.add_view(item, title=None, **kwargs)`
+##### BaseGUI.add_view(item, title=None, **kwargs)
 
 Add a new view instance to the GUI.
 
-##### `BaseGUI.close()`
+##### BaseGUI.close()
 
 Close the GUI.
 
-##### `BaseGUI.connect(func=None, event=None, set_method=False)`
+##### BaseGUI.connect(func=None, event=None, set_method=False)
 
 Register a callback function to a given event.
 
@@ -2164,16 +2164,16 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `BaseGUI.connect_views(name_0, name_1)`
+##### BaseGUI.connect_views(name_0, name_1)
 
 Decorator for a function called on every pair of views of a
 given type.
 
-##### `BaseGUI.disable_snippet_mode()`
+##### BaseGUI.disable_snippet_mode()
 
 
 
-##### `BaseGUI.emit(event, *args, **kwargs)`
+##### BaseGUI.emit(event, *args, **kwargs)
 
 Call all callback functions registered with an event.
 
@@ -2182,75 +2182,75 @@ be fowarded to the callback functions.
 
 Return the list of callback return results.
 
-##### `BaseGUI.enable_snippet_mode()`
+##### BaseGUI.enable_snippet_mode()
 
 
 
-##### `BaseGUI.exit()`
+##### BaseGUI.exit()
 
 Close the GUI.
 
-##### `BaseGUI.get_views(*names)`
+##### BaseGUI.get_views(*names)
 
 Return the list of views of a given type.
 
-##### `BaseGUI.isVisible()`
+##### BaseGUI.isVisible()
 
 
 
-##### `BaseGUI.on_open()`
+##### BaseGUI.on_open()
 
 Callback function when the model is opened.
 
 Must be overriden.
 
-##### `BaseGUI.process_snippet(snippet)`
+##### BaseGUI.process_snippet(snippet)
 
 Processes a snippet.
 
 May be overriden.
 
-##### `BaseGUI.reset()`
+##### BaseGUI.reset()
 
 Remove all registered callbacks.
 
-##### `BaseGUI.reset_gui()`
+##### BaseGUI.reset_gui()
 
 Reset the GUI configuration.
 
-##### `BaseGUI.show()`
+##### BaseGUI.show()
 
 Show the GUI
 
-##### `BaseGUI.show_shortcuts()`
+##### BaseGUI.show_shortcuts()
 
 Show the list of all keyboard shortcuts.
 
-##### `BaseGUI.unconnect(*funcs)`
+##### BaseGUI.unconnect(*funcs)
 
 Unconnect specified callback functions.
 
-##### `BaseGUI.view_count()`
+##### BaseGUI.view_count()
 
 Number of views of each type.
 
 #### Properties
 
-##### `BaseGUI.main_window`
+##### BaseGUI.main_window
 
 Main Qt window.
 
-##### `BaseGUI.status_message`
+##### BaseGUI.status_message
 
 Message in the status bar.
 
-##### `BaseGUI.title`
+##### BaseGUI.title
 
 Title of the main window.
 
 May be overriden.
 
-##### `BaseGUI.views`
+##### BaseGUI.views
 
 List of all open views.
 
@@ -2265,57 +2265,57 @@ close_view
 
 #### Methods
 
-##### `BaseViewModel.close()`
+##### BaseViewModel.close()
 
 Close the view.
 
-##### `BaseViewModel.connect(*args, **kwargs)`
+##### BaseViewModel.connect(*args, **kwargs)
 
 Connect a callback function.
 
-##### `BaseViewModel.emit(*args, **kwargs)`
+##### BaseViewModel.emit(*args, **kwargs)
 
 Emit an event.
 
-##### `BaseViewModel.exported_params(save_size_pos=True)`
+##### BaseViewModel.exported_params(save_size_pos=True)
 
 Return a dictionary of variables to save when the view is closed.
 
-##### `BaseViewModel.get_params(cls, settings)`
+##### BaseViewModel.get_params(cls, settings)
 
 Return the parameter values for the creation of the view.
 
-##### `BaseViewModel.imported_params(cls)`
+##### BaseViewModel.imported_params(cls)
 
 All parameter names to be imported on object creation.
 
-##### `BaseViewModel.on_close()`
+##### BaseViewModel.on_close()
 
 Called when the model is closed.
 
 May be overriden.
 
-##### `BaseViewModel.on_open()`
+##### BaseViewModel.on_open()
 
 Initialize the view after the model has been loaded.
 
 May be overriden.
 
-##### `BaseViewModel.show()`
+##### BaseViewModel.show()
 
 Show the view.
 
 #### Properties
 
-##### `BaseViewModel.model`
+##### BaseViewModel.model
 
 The model.
 
-##### `BaseViewModel.name`
+##### BaseViewModel.name
 
 The view model's name.
 
-##### `BaseViewModel.view`
+##### BaseViewModel.view
 
 The underlying view.
 
@@ -2335,43 +2335,43 @@ Use `connect_()`, not `connect()`, because of a name conflict with Qt.
 
 #### Methods
 
-##### `DockWindow.add_action(name, callback=None, shortcut=None, checkable=False, checked=False)`
+##### DockWindow.add_action(name, callback=None, shortcut=None, checkable=False, checked=False)
 
 Add an action with a keyboard shortcut.
 
-##### `DockWindow.add_view(view, title='view', position=None, closable=True, floatable=True, floating=None, **kwargs)`
+##### DockWindow.add_view(view, title='view', position=None, closable=True, floatable=True, floating=None, **kwargs)
 
 Add a widget to the main window.
 
-##### `DockWindow.closeEvent(e)`
+##### DockWindow.closeEvent(e)
 
 Qt slot when the window is closed.
 
-##### `DockWindow.connect_(*args, **kwargs)`
+##### DockWindow.connect_(*args, **kwargs)
 
 
 
-##### `DockWindow.emit(*args, **kwargs)`
+##### DockWindow.emit(*args, **kwargs)
 
 
 
-##### `DockWindow.keyReleaseEvent(e)`
+##### DockWindow.keyReleaseEvent(e)
 
 
 
-##### `DockWindow.list_views(title='', is_visible=True)`
+##### DockWindow.list_views(title='', is_visible=True)
 
 List all views which title start with a given string.
 
-##### `DockWindow.remove_action(name)`
+##### DockWindow.remove_action(name)
 
 Remove an action.
 
-##### `DockWindow.remove_actions()`
+##### DockWindow.remove_actions()
 
 Remove all actions.
 
-##### `DockWindow.restore_geometry_state(gs)`
+##### DockWindow.restore_geometry_state(gs)
 
 Restore the position of the main window and the docks.
 
@@ -2379,31 +2379,31 @@ The dock widgets need to be recreated first.
 
 This function can be called in `on_show()`.
 
-##### `DockWindow.save_geometry_state()`
+##### DockWindow.save_geometry_state()
 
 Return picklable geometry and state of the window and docks.
 
 This function can be called in `on_close()`.
 
-##### `DockWindow.shortcut(name, key=None)`
+##### DockWindow.shortcut(name, key=None)
 
 Decorator to add a global keyboard shortcut.
 
-##### `DockWindow.show()`
+##### DockWindow.show()
 
 Show the window.
 
-##### `DockWindow.unconnect_(*args, **kwargs)`
+##### DockWindow.unconnect_(*args, **kwargs)
 
 
 
-##### `DockWindow.view_count(is_visible=True)`
+##### DockWindow.view_count(is_visible=True)
 
 Return the number of opened views.
 
 #### Properties
 
-##### `DockWindow.status_message`
+##### DockWindow.status_message
 
 The message in the status bar.
 
@@ -2416,73 +2416,73 @@ To create a new HTML view, derive from `HTMLViewModel`, and implement
 
 #### Methods
 
-##### `HTMLViewModel.close()`
+##### HTMLViewModel.close()
 
 Close the view.
 
-##### `HTMLViewModel.connect(*args, **kwargs)`
+##### HTMLViewModel.connect(*args, **kwargs)
 
 Connect a callback function.
 
-##### `HTMLViewModel.emit(*args, **kwargs)`
+##### HTMLViewModel.emit(*args, **kwargs)
 
 Emit an event.
 
-##### `HTMLViewModel.exported_params(save_size_pos=True)`
+##### HTMLViewModel.exported_params(save_size_pos=True)
 
 Return a dictionary of variables to save when the view is closed.
 
-##### `HTMLViewModel.get_css(**kwargs)`
+##### HTMLViewModel.get_css(**kwargs)
 
 Return the view's CSS styles.
 
-##### `HTMLViewModel.get_html(**kwargs)`
+##### HTMLViewModel.get_html(**kwargs)
 
 Return the non-formatted HTML contents of the view.
 
-##### `HTMLViewModel.get_params(cls, settings)`
+##### HTMLViewModel.get_params(cls, settings)
 
 Return the parameter values for the creation of the view.
 
-##### `HTMLViewModel.imported_params(cls)`
+##### HTMLViewModel.imported_params(cls)
 
 All parameter names to be imported on object creation.
 
-##### `HTMLViewModel.isVisible()`
+##### HTMLViewModel.isVisible()
 
 
 
-##### `HTMLViewModel.on_close()`
+##### HTMLViewModel.on_close()
 
 Called when the model is closed.
 
 May be overriden.
 
-##### `HTMLViewModel.on_open()`
+##### HTMLViewModel.on_open()
 
 Initialize the view after the model has been loaded.
 
 May be overriden.
 
-##### `HTMLViewModel.show()`
+##### HTMLViewModel.show()
 
 Show the view.
 
-##### `HTMLViewModel.update(**kwargs)`
+##### HTMLViewModel.update(**kwargs)
 
 Update the widget's HTML contents.
 
 #### Properties
 
-##### `HTMLViewModel.model`
+##### HTMLViewModel.model
 
 The model.
 
-##### `HTMLViewModel.name`
+##### HTMLViewModel.name
 
 The view model's name.
 
-##### `HTMLViewModel.view`
+##### HTMLViewModel.view
 
 The underlying view.
 
@@ -2503,11 +2503,11 @@ close(widget): when a widget is closed.
 
 #### Methods
 
-##### `WidgetCreator.add(widget_class, show=False, **kwargs)`
+##### WidgetCreator.add(widget_class, show=False, **kwargs)
 
 Add a new widget.
 
-##### `WidgetCreator.connect(func=None, event=None, set_method=False)`
+##### WidgetCreator.connect(func=None, event=None, set_method=False)
 
 Register a callback function to a given event.
 
@@ -2526,7 +2526,7 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `WidgetCreator.emit(event, *args, **kwargs)`
+##### WidgetCreator.emit(event, *args, **kwargs)
 
 Call all callback functions registered with an event.
 
@@ -2535,25 +2535,25 @@ be fowarded to the callback functions.
 
 Return the list of callback return results.
 
-##### `WidgetCreator.get(*names)`
+##### WidgetCreator.get(*names)
 
 Return the list of widgets of a given type.
 
-##### `WidgetCreator.remove(widget)`
+##### WidgetCreator.remove(widget)
 
 Remove a widget.
 
-##### `WidgetCreator.reset()`
+##### WidgetCreator.reset()
 
 Remove all registered callbacks.
 
-##### `WidgetCreator.unconnect(*funcs)`
+##### WidgetCreator.unconnect(*funcs)
 
 Unconnect specified callback functions.
 
 #### Properties
 
-##### `WidgetCreator.widget_classes`
+##### WidgetCreator.widget_classes
 
 The registered widget classes that can be created.
 
@@ -2561,15 +2561,15 @@ The registered widget classes that can be created.
 
 Input/output.
 
-##### `phy.io.create_kwik(prm_file=None, kwik_path=None, overwrite=False, probe=None, **kwargs)`
+##### phy.io.create_kwik(prm_file=None, kwik_path=None, overwrite=False, probe=None, **kwargs)
 
 Create a new Kwik dataset from a PRM file.
 
-##### `phy.io.open_h5(filename, mode=None)`
+##### phy.io.open_h5(filename, mode=None)
 
 Open an HDF5 file and return a File instance.
 
-##### `phy.io.read_dat(filename, dtype=None, shape=None, offset=0, n_channels=None)`
+##### phy.io.read_dat(filename, dtype=None, shape=None, offset=0, n_channels=None)
 
 Read traces from a flat binary `.dat` file.
 
@@ -2600,7 +2600,7 @@ The output is a memory-mapped file.
     automatically computed from the file size if the number of channels
     and dtype are specified.
 
-##### `phy.io.read_kwd(kwd_handle)`
+##### phy.io.read_kwd(kwd_handle)
 
 Read all traces in a  `.kwd` file.
 
@@ -2614,105 +2614,105 @@ This base class must be derived.
 
 #### Methods
 
-##### `BaseModel.close()`
+##### BaseModel.close()
 
 Close the model and the underlying files.
 
 May be implemented by child classes.
 
-##### `BaseModel.save()`
+##### BaseModel.save()
 
 Save the data.
 
 May be implemented by child classes.
 
-##### `BaseModel.spike_train(cluster_id)`
+##### BaseModel.spike_train(cluster_id)
 
 Return the spike times of a given cluster.
 
-##### `BaseModel.update_spikes_per_cluster(spc)`
+##### BaseModel.update_spikes_per_cluster(spc)
 
 
 
 #### Properties
 
-##### `BaseModel.channel_group`
+##### BaseModel.channel_group
 
 
 
-##### `BaseModel.channel_groups`
+##### BaseModel.channel_groups
 
 List of channel groups.
 
 May be implemented by child classes.
 
-##### `BaseModel.cluster_groups`
+##### BaseModel.cluster_groups
 
 Groups of all clusters in the current channel group and clustering.
 
 This is a regular Python dictionary.
 
-##### `BaseModel.cluster_metadata`
+##### BaseModel.cluster_metadata
 
 ClusterMetadata instance holding information about the clusters.
 
 Must be implemented by child classes.
 
-##### `BaseModel.clustering`
+##### BaseModel.clustering
 
 
 
-##### `BaseModel.clusterings`
+##### BaseModel.clusterings
 
 List of clusterings.
 
 May be implemented by child classes.
 
-##### `BaseModel.features`
+##### BaseModel.features
 
 Features from the current channel_group (may be memory-mapped).
 
 May be implemented by child classes.
 
-##### `BaseModel.masks`
+##### BaseModel.masks
 
 Masks from the current channel_group (may be memory-mapped).
 
 May be implemented by child classes.
 
-##### `BaseModel.metadata`
+##### BaseModel.metadata
 
 A dictionary holding metadata about the experiment.
 
 May be implemented by child classes.
 
-##### `BaseModel.path`
+##### BaseModel.path
 
 
 
-##### `BaseModel.probe`
+##### BaseModel.probe
 
 A Probe instance.
 
 May be implemented by child classes.
 
-##### `BaseModel.sample_rate`
+##### BaseModel.sample_rate
 
 
 
-##### `BaseModel.spike_clusters`
+##### BaseModel.spike_clusters
 
 Spike clusters from the current channel_group.
 
 Must be implemented by child classes.
 
-##### `BaseModel.spike_samples`
+##### BaseModel.spike_samples
 
 Spike times from the current channel_group.
 
 Must be implemented by child classes.
 
-##### `BaseModel.spike_times`
+##### BaseModel.spike_times
 
 Spike times from the current channel_group.
 
@@ -2721,19 +2721,19 @@ This is a NumPy array containing `float64` values (in seconds).
 The spike times of all recordings are concatenated. There is no gap
 between consecutive recordings, currently.
 
-##### `BaseModel.spikes_per_cluster`
+##### BaseModel.spikes_per_cluster
 
 Spikes per cluster dictionary.
 
 Must be implemented by child classes.
 
-##### `BaseModel.traces`
+##### BaseModel.traces
 
 Traces (may be memory-mapped).
 
 May be implemented by child classes.
 
-##### `BaseModel.waveforms`
+##### BaseModel.waveforms
 
 Waveforms from the current channel_group (may be memory-mapped).
 
@@ -2756,11 +2756,11 @@ close
 
 #### Methods
 
-##### `BaseSession.close()`
+##### BaseSession.close()
 
 Close the currently-open dataset.
 
-##### `BaseSession.connect(func=None, event=None, set_method=False)`
+##### BaseSession.connect(func=None, event=None, set_method=False)
 
 Register a callback function to a given event.
 
@@ -2779,7 +2779,7 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `BaseSession.emit(event, *args, **kwargs)`
+##### BaseSession.emit(event, *args, **kwargs)
 
 Call all callback functions registered with an event.
 
@@ -2788,39 +2788,39 @@ be fowarded to the callback functions.
 
 Return the list of callback return results.
 
-##### `BaseSession.on_close()`
+##### BaseSession.on_close()
 
 
 
-##### `BaseSession.on_open()`
+##### BaseSession.on_open()
 
 
 
-##### `BaseSession.open(path=None, model=None)`
+##### BaseSession.open(path=None, model=None)
 
 Open a dataset.
 
-##### `BaseSession.reopen()`
+##### BaseSession.reopen()
 
 
 
-##### `BaseSession.reset()`
+##### BaseSession.reset()
 
 Remove all registered callbacks.
 
-##### `BaseSession.save()`
+##### BaseSession.save()
 
 
 
-##### `BaseSession.save_view_params(vm, save_size_pos=True)`
+##### BaseSession.save_view_params(vm, save_size_pos=True)
 
 Save the parameters exported by a view model instance.
 
-##### `BaseSession.show_gui(name=None, show=True, **kwargs)`
+##### BaseSession.show_gui(name=None, show=True, **kwargs)
 
 Show a new GUI.
 
-##### `BaseSession.unconnect(*funcs)`
+##### BaseSession.unconnect(*funcs)
 
 Unconnect specified callback functions.
 
@@ -2838,19 +2838,19 @@ changes occur.
 
 #### Methods
 
-##### `ClusterStore.clean()`
+##### ClusterStore.clean()
 
 Erase all old files in the store.
 
-##### `ClusterStore.clear()`
+##### ClusterStore.clear()
 
 Erase all files in the store.
 
-##### `ClusterStore.display_status()`
+##### ClusterStore.display_status()
 
 Display the current status of the cluster store.
 
-##### `ClusterStore.generate(mode=None)`
+##### ClusterStore.generate(mode=None)
 
 Generate the cluster store.
 
@@ -2866,18 +2866,18 @@ Generate the cluster store.
     * `force`: fully regenerate the cluster
     * `read-only`: just load the existing files, do not write anything
 
-##### `ClusterStore.is_consistent()`
+##### ClusterStore.is_consistent()
 
 Return whether the cluster store is probably consistent.
 
 Return true if all cluster stores files exist and have the expected
 file size.
 
-##### `ClusterStore.load(name, clusters=None, spikes=None)`
+##### ClusterStore.load(name, clusters=None, spikes=None)
 
 Load some data for a number of clusters and spikes.
 
-##### `ClusterStore.register_field(name, item_name=None)`
+##### ClusterStore.register_field(name, item_name=None)
 
 Register a new piece of data to store on memory or on disk.
 
@@ -2892,60 +2892,60 @@ Register a new piece of data to store on memory or on disk.
 
     The name of the item.
 
-##### `ClusterStore.register_item(item_cls, **kwargs)`
+##### ClusterStore.register_item(item_cls, **kwargs)
 
 Register a `StoreItem` class in the store.
 
 A `StoreItem` class is responsible for storing some data to disk
 and memory. It must register one or several pieces of data.
 
-##### `ClusterStore.update_spikes_per_cluster(spikes_per_cluster)`
+##### ClusterStore.update_spikes_per_cluster(spikes_per_cluster)
 
 
 
 #### Properties
 
-##### `ClusterStore.cluster_ids`
+##### ClusterStore.cluster_ids
 
 All cluster ids appearing in the `spikes_per_cluster` dictionary.
 
-##### `ClusterStore.disk_store`
+##### ClusterStore.disk_store
 
 Manage the cache of per-cluster voluminous data.
 
-##### `ClusterStore.files`
+##### ClusterStore.files
 
 List of files present in the disk store.
 
-##### `ClusterStore.items`
+##### ClusterStore.items
 
 Dictionary of registered store items.
 
-##### `ClusterStore.memory_store`
+##### ClusterStore.memory_store
 
 Hold some cluster statistics.
 
-##### `ClusterStore.model`
+##### ClusterStore.model
 
 Model.
 
-##### `ClusterStore.old_clusters`
+##### ClusterStore.old_clusters
 
 Clusters in the disk store that are no longer in the clustering.
 
-##### `ClusterStore.path`
+##### ClusterStore.path
 
 Path to the disk store cache.
 
-##### `ClusterStore.spikes_per_cluster`
+##### ClusterStore.spikes_per_cluster
 
 Dictionary `{cluster_id: spike_ids}`.
 
-##### `ClusterStore.status`
+##### ClusterStore.status
 
 Return the current status of the cluster store.
 
-##### `ClusterStore.total_size`
+##### ClusterStore.total_size
 
 Total size of the disk store.
 
@@ -2955,67 +2955,67 @@ Total size of the disk store.
 
 #### Methods
 
-##### `File.attrs(path='/')`
+##### File.attrs(path='/')
 
 Return the list of attributes at the given path.
 
-##### `File.children(path='/')`
+##### File.children(path='/')
 
 Return the list of children of a given node.
 
-##### `File.close()`
+##### File.close()
 
 
 
-##### `File.copy(path, new_path)`
+##### File.copy(path, new_path)
 
 Copy a group or dataset to another location.
 
-##### `File.datasets(path='/')`
+##### File.datasets(path='/')
 
 Return the list of datasets under a given node.
 
-##### `File.delete(path)`
+##### File.delete(path)
 
 Delete a group or dataset.
 
-##### `File.describe()`
+##### File.describe()
 
 Display the list of all groups and datasets in the file.
 
-##### `File.exists(path)`
+##### File.exists(path)
 
 
 
-##### `File.groups(path='/')`
+##### File.groups(path='/')
 
 Return the list of groups under a given node.
 
-##### `File.has_attr(path, attr_name)`
+##### File.has_attr(path, attr_name)
 
 Return whether an attribute exists at a given path.
 
-##### `File.is_open()`
+##### File.is_open()
 
 
 
-##### `File.move(path, new_path)`
+##### File.move(path, new_path)
 
 Move a group or dataset to another location.
 
-##### `File.open(mode=None)`
+##### File.open(mode=None)
 
 
 
-##### `File.read(path)`
+##### File.read(path)
 
 Read an HDF5 dataset, given its HDF5 path in the file.
 
-##### `File.read_attr(path, attr_name)`
+##### File.read_attr(path, attr_name)
 
 Read an attribute of an HDF5 group.
 
-##### `File.write(path, array=None, dtype=None, shape=None, overwrite=False)`
+##### File.write(path, array=None, dtype=None, shape=None, overwrite=False)
 
 Write a NumPy array in the file.
 
@@ -3042,13 +3042,13 @@ Write a NumPy array in the file.
     If False, raise an error if the dataset already exists. Defaults
     to False.
 
-##### `File.write_attr(path, attr_name, value)`
+##### File.write_attr(path, attr_name, value)
 
 Write an attribute of an HDF5 group.
 
 #### Properties
 
-##### `File.h5py_file`
+##### File.h5py_file
 
 Native h5py file handle.
 
@@ -3058,7 +3058,7 @@ Create and modify a `.kwik` file.
 
 #### Methods
 
-##### `KwikCreator.add_cluster_group(group=None, id=None, name=None, clustering=None)`
+##### KwikCreator.add_cluster_group(group=None, id=None, name=None, clustering=None)
 
 Add a cluster group.
 
@@ -3081,7 +3081,7 @@ Add a cluster group.
 
     The name of the clustering.
 
-##### `KwikCreator.add_clustering(group=None, name=None, spike_clusters=None, cluster_groups=None)`
+##### KwikCreator.add_clustering(group=None, name=None, spike_clusters=None, cluster_groups=None)
 
 Add a clustering.
 
@@ -3104,7 +3104,7 @@ Add a clustering.
 
     The cluster group of every cluster.
 
-##### `KwikCreator.add_recording(id=None, raw_path=None, start_sample=None, sample_rate=None)`
+##### KwikCreator.add_recording(id=None, raw_path=None, start_sample=None, sample_rate=None)
 
 Add a recording.
 
@@ -3127,7 +3127,7 @@ Add a recording.
 
     The sample rate of the recording
 
-##### `KwikCreator.add_spikes(group=None, spike_samples=None, spike_recordings=None, masks=None, features=None)`
+##### KwikCreator.add_spikes(group=None, spike_samples=None, spike_recordings=None, masks=None, features=None)
 
 Add spikes in the file.
 
@@ -3160,15 +3160,15 @@ The features and masks can be passed as lists or generators of
 (memmapped) data chunks in order to avoid loading the entire arrays
 in RAM.
 
-##### `KwikCreator.create_empty()`
+##### KwikCreator.create_empty()
 
 Create empty `.kwik` and `.kwx` files.
 
-##### `KwikCreator.set_metadata(path, **kwargs)`
+##### KwikCreator.set_metadata(path, **kwargs)
 
 Set metadata fields in a HDF5 path.
 
-##### `KwikCreator.set_probe(probe)`
+##### KwikCreator.set_probe(probe)
 
 Save a probe dictionary in the file.
 
@@ -3180,41 +3180,41 @@ Holds data contained in a kwik file.
 
 #### Methods
 
-##### `KwikModel.add_cluster_group(group_id, name)`
+##### KwikModel.add_cluster_group(group_id, name)
 
 Add a new cluster group.
 
-##### `KwikModel.add_clustering(name, spike_clusters)`
+##### KwikModel.add_clustering(name, spike_clusters)
 
 Save a new clustering to the file.
 
-##### `KwikModel.close()`
+##### KwikModel.close()
 
 Close the `.kwik`, `.kwx`, and `.raw.kwd` files if they are open.
 
-##### `KwikModel.copy_clustering(name, new_name)`
+##### KwikModel.copy_clustering(name, new_name)
 
 Copy a clustering in the `.kwik` file.
 
-##### `KwikModel.delete_cluster_group(group_id)`
+##### KwikModel.delete_cluster_group(group_id)
 
 
 
-##### `KwikModel.delete_clustering(name)`
+##### KwikModel.delete_clustering(name)
 
 Delete a clustering.
 
-##### `KwikModel.describe()`
+##### KwikModel.describe()
 
 Display information about the dataset.
 
-##### `KwikModel.has_kwx()`
+##### KwikModel.has_kwx()
 
 Returns whether the `.kwx` file is present.
 
 If not, the features and masks won't be available.
 
-##### `KwikModel.open(kwik_path, channel_group=None, clustering=None)`
+##### KwikModel.open(kwik_path, channel_group=None, clustering=None)
 
 Open a Kwik dataset.
 
@@ -3253,37 +3253,37 @@ while the dataset is opened.
     has been opened. By default, the `main` clustering is used. An
     error is raised if the `main` clustering doesn't exist.
 
-##### `KwikModel.rename_cluster_group(group_id, name)`
+##### KwikModel.rename_cluster_group(group_id, name)
 
 Rename an existing cluster group.
 
-##### `KwikModel.rename_clustering(old_name, new_name)`
+##### KwikModel.rename_clustering(old_name, new_name)
 
 Rename a clustering in the `.kwik` file.
 
-##### `KwikModel.save(spike_clusters, cluster_groups, clustering_metadata=None)`
+##### KwikModel.save(spike_clusters, cluster_groups, clustering_metadata=None)
 
 Save the spike clusters and cluster groups in the Kwik file.
 
-##### `KwikModel.spike_train(cluster_id)`
+##### KwikModel.spike_train(cluster_id)
 
 Return the spike times of a given cluster.
 
-##### `KwikModel.update_spikes_per_cluster(spc)`
+##### KwikModel.update_spikes_per_cluster(spc)
 
 
 
 #### Properties
 
-##### `KwikModel.channel_group`
+##### KwikModel.channel_group
 
 
 
-##### `KwikModel.channel_groups`
+##### KwikModel.channel_groups
 
 List of channel groups found in the Kwik file.
 
-##### `KwikModel.channel_order`
+##### KwikModel.channel_order
 
 List of kept channels in the current channel group.
 
@@ -3295,26 +3295,26 @@ This order was used when generating the features and masks
 in SpikeDetekt2. The same order is used in phy when loading the
 waveforms from the `.raw.kwd` file.
 
-##### `KwikModel.channels`
+##### KwikModel.channels
 
 List of all channels in the current channel group.
 
 This list comes from the /channel_groups HDF5 group in the Kwik file.
 
-##### `KwikModel.cluster_groups`
+##### KwikModel.cluster_groups
 
 Groups of all clusters in the current channel group and clustering.
 
 This is a regular Python dictionary.
 
-##### `KwikModel.cluster_ids`
+##### KwikModel.cluster_ids
 
 List of cluster ids from the current channel group and clustering.
 
 This is a sorted list of unique cluster ids as found in the current
 `spike_clusters` array.
 
-##### `KwikModel.cluster_metadata`
+##### KwikModel.cluster_metadata
 
 Metadata about the clusters in the current channel group and
 clustering.
@@ -3322,28 +3322,28 @@ clustering.
 `cluster_metadata.group(cluster_id)` returns the group of a given
 cluster. The default group is 3 (unsorted).
 
-##### `KwikModel.clustering`
+##### KwikModel.clustering
 
 The currently-active clustering.
 
 Default is `main`.
 
-##### `KwikModel.clustering_metadata`
+##### KwikModel.clustering_metadata
 
 A dictionary of key-value metadata specific to the current
 clustering.
 
-##### `KwikModel.clusterings`
+##### KwikModel.clusterings
 
 List of clusterings found in the Kwik file.
 
 The first one is always `main`.
 
-##### `KwikModel.duration`
+##### KwikModel.duration
 
 Duration of the experiment (in seconds).
 
-##### `KwikModel.features`
+##### KwikModel.features
 
 Features from the current channel group.
 
@@ -3352,7 +3352,7 @@ This is memory-mapped to the `.kwx` file.
 Note: in general, it is better to use the cluster store to access
 the features and masks of some clusters.
 
-##### `KwikModel.features_masks`
+##### KwikModel.features_masks
 
 Features-masks from the current channel group.
 
@@ -3361,7 +3361,7 @@ This is memory-mapped to the `.kwx` file.
 Note: in general, it is better to use the cluster store to access
 the features and masks of some clusters.
 
-##### `KwikModel.masks`
+##### KwikModel.masks
 
 Masks from the current channel group.
 
@@ -3370,59 +3370,59 @@ This is memory-mapped to the `.kwx` file.
 Note: in general, it is better to use the cluster store to access
 the features and masks of some clusters.
 
-##### `KwikModel.metadata`
+##### KwikModel.metadata
 
 A dictionary holding metadata about the experiment.
 
 This information comes from the PRM file. It was used by
 SpikeDetekt2 and KlustaKwik during automatic clustering.
 
-##### `KwikModel.n_channels`
+##### KwikModel.n_channels
 
 Number of all channels in the current channel group.
 
-##### `KwikModel.n_clusters`
+##### KwikModel.n_clusters
 
 Number of clusters in the current channel group and clustering.
 
-##### `KwikModel.n_features_per_channel`
+##### KwikModel.n_features_per_channel
 
 Number of features per channel (generally 3).
 
-##### `KwikModel.n_recordings`
+##### KwikModel.n_recordings
 
 Number of recordings found in the Kwik file.
 
-##### `KwikModel.n_samples_waveforms`
+##### KwikModel.n_samples_waveforms
 
 
 
-##### `KwikModel.n_spikes`
+##### KwikModel.n_spikes
 
 Number of spikes in the current channel group.
 
-##### `KwikModel.path`
+##### KwikModel.path
 
 
 
-##### `KwikModel.probe`
+##### KwikModel.probe
 
 A `Probe` instance representing the probe used for the recording.
 
 This object contains information about the adjacency graph and
 the channel positions.
 
-##### `KwikModel.recordings`
+##### KwikModel.recordings
 
 List of recording indices found in the Kwik file.
 
-##### `KwikModel.sample_rate`
+##### KwikModel.sample_rate
 
 Sample rate of the recording.
 
 This value is found in the metadata coming from the PRM file.
 
-##### `KwikModel.spike_clusters`
+##### KwikModel.spike_clusters
 
 Spike clusters from the current channel group and clustering.
 
@@ -3430,17 +3430,17 @@ Every element is the cluster identifier of a spike.
 
 The shape is `(n_spikes,)`.
 
-##### `KwikModel.spike_ids`
+##### KwikModel.spike_ids
 
 List of spike ids.
 
-##### `KwikModel.spike_recordings`
+##### KwikModel.spike_recordings
 
 The recording index for each spike.
 
 This is a NumPy array of integers with `n_spikes` elements.
 
-##### `KwikModel.spike_samples`
+##### KwikModel.spike_samples
 
 Spike samples from the current channel group.
 
@@ -3450,7 +3450,7 @@ in unit of the sample rate).
 The spike times of all recordings are concatenated. There is no gap
 between consecutive recordings, currently.
 
-##### `KwikModel.spike_times`
+##### KwikModel.spike_times
 
 Spike times from the current channel_group.
 
@@ -3459,17 +3459,17 @@ This is a NumPy array containing `float64` values (in seconds).
 The spike times of all recordings are concatenated. There is no gap
 between consecutive recordings, currently.
 
-##### `KwikModel.spikes_per_cluster`
+##### KwikModel.spikes_per_cluster
 
 Spikes per cluster from the current channel group and clustering.
 
-##### `KwikModel.traces`
+##### KwikModel.traces
 
 Raw traces as found in the `.raw.kwd` file.
 
 This object is memory-mapped to the HDF5 file.
 
-##### `KwikModel.waveforms`
+##### KwikModel.waveforms
 
 High-passed filtered waveforms from the current channel group.
 
@@ -3507,35 +3507,35 @@ A class describing information stored in the cluster store.
 
 #### Methods
 
-##### `StoreItem.empty_values(name)`
+##### StoreItem.empty_values(name)
 
 Return a null array of the right shape for a given field.
 
-##### `StoreItem.is_consistent(cluster, spikes)`
+##### StoreItem.is_consistent(cluster, spikes)
 
 Return whether the stored item is consistent.
 
 To be overriden.
 
-##### `StoreItem.load(cluster, name)`
+##### StoreItem.load(cluster, name)
 
 Load data for one cluster.
 
-##### `StoreItem.load_multi(clusters, name)`
+##### StoreItem.load_multi(clusters, name)
 
 Load data for several clusters.
 
-##### `StoreItem.load_spikes(spikes, name)`
+##### StoreItem.load_spikes(spikes, name)
 
 Load data from an array of spikes.
 
-##### `StoreItem.on_assign(up)`
+##### StoreItem.on_assign(up)
 
 Called when a new split occurs.
 
 May be overriden.
 
-##### `StoreItem.on_cluster(up=None)`
+##### StoreItem.on_cluster(up=None)
 
 Called when the clusters change.
 
@@ -3545,42 +3545,42 @@ delete the old files.
 
 Nothing happens during undo and redo (the data is already there).
 
-##### `StoreItem.on_merge(up)`
+##### StoreItem.on_merge(up)
 
 Called when a new merge occurs.
 
 May be overriden if there's an efficient way to update the data
 after a merge.
 
-##### `StoreItem.spikes_in_clusters(clusters)`
+##### StoreItem.spikes_in_clusters(clusters)
 
 Return the spikes belonging to clusters.
 
-##### `StoreItem.store(cluster)`
+##### StoreItem.store(cluster)
 
 Store data for a cluster from the model to the store.
 
 May be overridden.
 
-##### `StoreItem.store_all(mode=None, **kwargs)`
+##### StoreItem.store_all(mode=None, **kwargs)
 
 Copy all data for that item from the model to the cluster store.
 
-##### `StoreItem.to_generate(mode=None)`
+##### StoreItem.to_generate(mode=None)
 
 Return the list of clusters that need to be regenerated.
 
 #### Properties
 
-##### `StoreItem.cluster_ids`
+##### StoreItem.cluster_ids
 
 Array of cluster ids.
 
-##### `StoreItem.progress_reporter`
+##### StoreItem.progress_reporter
 
 Progress reporter instance.
 
-##### `StoreItem.spikes_per_cluster`
+##### StoreItem.spikes_per_cluster
 
 Spikes per cluster.
 
@@ -3588,7 +3588,7 @@ Spikes per cluster.
 
 Interactive and static visualization of data.
 
-##### `phy.plot.plot_correlograms(*args, **kwargs)`
+##### phy.plot.plot_correlograms(*args, **kwargs)
 
 Plot an array of correlograms.
 
@@ -3608,7 +3608,7 @@ Plot an array of correlograms.
 
     A list of colors as RGB tuples.
 
-##### `phy.plot.plot_features(*args, **kwargs)`
+##### phy.plot.plot_features(*args, **kwargs)
 
 Plot features.
 
@@ -3648,7 +3648,7 @@ Plot features.
 
     The background features. A `(n_spikes, n_channels, n_features)` array.
 
-##### `phy.plot.plot_traces(*args, **kwargs)`
+##### phy.plot.plot_traces(*args, **kwargs)
 
 Plot traces.
 
@@ -3675,7 +3675,7 @@ Plot traces.
 
     Waveform size in number of samples.
 
-##### `phy.plot.plot_waveforms(*args, **kwargs)`
+##### phy.plot.plot_waveforms(*args, **kwargs)
 
 Plot waveforms.
 
@@ -3706,15 +3706,15 @@ Display a main `BaseSpikeVisual` with pan zoom.
 
 #### Methods
 
-##### `BaseSpikeCanvas.emit(name, **kwargs)`
+##### BaseSpikeCanvas.emit(name, **kwargs)
 
 
 
-##### `BaseSpikeCanvas.on_draw(event)`
+##### BaseSpikeCanvas.on_draw(event)
 
 Draw the main visual.
 
-##### `BaseSpikeCanvas.on_resize(event)`
+##### BaseSpikeCanvas.on_resize(event)
 
 Resize the OpenGL context.
 
@@ -3728,47 +3728,47 @@ There is a notion of displayed spikes and displayed clusters.
 
 #### Methods
 
-##### `BaseSpikeVisual.draw()`
+##### BaseSpikeVisual.draw()
 
 Draw the waveforms.
 
-##### `BaseSpikeVisual.set_to_bake(*bakes)`
+##### BaseSpikeVisual.set_to_bake(*bakes)
 
 Mark data items to be prepared for GPU.
 
 #### Properties
 
-##### `BaseSpikeVisual.cluster_colors`
+##### BaseSpikeVisual.cluster_colors
 
 Colors of the displayed clusters.
 
 The first color is the color of the smallest cluster.
 
-##### `BaseSpikeVisual.cluster_ids`
+##### BaseSpikeVisual.cluster_ids
 
 Cluster ids of the displayed spikes.
 
-##### `BaseSpikeVisual.cluster_order`
+##### BaseSpikeVisual.cluster_order
 
 List of selected clusters in display order.
 
-##### `BaseSpikeVisual.empty`
+##### BaseSpikeVisual.empty
 
 Specify whether the visual is currently empty or not.
 
-##### `BaseSpikeVisual.masks`
+##### BaseSpikeVisual.masks
 
 Masks of the displayed spikes.
 
-##### `BaseSpikeVisual.n_clusters`
+##### BaseSpikeVisual.n_clusters
 
 Number of displayed clusters.
 
-##### `BaseSpikeVisual.spike_clusters`
+##### BaseSpikeVisual.spike_clusters
 
 The clusters assigned to the displayed spikes.
 
-##### `BaseSpikeVisual.spike_ids`
+##### BaseSpikeVisual.spike_ids
 
 Spike ids to display.
 
@@ -3778,39 +3778,39 @@ A VisPy canvas displaying correlograms.
 
 #### Methods
 
-##### `CorrelogramView.emit(name, **kwargs)`
+##### CorrelogramView.emit(name, **kwargs)
 
 
 
-##### `CorrelogramView.on_draw(event)`
+##### CorrelogramView.on_draw(event)
 
 Draw the correlograms visual.
 
-##### `CorrelogramView.on_resize(event)`
+##### CorrelogramView.on_resize(event)
 
 Resize the OpenGL context.
 
-##### `CorrelogramView.set_data(correlograms=None, colors=None, lines=None)`
+##### CorrelogramView.set_data(correlograms=None, colors=None, lines=None)
 
 
 
 #### Properties
 
-##### `CorrelogramView.cluster_ids`
+##### CorrelogramView.cluster_ids
 
 Displayed cluster ids.
 
-##### `CorrelogramView.correlograms`
+##### CorrelogramView.correlograms
 
 
 
-##### `CorrelogramView.lines`
+##### CorrelogramView.lines
 
 List of x coordinates where to put vertical lines.
 
 This is unit of samples.
 
-##### `CorrelogramView.lines_color`
+##### CorrelogramView.lines_color
 
 
 
@@ -3820,15 +3820,15 @@ A VisPy canvas displaying features.
 
 #### Methods
 
-##### `FeatureView.add_extra_feature(name, array, array_min, array_max, array_bg=None)`
+##### FeatureView.add_extra_feature(name, array, array_min, array_max, array_bg=None)
 
 
 
-##### `FeatureView.emit(name, **kwargs)`
+##### FeatureView.emit(name, **kwargs)
 
 
 
-##### `FeatureView.init_grid(n_rows)`
+##### FeatureView.init_grid(n_rows)
 
 Initialize the view with a given number of rows.
 
@@ -3836,45 +3836,45 @@ Initialize the view with a given number of rows.
 
 This function *must* be called before setting the attributes.
 
-##### `FeatureView.on_draw(event)`
+##### FeatureView.on_draw(event)
 
 Draw the features in a grid view.
 
-##### `FeatureView.on_key_press(event)`
+##### FeatureView.on_key_press(event)
 
 Handle key press events.
 
-##### `FeatureView.on_mouse_press(e)`
+##### FeatureView.on_mouse_press(e)
 
 
 
-##### `FeatureView.on_resize(event)`
+##### FeatureView.on_resize(event)
 
 Resize the OpenGL context.
 
-##### `FeatureView.set_data(features=None, n_rows=1, x_dimensions=None, y_dimensions=None, masks=None, spike_clusters=None, extra_features=None, background_features=None, colors=None)`
+##### FeatureView.set_data(features=None, n_rows=1, x_dimensions=None, y_dimensions=None, masks=None, spike_clusters=None, extra_features=None, background_features=None, colors=None)
 
 
 
-##### `FeatureView.set_dimensions(axis, dimensions)`
+##### FeatureView.set_dimensions(axis, dimensions)
 
 
 
-##### `FeatureView.smart_dimension(axis, box, dim)`
+##### FeatureView.smart_dimension(axis, box, dim)
 
 Smartify a dimension selection by ensuring x != y.
 
 #### Properties
 
-##### `FeatureView.marker_size`
+##### FeatureView.marker_size
 
 Marker size.
 
-##### `FeatureView.x_dim`
+##### FeatureView.x_dim
 
 
 
-##### `FeatureView.y_dim`
+##### FeatureView.y_dim
 
 
 
@@ -3884,15 +3884,15 @@ Display a grid of multidimensional features.
 
 #### Methods
 
-##### `FeatureVisual.add_extra_feature(name, array, array_min, array_max)`
+##### FeatureVisual.add_extra_feature(name, array, array_min, array_max)
 
 
 
-##### `FeatureVisual.draw()`
+##### FeatureVisual.draw()
 
 Draw the waveforms.
 
-##### `FeatureVisual.project(box, features=None, extra_features=None)`
+##### FeatureVisual.project(box, features=None, extra_features=None)
 
 Project data to a subplot's two-dimensional subspace.
 
@@ -3913,69 +3913,69 @@ Project data to a subplot's two-dimensional subspace.
 The coordinate system is always the world coordinate system, i.e.
 `[-1, 1]`.
 
-##### `FeatureVisual.set_dimension(axis, box, dim)`
+##### FeatureVisual.set_dimension(axis, box, dim)
 
 
 
-##### `FeatureVisual.set_to_bake(*bakes)`
+##### FeatureVisual.set_to_bake(*bakes)
 
 Mark data items to be prepared for GPU.
 
 #### Properties
 
-##### `FeatureVisual.cluster_colors`
+##### FeatureVisual.cluster_colors
 
 Colors of the displayed clusters.
 
 The first color is the color of the smallest cluster.
 
-##### `FeatureVisual.cluster_ids`
+##### FeatureVisual.cluster_ids
 
 Cluster ids of the displayed spikes.
 
-##### `FeatureVisual.cluster_order`
+##### FeatureVisual.cluster_order
 
 List of selected clusters in display order.
 
-##### `FeatureVisual.empty`
+##### FeatureVisual.empty
 
 Specify whether the visual is currently empty or not.
 
-##### `FeatureVisual.extra_features`
+##### FeatureVisual.extra_features
 
 
 
-##### `FeatureVisual.features`
+##### FeatureVisual.features
 
 Displayed features.
 
 This is a `(n_spikes, n_features)` array.
 
-##### `FeatureVisual.marker_size`
+##### FeatureVisual.marker_size
 
 Marker size in pixels.
 
-##### `FeatureVisual.masks`
+##### FeatureVisual.masks
 
 Masks of the displayed spikes.
 
-##### `FeatureVisual.n_boxes`
+##### FeatureVisual.n_boxes
 
 Number of boxes in the grid.
 
-##### `FeatureVisual.n_clusters`
+##### FeatureVisual.n_clusters
 
 Number of displayed clusters.
 
-##### `FeatureVisual.spike_clusters`
+##### FeatureVisual.spike_clusters
 
 The clusters assigned to the displayed spikes.
 
-##### `FeatureVisual.spike_ids`
+##### FeatureVisual.spike_ids
 
 Spike ids to display.
 
-##### `FeatureVisual.x_dim`
+##### FeatureVisual.x_dim
 
 Dimensions in the x axis of all subplots.
 
@@ -3984,7 +3984,7 @@ This is a matrix of items which can be:
 * tuple `(channel_id, feature_idx)`
 * an extra feature name (string)
 
-##### `FeatureVisual.y_dim`
+##### FeatureVisual.y_dim
 
 Dimensions in the y axis of all subplots.
 
@@ -4012,73 +4012,73 @@ You can also control programmatically the transform using:
 
 #### Methods
 
-##### `PanZoom.add(programs)`
+##### PanZoom.add(programs)
 
 Add programs to this tranform.
 
-##### `PanZoom.attach(canvas)`
+##### PanZoom.attach(canvas)
 
 Attach this tranform to a canvas.
 
-##### `PanZoom.on_key_press(event)`
+##### PanZoom.on_key_press(event)
 
 Key press event.
 
-##### `PanZoom.on_mouse_move(event)`
+##### PanZoom.on_mouse_move(event)
 
 Pan and zoom with the mouse.
 
-##### `PanZoom.on_mouse_wheel(event)`
+##### PanZoom.on_mouse_wheel(event)
 
 Zoom with the mouse wheel.
 
-##### `PanZoom.on_resize(event)`
+##### PanZoom.on_resize(event)
 
 Resize event.
 
 #### Properties
 
-##### `PanZoom.aspect`
+##### PanZoom.aspect
 
 Aspect (width/height).
 
-##### `PanZoom.is_attached`
+##### PanZoom.is_attached
 
 Whether the transform is attached to a canvas.
 
-##### `PanZoom.pan`
+##### PanZoom.pan
 
 Pan translation.
 
-##### `PanZoom.xmax`
+##### PanZoom.xmax
 
 Maximum x allowed for pan.
 
-##### `PanZoom.xmin`
+##### PanZoom.xmin
 
 Minimum x allowed for pan.
 
-##### `PanZoom.ymax`
+##### PanZoom.ymax
 
 Maximum y allowed for pan.
 
-##### `PanZoom.ymin`
+##### PanZoom.ymin
 
 Minimum y allowed for pan.
 
-##### `PanZoom.zmax`
+##### PanZoom.zmax
 
 Maximal zoom level.
 
-##### `PanZoom.zmin`
+##### PanZoom.zmin
 
 Minimum zoom level.
 
-##### `PanZoom.zoom`
+##### PanZoom.zoom
 
 Zoom level.
 
-##### `PanZoom.zoom_to_pointer`
+##### PanZoom.zoom_to_pointer
 
 Whether to zoom toward the pointer position.
 
@@ -4093,93 +4093,93 @@ the mouse was clicked.
 
 #### Methods
 
-##### `PanZoomGrid.add(programs)`
+##### PanZoomGrid.add(programs)
 
 Add programs to this tranform.
 
-##### `PanZoomGrid.attach(canvas)`
+##### PanZoomGrid.attach(canvas)
 
 Attach this tranform to a canvas.
 
-##### `PanZoomGrid.on_key_press(event)`
+##### PanZoomGrid.on_key_press(event)
 
 Key press event.
 
-##### `PanZoomGrid.on_mouse_double_click(event)`
+##### PanZoomGrid.on_mouse_double_click(event)
 
 Double click event.
 
-##### `PanZoomGrid.on_mouse_move(event)`
+##### PanZoomGrid.on_mouse_move(event)
 
 Mouse move event.
 
-##### `PanZoomGrid.on_mouse_press(event)`
+##### PanZoomGrid.on_mouse_press(event)
 
 Mouse press event.
 
-##### `PanZoomGrid.on_mouse_wheel(event)`
+##### PanZoomGrid.on_mouse_wheel(event)
 
 Mouse wheel event.
 
-##### `PanZoomGrid.on_resize(event)`
+##### PanZoomGrid.on_resize(event)
 
 Resize event.
 
 #### Properties
 
-##### `PanZoomGrid.aspect`
+##### PanZoomGrid.aspect
 
 Aspect (width/height).
 
-##### `PanZoomGrid.is_attached`
+##### PanZoomGrid.is_attached
 
 Whether the transform is attached to a canvas.
 
-##### `PanZoomGrid.n_rows`
+##### PanZoomGrid.n_rows
 
 Number of rows.
 
-##### `PanZoomGrid.pan`
+##### PanZoomGrid.pan
 
 Pan translation.
 
-##### `PanZoomGrid.pan_matrix`
+##### PanZoomGrid.pan_matrix
 
 Pan in every subplot.
 
-##### `PanZoomGrid.xmax`
+##### PanZoomGrid.xmax
 
 
 
-##### `PanZoomGrid.xmin`
+##### PanZoomGrid.xmin
 
 
 
-##### `PanZoomGrid.ymax`
+##### PanZoomGrid.ymax
 
 
 
-##### `PanZoomGrid.ymin`
+##### PanZoomGrid.ymin
 
 
 
-##### `PanZoomGrid.zmax`
+##### PanZoomGrid.zmax
 
 Maximal zoom level.
 
-##### `PanZoomGrid.zmin`
+##### PanZoomGrid.zmin
 
 Minimum zoom level.
 
-##### `PanZoomGrid.zoom`
+##### PanZoomGrid.zoom
 
 Zoom level.
 
-##### `PanZoomGrid.zoom_matrix`
+##### PanZoomGrid.zoom_matrix
 
 Zoom in every subplot.
 
-##### `PanZoomGrid.zoom_to_pointer`
+##### PanZoomGrid.zoom_to_pointer
 
 Whether to zoom toward the pointer position.
 
@@ -4189,29 +4189,29 @@ A VisPy canvas displaying traces.
 
 #### Methods
 
-##### `TraceView.emit(name, **kwargs)`
+##### TraceView.emit(name, **kwargs)
 
 
 
-##### `TraceView.on_draw(event)`
+##### TraceView.on_draw(event)
 
 Draw the main visual.
 
-##### `TraceView.on_key_press(event)`
+##### TraceView.on_key_press(event)
 
 Handle key press events.
 
-##### `TraceView.on_resize(event)`
+##### TraceView.on_resize(event)
 
 Resize the OpenGL context.
 
-##### `TraceView.set_data(traces=None, spike_samples=None, spike_clusters=None, n_samples_per_spike=50, masks=None, colors=None)`
+##### TraceView.set_data(traces=None, spike_samples=None, spike_clusters=None, n_samples_per_spike=50, masks=None, colors=None)
 
 
 
 #### Properties
 
-##### `TraceView.channel_scale`
+##### TraceView.channel_scale
 
 Vertical scale of the traces.
 
@@ -4221,61 +4221,61 @@ A VisPy canvas displaying waveforms.
 
 #### Methods
 
-##### `WaveformView.emit(name, **kwargs)`
+##### WaveformView.emit(name, **kwargs)
 
 
 
-##### `WaveformView.on_draw(event)`
+##### WaveformView.on_draw(event)
 
 Draw the visual.
 
-##### `WaveformView.on_key_press(event)`
+##### WaveformView.on_key_press(event)
 
 Handle key press events.
 
-##### `WaveformView.on_key_release(event)`
+##### WaveformView.on_key_release(event)
 
 
 
-##### `WaveformView.on_mouse_press(e)`
+##### WaveformView.on_mouse_press(e)
 
 
 
-##### `WaveformView.on_mouse_wheel(event)`
+##### WaveformView.on_mouse_wheel(event)
 
 Handle mouse wheel events.
 
-##### `WaveformView.on_resize(event)`
+##### WaveformView.on_resize(event)
 
 Resize the OpenGL context.
 
-##### `WaveformView.set_data(waveforms=None, masks=None, spike_clusters=None, channel_positions=None, channel_order=None, colors=None, **kwargs)`
+##### WaveformView.set_data(waveforms=None, masks=None, spike_clusters=None, channel_positions=None, channel_order=None, colors=None, **kwargs)
 
 
 
 #### Properties
 
-##### `WaveformView.alpha`
+##### WaveformView.alpha
 
 Opacity.
 
-##### `WaveformView.box_scale`
+##### WaveformView.box_scale
 
 Scale of the waveforms.
 
 This is a pair of scalars.
 
-##### `WaveformView.overlap`
+##### WaveformView.overlap
 
 Whether to overlap waveforms.
 
-##### `WaveformView.probe_scale`
+##### WaveformView.probe_scale
 
 Scale of the probe.
 
 This is a pair of scalars.
 
-##### `WaveformView.show_mean`
+##### WaveformView.show_mean
 
 Whether to show_mean waveforms.
 
@@ -4285,7 +4285,7 @@ Display waveforms with probe geometry.
 
 #### Methods
 
-##### `WaveformVisual.channel_hover(position)`
+##### WaveformVisual.channel_hover(position)
 
 Return the channel id closest to the mouse pointer.
 
@@ -4297,81 +4297,81 @@ Return the channel id closest to the mouse pointer.
     The normalized coordinates of the mouse pointer, in world
     coordinates (in `[-1, 1]`).
 
-##### `WaveformVisual.draw()`
+##### WaveformVisual.draw()
 
 Draw the waveforms.
 
-##### `WaveformVisual.set_to_bake(*bakes)`
+##### WaveformVisual.set_to_bake(*bakes)
 
 Mark data items to be prepared for GPU.
 
 #### Properties
 
-##### `WaveformVisual.alpha`
+##### WaveformVisual.alpha
 
 Alpha transparency (between 0 and 1).
 
-##### `WaveformVisual.box_scale`
+##### WaveformVisual.box_scale
 
 Scale of the waveforms.
 
 This is a pair of scalars.
 
-##### `WaveformVisual.channel_order`
+##### WaveformVisual.channel_order
 
 
 
-##### `WaveformVisual.channel_positions`
+##### WaveformVisual.channel_positions
 
 Positions of the channels.
 
 This is a `(n_channels, 2)` array.
 
-##### `WaveformVisual.cluster_colors`
+##### WaveformVisual.cluster_colors
 
 Colors of the displayed clusters.
 
 The first color is the color of the smallest cluster.
 
-##### `WaveformVisual.cluster_ids`
+##### WaveformVisual.cluster_ids
 
 Cluster ids of the displayed spikes.
 
-##### `WaveformVisual.cluster_order`
+##### WaveformVisual.cluster_order
 
 List of selected clusters in display order.
 
-##### `WaveformVisual.empty`
+##### WaveformVisual.empty
 
 Specify whether the visual is currently empty or not.
 
-##### `WaveformVisual.masks`
+##### WaveformVisual.masks
 
 Masks of the displayed spikes.
 
-##### `WaveformVisual.n_clusters`
+##### WaveformVisual.n_clusters
 
 Number of displayed clusters.
 
-##### `WaveformVisual.overlap`
+##### WaveformVisual.overlap
 
 Whether to overlap waveforms.
 
-##### `WaveformVisual.probe_scale`
+##### WaveformVisual.probe_scale
 
 Scale of the probe.
 
 This is a pair of scalars.
 
-##### `WaveformVisual.spike_clusters`
+##### WaveformVisual.spike_clusters
 
 The clusters assigned to the displayed spikes.
 
-##### `WaveformVisual.spike_ids`
+##### WaveformVisual.spike_ids
 
 Spike ids to display.
 
-##### `WaveformVisual.waveforms`
+##### WaveformVisual.waveforms
 
 Displayed waveforms.
 
@@ -4381,7 +4381,7 @@ This is a `(n_spikes, n_samples, n_channels)` array.
 
 Statistics functions.
 
-##### `phy.stats.pairwise_correlograms(spike_samples, spike_clusters, binsize=None, winsize_bins=None)`
+##### phy.stats.pairwise_correlograms(spike_samples, spike_clusters, binsize=None, winsize_bins=None)
 
 Compute all pairwise correlograms in a set of neurons.
 
@@ -4391,7 +4391,7 @@ TODO: improve interface and documentation.
 
 Spike detection, waveform extraction.
 
-##### `phy.traces.compute_threshold(arr, single_threshold=True, std_factor=None)`
+##### phy.traces.compute_threshold(arr, single_threshold=True, std_factor=None)
 
 Compute the threshold(s) of filtered traces.
 
@@ -4473,7 +4473,7 @@ Apply PCA to waveforms.
 
 #### Methods
 
-##### `PCA.fit(waveforms, masks=None)`
+##### PCA.fit(waveforms, masks=None)
 
 Compute the PCs of waveforms.
 
@@ -4488,7 +4488,7 @@ Compute the PCs of waveforms.
 
     Shape: `(n_spikes, n_channels)`
 
-##### `PCA.transform(waveforms, pcs=None)`
+##### PCA.transform(waveforms, pcs=None)
 
 Project waveforms on the PCs.
 
@@ -4535,11 +4535,11 @@ crossings = thres(traces)
 
 #### Methods
 
-##### `Thresholder.detect(data_t, threshold=None)`
+##### Thresholder.detect(data_t, threshold=None)
 
 Perform the thresholding operation.
 
-##### `Thresholder.transform(data)`
+##### Thresholder.transform(data)
 
 Return `data`, `-data`, or `abs(data)` depending on the mode.
 
@@ -4551,23 +4551,23 @@ Extract waveforms after data filtering and spike detection.
 
 #### Methods
 
-##### `WaveformExtractor.align(waveform, s_aligned)`
+##### WaveformExtractor.align(waveform, s_aligned)
 
 
 
-##### `WaveformExtractor.extract(data, s_aligned, channels=None)`
+##### WaveformExtractor.extract(data, s_aligned, channels=None)
 
 
 
-##### `WaveformExtractor.masks(data_t, wave, comp)`
+##### WaveformExtractor.masks(data_t, wave, comp)
 
 
 
-##### `WaveformExtractor.set_thresholds(**kwargs)`
+##### WaveformExtractor.set_thresholds(**kwargs)
 
 
 
-##### `WaveformExtractor.spike_sample_aligned(wave, comp)`
+##### WaveformExtractor.spike_sample_aligned(wave, comp)
 
 
 
@@ -4581,15 +4581,15 @@ Load waveforms from filtered or unfiltered traces.
 
 #### Properties
 
-##### `WaveformLoader.channels`
+##### WaveformLoader.channels
 
 List of channels.
 
-##### `WaveformLoader.n_channels_waveforms`
+##### WaveformLoader.n_channels_waveforms
 
 Number of channels kept for the waveforms.
 
-##### `WaveformLoader.traces`
+##### WaveformLoader.traces
 
 Raw traces.
 
@@ -4601,7 +4601,7 @@ Contributed by Pierre Yger.
 
 #### Methods
 
-##### `Whitening.fit(x, fudge=1e-18)`
+##### Whitening.fit(x, fudge=1e-18)
 
 Compute the whitening matrix.
 
@@ -4612,7 +4612,7 @@ Compute the whitening matrix.
 
     An `(n_samples, n_channels)` array.
 
-##### `Whitening.transform(x)`
+##### Whitening.transform(x)
 
 Whiten some data.
 
@@ -4629,15 +4629,15 @@ Whiten some data.
 
 Utilities.
 
-##### `phy.utils.debug(*msg)`
+##### phy.utils.debug(*msg)
 
 Generate a debug message.
 
-##### `phy.utils.download_file(url, output=None, checksum=None)`
+##### phy.utils.download_file(url, output=None, checksum=None)
 
 Download a binary file from an URL.
 
-##### `phy.utils.download_sample_data(name, output_dir=None, base='cortexlab')`
+##### phy.utils.download_sample_data(name, output_dir=None, base='cortexlab')
 
 Download a sample dataset.
 
@@ -4656,15 +4656,15 @@ Download a sample dataset.
 
     The id of the base URL. Can be `'cortexlab'` or `'github'`.
 
-##### `phy.utils.info(*msg)`
+##### phy.utils.info(*msg)
 
 Generate an info message.
 
-##### `phy.utils.register(logger)`
+##### phy.utils.register(logger)
 
 Register a logger.
 
-##### `phy.utils.set_level(level)`
+##### phy.utils.set_level(level)
 
 Set the level of all registered loggers.
 
@@ -4675,11 +4675,11 @@ Set the level of all registered loggers.
 
     Can be `warn`, `info`, or `debug`.
 
-##### `phy.utils.unregister(logger)`
+##### phy.utils.unregister(logger)
 
 Unregister a logger.
 
-##### `phy.utils.warn(*msg)`
+##### phy.utils.warn(*msg)
 
 Generate a warning.
 
@@ -4689,7 +4689,7 @@ A dict with additional dot syntax.
 
 #### Methods
 
-##### `Bunch.copy()`
+##### Bunch.copy()
 
 
 
@@ -4720,7 +4720,7 @@ def on_my_event(arg, key=None):
 
 #### Methods
 
-##### `EventEmitter.connect(func=None, event=None, set_method=False)`
+##### EventEmitter.connect(func=None, event=None, set_method=False)
 
 Register a callback function to a given event.
 
@@ -4739,7 +4739,7 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `EventEmitter.emit(event, *args, **kwargs)`
+##### EventEmitter.emit(event, *args, **kwargs)
 
 Call all callback functions registered with an event.
 
@@ -4748,11 +4748,11 @@ be fowarded to the callback functions.
 
 Return the list of callback return results.
 
-##### `EventEmitter.reset()`
+##### EventEmitter.reset()
 
 Remove all registered callbacks.
 
-##### `EventEmitter.unconnect(*funcs)`
+##### EventEmitter.unconnect(*funcs)
 
 Unconnect specified callback functions.
 
@@ -4784,7 +4784,7 @@ will be replaced in the message string.
 
 #### Methods
 
-##### `ProgressReporter.connect(func=None, event=None, set_method=False)`
+##### ProgressReporter.connect(func=None, event=None, set_method=False)
 
 Register a callback function to a given event.
 
@@ -4803,7 +4803,7 @@ Several callback functions can be registered for a given event.
 
 The registration order is conserved and may matter in applications.
 
-##### `ProgressReporter.emit(event, *args, **kwargs)`
+##### ProgressReporter.emit(event, *args, **kwargs)
 
 Call all callback functions registered with an event.
 
@@ -4812,50 +4812,50 @@ be fowarded to the callback functions.
 
 Return the list of callback return results.
 
-##### `ProgressReporter.increment(**kwargs)`
+##### ProgressReporter.increment(**kwargs)
 
 Equivalent to `self.value += 1`.
 
 Custom keywoard arguments can also be passed to be processed in the
 progress message format string.
 
-##### `ProgressReporter.is_complete()`
+##### ProgressReporter.is_complete()
 
 Return whether the task has completed.
 
-##### `ProgressReporter.reset(value_max=None)`
+##### ProgressReporter.reset(value_max=None)
 
 Reset the value to 0 and the value max to a given value.
 
-##### `ProgressReporter.set_complete(**kwargs)`
+##### ProgressReporter.set_complete(**kwargs)
 
 Set the task as complete.
 
-##### `ProgressReporter.set_complete_message(message)`
+##### ProgressReporter.set_complete_message(message)
 
 Set a complete message.
 
-##### `ProgressReporter.set_progress_message(message, line_break=False)`
+##### ProgressReporter.set_progress_message(message, line_break=False)
 
 Set a progress message.
 
 The string needs to contain `{progress}`.
 
-##### `ProgressReporter.unconnect(*funcs)`
+##### ProgressReporter.unconnect(*funcs)
 
 Unconnect specified callback functions.
 
 #### Properties
 
-##### `ProgressReporter.progress`
+##### ProgressReporter.progress
 
 Return the current progress as a float value in `[0, 1]`.
 
-##### `ProgressReporter.value`
+##### ProgressReporter.value
 
 Current value (integer).
 
-##### `ProgressReporter.value_max`
+##### ProgressReporter.value_max
 
 Maximum value (integer).
 
@@ -4865,19 +4865,19 @@ Manage default, user-wide, and experiment-wide settings.
 
 #### Methods
 
-##### `Settings.get(key, default=None)`
+##### Settings.get(key, default=None)
 
 Return a settings value.
 
-##### `Settings.keys()`
+##### Settings.keys()
 
 Return the list of settings keys.
 
-##### `Settings.on_open(path)`
+##### Settings.on_open(path)
 
 Initialize settings when loading an experiment.
 
-##### `Settings.save()`
+##### Settings.save()
 
 Save settings to an internal settings file.
 

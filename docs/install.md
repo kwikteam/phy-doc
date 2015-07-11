@@ -1,6 +1,6 @@
-** For quick install instructions, please see the [homepage](index.md). **
+**For quick install instructions, please see the [homepage](index.md).** If you have already installed phy, you can go directly to the [quick start guide](quick-start.md)!
 
-phy is written in pure Python. It works with Python 2.7, 3.3, and 3.4 on Windows, Mac OS X, and Linux.
+phy is written in pure Python. It works with Python 2.7 and 3.4+ on Windows, Mac OS X, and Linux.
 
 **It is highly recommended to use the free Miniconda distribution**. This software comes with a package manager named **conda** that lets you easily install, update, and remove Python packages.
 

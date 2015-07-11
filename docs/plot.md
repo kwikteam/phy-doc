@@ -15,6 +15,8 @@ All of these plots are highly interactive and let you explore your data effectiv
 
 More interactive and static visualization routines (for publication-ready plotting, for example) will be added in future releases.
 
+The plots are displayed in the manual sorting GUI. You can also create independent plots with the `plot_***()` functions in the `phy.plot` package.
+
 ### Keyboard and mouse shortcuts
 
 Press `h` to see the shortcuts in any given view. The shortcuts will show up in your terminal.
