@@ -104,8 +104,9 @@ You can put custom settings in `~/.phy/user_settings.py`.
 For example, to add a new CCG view with custom parameters by default in all GUIs, put this in your settings file:
 
 ```
-gui_config = [
-    ('wizard', {'position': 'right'}),
+cluster_manual_config = [
+    ('stats', {'position': 'right'}),
+    ('features_grid', {'position': 'left'}),
     ('features', {'position': 'left'}),
     ('correlograms', {'position': 'left'}),
     ('correlograms', {'position': 'left',
