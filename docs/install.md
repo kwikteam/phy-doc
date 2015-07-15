@@ -37,7 +37,7 @@ On Windows, launch the GUI Miniconda installer.
 #### 3. Install dependencies
 
 ```
-conda install conda python=3 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests --yes && conda install -c http://conda.binstar.org/kwikteam klustakwik2 --yes && pip install vispy
+conda install conda python=3 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests six --yes && conda install -c http://conda.binstar.org/kwikteam klustakwik2 --yes && pip install vispy
 ```
 
 #### 4. Install phy
@@ -69,6 +69,7 @@ There are several dependencies:
 * IPython and its notebook (optional, but recommended for interactive use)
 * requests (for downloading test data)
 * klustakwik2 (fast masked-EM clustering algorithm)
+* six (Python 2 / 3 compatibility library)
 
 Most of these dependencies are only imported when you use a feature that needs them. This means that you don't need all dependencies if you're just interested in a small part of the library.
 
