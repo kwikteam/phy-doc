@@ -63,7 +63,7 @@ There are several dependencies:
 * NumPy (mandatory)
 * SciPy (for filtering waveforms)
 * h5py (for reading/saving Kwik files)
-* VisPy (for interactive plotting, **development version on GitHub required**)
+* VisPy (for interactive plotting)
 * PyQt4 (for graphical interfaces)
 * matplotlib (optional, for plotting)
 * IPython and its notebook (optional, but recommended for interactive use)
