@@ -37,7 +37,7 @@ On Windows, launch the GUI Miniconda installer.
 #### 3. Install dependencies
 
 ```
-conda install conda python=3 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests six --yes && conda install -c http://conda.binstar.org/kwikteam klustakwik2 --yes && pip install vispy
+conda install conda python=3 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests six --yes && conda install -c kwikteam klustakwik2 --yes && pip install vispy
 ```
 
 #### 4. Install phy
