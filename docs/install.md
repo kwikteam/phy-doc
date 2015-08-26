@@ -38,7 +38,7 @@ On Windows, launch the GUI Miniconda installer.
 
 ```
 conda install conda python=3.4 pip numpy matplotlib scipy h5py pyqt ipython-notebook requests six --yes
-conda install -c https://conda.binstar.org/kwikteam klustakwik2 --yes
+conda install -c kwikteam klustakwik2 --yes
 pip install vispy
 ```
 
