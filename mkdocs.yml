@@ -8,6 +8,7 @@ pages:
    - 'Interactive plotting': 'plot.md'
    - 'Spike sorting session': 'cluster-auto.md'
    - 'Manual clustering GUI': 'cluster-manual.md'
+   - 'Manual clustering shortcuts': 'shortcuts.md'
 - API reference: 'api.md'
 - KWIK format description: 'kwik-format.md'
 - Contact: 'contact.md'

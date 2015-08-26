@@ -2,7 +2,7 @@
 
 The manual clustering subpackage (`phy.cluster.manual`) provides a programmatic Python API as well as a lightweight graphical interface to manually refine the output of the automatic clustering algorithm.
 
-Although you can use the `phy cluster-manual` command-line tool to open the GUI, you can also access it from IPython (terminal or notebook) for more control.
+The GUI can be initialized by calling `phy cluster-manual myFile.kwik`. Using the `-i` switch (e.g. `phy cluster-manual -i myFile.kwik`) will run the GUI with an IPython terminal for more control. Alternately, you can access the GUI from IPython (terminal or notebook) directly, following the steps below. 
 
 ### Session
 
@@ -39,7 +39,8 @@ Type `session.show_gui()` to launch the clustering GUI. This minimal GUI provide
 * A window where to dock visualization widgets.
 * Keyboard shortcuts to go through your best clusters and a list of potential merge candidates (**wizard**).
 
-> Type `ctrl+h` to see the list of keyboard shortcuts.
+> Type `ctrl+h` to see the list of keyboard shortcuts. The list of shortcuts will appear in the command window.
+> With one of the view panels selected, type `h` to see keyboard shortcuts that apply to that view.
 
 The wizard is there to save you a lot of time clustering your data manually. It makes you propositions with 1 or 2 clusters, and you have to decide an outcome based on the views in the window.
 
@@ -50,9 +51,10 @@ Here is the intended workflow:
 * At any point, you can **pin** a cluster by pressing `enter`. Then you'll see a second cluster selected: this is the **closest match**. Unpin with `backspace`.
 * When a cluster is pinned, scroll through the list of closest matches with `space` and `shift+space`. The pinned cluster stays selected.
 * You have keyboard shortcuts to:
-    * Merge the two displayed clusters.
-    * Move either or both clusters to cluster groups (noise, MUA, good).
-* You can also draw a lasso in the feature view to create a new cluster out of the enclosed spikes (`ctrl+click` and `k` to split).
+    * Merge the two displayed clusters (`g`).
+    * Move either or both clusters to cluster groups (**N**oise, **M**UA, **G**ood). To move the best unsorted, use `alt`; to move the closest match, use `ctrl`. So `ctrl+M` moves the current closest match cluster to MUA, and `alt+G` moves the current best unsorted to good.
+* You can also draw a lasso in the feature view to create a new cluster out of the enclosed spikes (`shift+click` and `k` to split).
+* See [this page](https://github.com/kwikteam/phy-doc/blob/master/shortcuts.md) for a list of all available shortcuts for the default GUI views.
 
 ![Wizard GUI screenshot](images/cluster-manual-gui.png)
 
