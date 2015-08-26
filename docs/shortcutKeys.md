@@ -36,5 +36,39 @@ unpin                                   : backspace
 
 ### Waveform view
 ```
+        'waveform_scale_increase': ('ctrl+',
+                                    'ctrl+up',
+                                    'shift+wheel up',
+                                    ),
+        'waveform_scale_decrease': ('ctrl-',
+                                    'ctrl+down',
+                                    'shift+wheel down',
+                                    ),
+        'waveform_width_increase': ('ctrl+right', 'ctrl+wheel up'),
+        'waveform_width_decrease': ('ctrl+left', 'ctrl+wheel down'),
+        'probe_width_increase': ('shift+right', 'ctrl+alt+wheel up'),
+        'probe_width_decrease': ('shift+left', 'ctrl+alt+wheel down'),
+        'probe_height_increase': ('shift+up', 'shift+alt+wheel up'),
+        'probe_height_decrease': ('shift+down', 'shift+alt+wheel down'),
+        'select_channel': ('ctrl+left click', 'ctrl+right click', 'num+click'),
+```
 
+### Features view
+```
+        'marker_size_increase': 'alt+',
+        'marker_size_decrease': 'alt-',
+        'add_lasso_point': 'shift+left click',
+        'clear_lasso': 'shift+right click',
+```
+
+### Traces view
+```
+        'channel_scale_increase': 'ctrl+',
+        'channel_scale_decrease': 'ctrl-',
+```
+
+### Features_grid view
+```
+zoom_out_all_subplots                    : ctrl-
+zoom_in_all_subplots                     : ctrl+
 ```
