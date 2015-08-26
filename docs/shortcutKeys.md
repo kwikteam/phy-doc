@@ -36,39 +36,65 @@ unpin                                   : backspace
 
 ### Waveform view
 ```
-        'waveform_scale_increase': ('ctrl+',
-                                    'ctrl+up',
-                                    'shift+wheel up',
-                                    ),
-        'waveform_scale_decrease': ('ctrl-',
-                                    'ctrl+down',
-                                    'shift+wheel down',
-                                    ),
-        'waveform_width_increase': ('ctrl+right', 'ctrl+wheel up'),
-        'waveform_width_decrease': ('ctrl+left', 'ctrl+wheel down'),
-        'probe_width_increase': ('shift+right', 'ctrl+alt+wheel up'),
-        'probe_width_decrease': ('shift+left', 'ctrl+alt+wheel down'),
-        'probe_height_increase': ('shift+up', 'shift+alt+wheel up'),
-        'probe_height_decrease': ('shift+down', 'shift+alt+wheel down'),
-        'select_channel': ('ctrl+left click', 'ctrl+right click', 'num+click'),
+pan                                     : left click and drag, arrows
+probe_height_decrease                   : shift+down, shift+alt+wheel down
+probe_height_increase                   : shift+up, shift+alt+wheel up
+probe_width_decrease                    : shift+left, ctrl+alt+wheel down
+probe_width_increase                    : shift+right, ctrl+alt+wheel up
+reset                                   : r
+select_channel                          : ctrl+left click, ctrl+right click, num+click
+waveform_scale_decrease                 : ctrl-, ctrl+down, shift+wheel down
+waveform_scale_increase                 : ctrl+, ctrl+up, shift+wheel up
+waveform_width_decrease                 : ctrl+left, ctrl+wheel down
+waveform_width_increase                 : ctrl+right, ctrl+wheel up
+zoom                                    : right click and drag, +, -
 ```
 
 ### Features view
 ```
-        'marker_size_increase': 'alt+',
-        'marker_size_decrease': 'alt-',
-        'add_lasso_point': 'shift+left click',
-        'clear_lasso': 'shift+right click',
+add_lasso_point                         : shift+left click
+clear_lasso                             : shift+right click
+decrease_scale                          : ctrl-
+global_reset                            : r
+increase_scale                          : ctrl+
+marker_size_decrease                    : alt-
+marker_size_increase                    : alt+
+subplot_pan                             : left click and drag, arrows
+subplot_zoom                            : right click and drag, + or -
 ```
 
 ### Traces view
 ```
-        'channel_scale_increase': 'ctrl+',
-        'channel_scale_decrease': 'ctrl-',
+channel_scale_decrease                  : ctrl-
+channel_scale_increase                  : ctrl+
+fast_scroll_left                        : shift+left
+fast_scroll_right                       : shift+right
+pan                                     : left click and drag, arrows
+reset                                   : r
+scroll_left                             : ctrl+left
+scroll_right                            : ctrl+right
+zoom                                    : right click and drag, +, -
 ```
 
 ### Features_grid view
 ```
-zoom_out_all_subplots                    : ctrl-
-zoom_in_all_subplots                     : ctrl+
+add_lasso_point                         : shift+left click
+clear_lasso                             : shift+right click
+decrease_scale                          : ctrl-
+enlarge_subplot                         : ctrl+click
+global_reset                            : r
+increase_scale                          : ctrl+
+marker_size_decrease                    : alt-
+marker_size_increase                    : alt+
+subplot_pan                             : left click and drag, arrows
+subplot_zoom                            : right click and drag, + or -
 ```
+
+### Correlograms view
+```
+global_reset                            : r
+subplot_pan                             : left click and drag, arrows
+subplot_zoom                            : right click and drag, + or -
+```
+
+
