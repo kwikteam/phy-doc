@@ -40,6 +40,7 @@ Type `session.show_gui()` to launch the clustering GUI. This minimal GUI provide
 * Keyboard shortcuts to go through your best clusters and a list of potential merge candidates (**wizard**).
 
 > Type `ctrl+h` to see the list of keyboard shortcuts. The list of shortcuts will appear in the command window.
+> With one of the view panels selected, type `h` to see keyboard shortcuts that apply to that view.
 
 The wizard is there to save you a lot of time clustering your data manually. It makes you propositions with 1 or 2 clusters, and you have to decide an outcome based on the views in the window.
 
