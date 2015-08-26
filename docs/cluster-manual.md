@@ -54,7 +54,7 @@ Here is the intended workflow:
     * Merge the two displayed clusters (`g`).
     * Move either or both clusters to cluster groups (**N**oise, **M**UA, **G**ood). To move the best unsorted, use `alt`; to move the closest match, use `ctrl`. So `ctrl+M` moves the current closest match cluster to MUA, and `alt+G` moves the current best unsorted to good.
 * You can also draw a lasso in the feature view to create a new cluster out of the enclosed spikes (`shift+click` and `k` to split).
-* See [this page](https://github.com/kwikteam/phy-doc/blob/master/shortcutKeys.md) for a list of all available shortcuts for the default GUI views.
+* See [this page](https://github.com/kwikteam/phy-doc/blob/master/shortcut-keys.md) for a list of all available shortcuts for the default GUI views.
 
 ![Wizard GUI screenshot](images/cluster-manual-gui.png)
 
