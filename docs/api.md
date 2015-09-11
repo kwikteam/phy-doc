@@ -6,23 +6,19 @@ Spike sorting and ephys data analysis for 1000 channels and beyond.
 
 ### [phy.cluster](#phycluster)
 
-* [phy.cluster.cluster](#phyclusterclustermodel-algorithmklustakwik-spike_idsnone-kwargs)
-* [phy.cluster.BaseClusterViewModel](#phyclusterbaseclusterviewmodel)
-* [phy.cluster.CorrelogramViewModel](#phyclustercorrelogramviewmodel)
-* [phy.cluster.FeatureViewModel](#phyclusterfeatureviewmodel)
-* [phy.cluster.HTMLClusterViewModel](#phyclusterhtmlclusterviewmodel)
-* [phy.cluster.KlustaKwik](#phyclusterklustakwik)
-* [phy.cluster.Session](#phyclustersession)
-* [phy.cluster.SpikeDetekt](#phyclusterspikedetekt)
-* [phy.cluster.StatsViewModel](#phyclusterstatsviewmodel)
-* [phy.cluster.TraceViewModel](#phyclustertraceviewmodel)
-* [phy.cluster.WaveformViewModel](#phyclusterwaveformviewmodel)
 
 
 ### [phy.cluster.manual](#phyclustermanual)
 
+* [phy.cluster.manual.BaseClusterViewModel](#phyclustermanualbaseclusterviewmodel)
 * [phy.cluster.manual.ClusterManualGUI](#phyclustermanualclustermanualgui)
 * [phy.cluster.manual.Clustering](#phyclustermanualclustering)
+* [phy.cluster.manual.CorrelogramViewModel](#phyclustermanualcorrelogramviewmodel)
+* [phy.cluster.manual.FeatureViewModel](#phyclustermanualfeatureviewmodel)
+* [phy.cluster.manual.HTMLClusterViewModel](#phyclustermanualhtmlclusterviewmodel)
+* [phy.cluster.manual.StatsViewModel](#phyclustermanualstatsviewmodel)
+* [phy.cluster.manual.TraceViewModel](#phyclustermanualtraceviewmodel)
+* [phy.cluster.manual.WaveformViewModel](#phyclustermanualwaveformviewmodel)
 * [phy.cluster.manual.Wizard](#phyclustermanualwizard)
 
 
@@ -99,8 +95,8 @@ Spike sorting and ephys data analysis for 1000 channels and beyond.
 ### [phy.utils](#phyutils)
 
 * [phy.utils.debug](#phyutilsdebugmsg)
-* [phy.utils.download_file](#phyutilsdownload_fileurl-outputnone-checksumnone)
-* [phy.utils.download_sample_data](#phyutilsdownload_sample_dataname-output_dirnone-basecortexlab)
+* [phy.utils.download_file](#phyutilsdownload_fileurl-output_pathnone)
+* [phy.utils.download_sample_data](#phyutilsdownload_sample_datafilename-output_dirnone-basecortexlab)
 * [phy.utils.info](#phyutilsinfomsg)
 * [phy.utils.register](#phyutilsregisterlogger)
 * [phy.utils.set_level](#phyutilsset_levellevel)
@@ -118,24 +114,11 @@ Spike sorting and ephys data analysis for 1000 channels and beyond.
 
 Automatic and manual clustering facilities.
 
-##### phy.cluster.cluster(model, algorithm='klustakwik', spike_ids=None, **kwargs)
+## phy.cluster.manual
 
-Launch an automatic clustering algorithm on the model.
+Manual clustering facilities.
 
-*Parameters*
-
-
-* `model` (BaseModel)
-
-    A model.
-
-* `algorithm` (str)
-
-    Only 'klustakwik' is supported currently.
-**kwargs
-    Parameters for KK.
-
-### phy.cluster.BaseClusterViewModel
+### phy.cluster.manual.BaseClusterViewModel
 
 Interface between a view and a model.
 
@@ -226,1221 +209,6 @@ The underlying view.
 ##### BaseClusterViewModel.wizard
 
 The wizard.
-
-### phy.cluster.CorrelogramViewModel
-
-Correlograms.
-
-#### Methods
-
-##### CorrelogramViewModel.change_bins(bin=None, half_width=None)
-
-Change the parameters of the correlograms.
-
-*Parameters*
-
-* `bin` (float (ms))
-
-    Bin size.
-
-* `half_width` (float (ms))
-
-    Half window size.
-
-##### CorrelogramViewModel.close()
-
-Close the view.
-
-##### CorrelogramViewModel.connect(*args, **kwargs)
-
-Connect a callback function.
-
-##### CorrelogramViewModel.emit(*args, **kwargs)
-
-Emit an event.
-
-##### CorrelogramViewModel.exported_params(save_size_pos=True)
-
-Parameters to save automatically when the view is closed.
-
-##### CorrelogramViewModel.get_params(cls, settings)
-
-Return the parameter values for the creation of the view.
-
-##### CorrelogramViewModel.imported_params(cls)
-
-All parameter names to be imported on object creation.
-
-##### CorrelogramViewModel.on_close()
-
-Clear the view when the model is closed.
-
-##### CorrelogramViewModel.on_cluster(up)
-
-Called when a clustering action occurs.
-
-May be overriden.
-
-##### CorrelogramViewModel.on_key_press(event)
-
-Called when a key is pressed.
-
-##### CorrelogramViewModel.on_open()
-
-Initialize the view after the model has been loaded.
-
-May be overriden.
-
-##### CorrelogramViewModel.on_select(clusters, **kwargs)
-
-Update the view when the selection changes.
-
-##### CorrelogramViewModel.select(cluster_ids, **kwargs)
-
-Select a set of clusters.
-
-##### CorrelogramViewModel.show()
-
-Show the view.
-
-##### CorrelogramViewModel.toggle_normalization()
-
-Change the correlogram normalization.
-
-##### CorrelogramViewModel.update()
-
-Update the view.
-
-##### CorrelogramViewModel.update_spike_clusters(spikes=None, spike_clusters=None)
-
-Update the spike clusters and cluster colors.
-
-#### Properties
-
-##### CorrelogramViewModel.cluster_ids
-
-Selected clusters.
-
-##### CorrelogramViewModel.lines
-
-
-
-##### CorrelogramViewModel.model
-
-The model.
-
-##### CorrelogramViewModel.n_clusters
-
-Number of selected clusters.
-
-##### CorrelogramViewModel.n_spikes
-
-Number of selected spikes.
-
-##### CorrelogramViewModel.name
-
-The view model's name.
-
-##### CorrelogramViewModel.normalization
-
-Correlogram normalization: `equal` or `independent`.
-
-##### CorrelogramViewModel.selector
-
-A Selector instance managing the selected spikes and clusters.
-
-##### CorrelogramViewModel.spike_ids
-
-Selected spikes.
-
-##### CorrelogramViewModel.store
-
-The cluster store.
-
-##### CorrelogramViewModel.view
-
-The underlying view.
-
-##### CorrelogramViewModel.wizard
-
-The wizard.
-
-### phy.cluster.FeatureViewModel
-
-Feature view with a single subplot.
-
-#### Methods
-
-##### FeatureViewModel.add_extra_feature(name, array)
-
-Add an extra feature.
-
-*Parameters*
-
-
-* `name` (str)
-
-    The feature's name.
-
-* `array` (ndarray)
-
-    A `(n_spikes,)` array with the feature's value for every spike.
-
-##### FeatureViewModel.close()
-
-Close the view.
-
-##### FeatureViewModel.connect(*args, **kwargs)
-
-Connect a callback function.
-
-##### FeatureViewModel.dimensions_for_clusters(cluster_ids)
-
-Current dimensions.
-
-##### FeatureViewModel.emit(*args, **kwargs)
-
-Emit an event.
-
-##### FeatureViewModel.exported_params(save_size_pos=True)
-
-Parameters to save automatically when the view is closed.
-
-##### FeatureViewModel.get_params(cls, settings)
-
-Return the parameter values for the creation of the view.
-
-##### FeatureViewModel.imported_params(cls)
-
-All parameter names to be imported on object creation.
-
-##### FeatureViewModel.on_close()
-
-Clear the view when the model is closed.
-
-##### FeatureViewModel.on_cluster(up)
-
-Called when a clustering action occurs.
-
-May be overriden.
-
-##### FeatureViewModel.on_key_press(event)
-
-Handle key press events.
-
-##### FeatureViewModel.on_open()
-
-Initialize the view when the model is opened.
-
-##### FeatureViewModel.on_select(clusters, auto_update=True)
-
-Update the view when the selection changes.
-
-##### FeatureViewModel.select(cluster_ids, **kwargs)
-
-Select a set of clusters.
-
-##### FeatureViewModel.set_dimension(axis, dim, smart=True)
-
-Set a (smart) dimension.
-
-"smart" means that the dimension may be changed if it is the same
-than the other dimension, to avoid x=y.
-
-##### FeatureViewModel.show()
-
-Show the view.
-
-##### FeatureViewModel.spikes_in_lasso()
-
-Return the spike ids from the selected clusters within the lasso.
-
-##### FeatureViewModel.update()
-
-Update the view.
-
-##### FeatureViewModel.update_spike_clusters(spikes=None, spike_clusters=None)
-
-Update the spike clusters and cluster colors.
-
-#### Properties
-
-##### FeatureViewModel.cluster_ids
-
-Selected clusters.
-
-##### FeatureViewModel.lasso
-
-The spike lasso visual.
-
-##### FeatureViewModel.marker_size
-
-Marker size, in pixels.
-
-##### FeatureViewModel.model
-
-The model.
-
-##### FeatureViewModel.n_clusters
-
-Number of selected clusters.
-
-##### FeatureViewModel.n_features
-
-Number of features.
-
-##### FeatureViewModel.n_rows
-
-Number of rows.
-
-##### FeatureViewModel.n_spikes
-
-Number of selected spikes.
-
-##### FeatureViewModel.name
-
-The view model's name.
-
-##### FeatureViewModel.selector
-
-A Selector instance managing the selected spikes and clusters.
-
-##### FeatureViewModel.spike_ids
-
-Selected spikes.
-
-##### FeatureViewModel.store
-
-The cluster store.
-
-##### FeatureViewModel.view
-
-The underlying view.
-
-##### FeatureViewModel.wizard
-
-The wizard.
-
-##### FeatureViewModel.x_dim
-
-x dimension.
-
-##### FeatureViewModel.y_dim
-
-y dimension.
-
-### phy.cluster.HTMLClusterViewModel
-
-HTML view model that displays per-cluster information.
-
-#### Methods
-
-##### HTMLClusterViewModel.close()
-
-Close the view.
-
-##### HTMLClusterViewModel.connect(*args, **kwargs)
-
-Connect a callback function.
-
-##### HTMLClusterViewModel.emit(*args, **kwargs)
-
-Emit an event.
-
-##### HTMLClusterViewModel.exported_params(save_size_pos=True)
-
-Return a dictionary of variables to save when the view is closed.
-
-##### HTMLClusterViewModel.get_css(**kwargs)
-
-
-
-##### HTMLClusterViewModel.get_html(**kwargs)
-
-Return the non-formatted HTML contents of the view.
-
-##### HTMLClusterViewModel.get_params(cls, settings)
-
-Return the parameter values for the creation of the view.
-
-##### HTMLClusterViewModel.imported_params(cls)
-
-All parameter names to be imported on object creation.
-
-##### HTMLClusterViewModel.isVisible()
-
-
-
-##### HTMLClusterViewModel.on_close()
-
-Called when the model is closed.
-
-May be overriden.
-
-##### HTMLClusterViewModel.on_cluster(up)
-
-Update the view after a clustering action.
-
-##### HTMLClusterViewModel.on_open()
-
-Initialize the view after the model has been loaded.
-
-May be overriden.
-
-##### HTMLClusterViewModel.on_select(cluster_ids, **kwargs)
-
-Update the view after a new selection has been made.
-
-##### HTMLClusterViewModel.select(cluster_ids, **kwargs)
-
-Select a list of clusters.
-
-##### HTMLClusterViewModel.show()
-
-Show the view.
-
-##### HTMLClusterViewModel.update(**kwargs)
-
-Update the widget's HTML contents.
-
-#### Properties
-
-##### HTMLClusterViewModel.cluster_ids
-
-Selected clusters.
-
-##### HTMLClusterViewModel.model
-
-The model.
-
-##### HTMLClusterViewModel.n_clusters
-
-Number of selected clusters.
-
-##### HTMLClusterViewModel.name
-
-The view model's name.
-
-##### HTMLClusterViewModel.store
-
-The cluster store.
-
-##### HTMLClusterViewModel.view
-
-The underlying view.
-
-##### HTMLClusterViewModel.wizard
-
-The wizard.
-
-### phy.cluster.KlustaKwik
-
-KlustaKwik automatic clustering algorithm.
-
-#### Methods
-
-##### KlustaKwik.cluster(model=None, spike_ids=None, features=None, masks=None)
-
-Run the clustering algorithm on the model, or on any features
-and masks.
-
-Return the `spike_clusters` assignements.
-
-Emit the `iter` event at every KlustaKwik iteration.
-
-##### KlustaKwik.connect(func=None, event=None, set_method=False)
-
-Register a callback function to a given event.
-
-To register a callback function to the `spam` event, where `obj` is
-an instance of a class deriving from `EventEmitter`:
-
-```python
-@obj.connect
-def on_spam(arg1, arg2):
-    pass
-```
-
-This is called when `obj.emit('spam', arg1, arg2)` is called.
-
-Several callback functions can be registered for a given event.
-
-The registration order is conserved and may matter in applications.
-
-##### KlustaKwik.emit(event, *args, **kwargs)
-
-Call all callback functions registered with an event.
-
-Any positional and keyword arguments can be passed here, and they will
-be fowarded to the callback functions.
-
-Return the list of callback return results.
-
-##### KlustaKwik.reset()
-
-Remove all registered callbacks.
-
-##### KlustaKwik.unconnect(*funcs)
-
-Unconnect specified callback functions.
-
-#### Properties
-
-### phy.cluster.Session
-
-A manual clustering session.
-
-This is the main object used for manual clustering. It implements
-all common actions:
-
-* Loading a dataset (`.kwik` file)
-* Listing the clusters
-* Changing the current channel group or current clustering
-* Showing views (waveforms, features, correlograms, etc.)
-* Clustering actions: merge, split, undo, redo
-* Wizard: cluster quality, best clusters, most similar clusters
-* Save back to .kwik
-
-#### Methods
-
-##### Session.change_channel_group(channel_group)
-
-Change the current channel group.
-
-##### Session.change_clustering(clustering)
-
-Change the current clustering.
-
-##### Session.close()
-
-Close the currently-open dataset.
-
-##### Session.cluster(clustering=None, algorithm='klustakwik', spike_ids=None, **kwargs)
-
-Run an automatic clustering algorithm on all or some of the spikes.
-
-*Parameters*
-
-
-* `clustering` (str)
-
-    The name of the clustering in which to save the results.
-
-* `algorithm` (str)
-
-    The algorithm name. Only `klustakwik` currently.
-
-* `spike_ids` (array-like)
-
-    Array of spikes to cluster.
-
-*Returns*
-
-
-* `spike_clusters` (array)
-
-    The spike_clusters assignements returned by the algorithm.
-
-##### Session.connect(func=None, event=None, set_method=False)
-
-Register a callback function to a given event.
-
-To register a callback function to the `spam` event, where `obj` is
-an instance of a class deriving from `EventEmitter`:
-
-```python
-@obj.connect
-def on_spam(arg1, arg2):
-    pass
-```
-
-This is called when `obj.emit('spam', arg1, arg2)` is called.
-
-Several callback functions can be registered for a given event.
-
-The registration order is conserved and may matter in applications.
-
-##### Session.detect(traces=None, interval=None, algorithm='spikedetekt', **kwargs)
-
-Detect spikes in traces.
-
-*Parameters*
-
-
-* `traces` (array)
-
-    An `(n_samples, n_channels)` array. If unspecified, the Kwik
-    file's raw data is used.
-
-* `interval` (tuple (optional))
-
-    A tuple `(start, end)` (in seconds) where to detect spikes.
-
-* `algorithm` (str)
-
-    The algorithm name. Only `spikedetekt` currently.
-
-* `**kwargs` (dictionary)
-
-    Algorithm parameters.
-
-*Returns*
-
-
-* `result` (dict)
-
-    A `{channel_group: tuple}` mapping, where the tuple is:
-
-    * `spike_times` : the spike times (in seconds).
-    * `masks`: the masks of the spikes `(n_spikes, n_channels)`.
-
-##### Session.emit(event, *args, **kwargs)
-
-Call all callback functions registered with an event.
-
-Any positional and keyword arguments can be passed here, and they will
-be fowarded to the callback functions.
-
-Return the list of callback return results.
-
-##### Session.on_close()
-
-
-
-##### Session.on_open()
-
-
-
-##### Session.open(kwik_path=None, model=None)
-
-Open a `.kwik` file.
-
-##### Session.register_statistic(func=None, shape=(-1,))
-
-Decorator registering a custom cluster statistic.
-
-*Parameters*
-
-
-* `func` (function)
-
-    A function that takes a cluster index as argument, and returns
-    some statistics (generally a NumPy array).
-
-*Notes*
-
-This function will be called on every cluster when a dataset is opened.
-It is also automatically called on new clusters when clusters change.
-You can access the data from the model and from the cluster store.
-
-##### Session.reopen()
-
-
-
-##### Session.reset()
-
-Remove all registered callbacks.
-
-##### Session.save()
-
-
-
-##### Session.save_view_params(vm, save_size_pos=True)
-
-Save the parameters exported by a view model instance.
-
-##### Session.show_gui(**kwargs)
-
-Show a GUI.
-
-##### Session.unconnect(*funcs)
-
-Unconnect specified callback functions.
-
-#### Properties
-
-##### Session.cluster_ids
-
-Array of all cluster ids used in the current clustering.
-
-##### Session.has_unsaved_changes
-
-Whether there are unsaved changes in the model.
-
-If true, a prompt message for saving will be displayed when closing
-the GUI.
-
-##### Session.kwik_path
-
-Path to the `.kwik` file.
-
-##### Session.n_clusters
-
-Number of clusters in the current clustering.
-
-##### Session.n_spikes
-
-Number of spikes in the current channel group.
-
-### phy.cluster.SpikeDetekt
-
-Spike detection class.
-
-*Parameters*
-
-
-* `tempdir` (str)
-
-    Path to the temporary directory used by the algorithm. It should be
-    on a SSD for best performance.
-
-* `probe` (dict)
-
-    The probe dictionary.
-
-* `**kwargs` (dict)
-
-    Spike detection parameters.
-
-#### Methods
-
-##### SpikeDetekt.apply_filter(data)
-
-Filter the traces.
-
-##### SpikeDetekt.connect(func=None, event=None, set_method=False)
-
-Register a callback function to a given event.
-
-To register a callback function to the `spam` event, where `obj` is
-an instance of a class deriving from `EventEmitter`:
-
-```python
-@obj.connect
-def on_spam(arg1, arg2):
-    pass
-```
-
-This is called when `obj.emit('spam', arg1, arg2)` is called.
-
-Several callback functions can be registered for a given event.
-
-The registration order is conserved and may matter in applications.
-
-##### SpikeDetekt.detect(traces_f, thresholds=None, dead_channels=None)
-
-Detect connected waveform components in filtered traces.
-
-*Parameters*
-
-
-* `traces_f` (array)
-
-    An `(n_samples, n_channels)` array with the filtered data.
-
-* `thresholds` (dict)
-
-    The weak and strong thresholds.
-
-* `dead_channels` (array-like)
-
-    Array of dead channels.
-
-*Returns*
-
-
-* `components` (list)
-
-    A list of `(n, 2)` arrays with `sample, channel` pairs.
-
-##### SpikeDetekt.emit(event, *args, **kwargs)
-
-Call all callback functions registered with an event.
-
-Any positional and keyword arguments can be passed here, and they will
-be fowarded to the callback functions.
-
-Return the list of callback return results.
-
-##### SpikeDetekt.extract_spikes(components, traces_f, thresholds=None)
-
-Extract spikes from connected components.
-
-*Parameters*
-
-* `components` (list)
-
-    List of connected components.
-
-* `traces_f` (array)
-
-    Filtered data.
-
-* `thresholds` (dict)
-
-    The weak and strong thresholds.
-
-*Returns*
-
-
-* `spike_samples` (array)
-
-    An `(n_spikes,)` array with the spike samples.
-
-* `waveforms` (array)
-
-    An `(n_spikes, n_samples, n_channels)` array.
-
-* `masks` (array)
-
-    An `(n_spikes, n_channels)` array.
-
-##### SpikeDetekt.features(waveforms, pcs)
-
-Extract features from waveforms.
-
-*Returns*
-
-
-* `features` (array)
-
-    An `(n_spikes, n_channels, n_features)` array.
-
-##### SpikeDetekt.find_thresholds(traces)
-
-Find weak and strong thresholds in filtered traces.
-
-##### SpikeDetekt.iter_chunks(n_samples)
-
-Iterate over chunks.
-
-Yield tuples `(s_start, s_end, keep_start, keep_end)`, in number
-of samples.
-
-##### SpikeDetekt.n_chunks(n_samples)
-
-Number of chunks.
-
-##### SpikeDetekt.output_data(n_samples, n_channels, groups=None, spike_counts=None)
-
-Bunch of values to be returned by the algorithm.
-
-##### SpikeDetekt.reset()
-
-Remove all registered callbacks.
-
-##### SpikeDetekt.run_serial(traces, interval_samples=None)
-
-Run SpikeDetekt using one CPU.
-
-##### SpikeDetekt.step_detect(bounds, chunk_data, chunk_data_keep, thresholds=None)
-
-Detection step.
-
-##### SpikeDetekt.step_extract(bounds, components, n_spikes_total=None, n_channels=None, thresholds=None)
-
-Extraction step.
-
-Return the waveforms to keep for each chunk for PCA.
-
-##### SpikeDetekt.step_features(bounds, pcs_per_group, spike_counts)
-
-Feature step.
-
-##### SpikeDetekt.step_pca(chunk_waveforms)
-
-PCA step.
-
-Return the PCs.
-
-##### SpikeDetekt.unconnect(*funcs)
-
-Unconnect specified callback functions.
-
-##### SpikeDetekt.update_params(**kwargs)
-
-
-
-##### SpikeDetekt.waveform_pcs(waveforms, masks)
-
-Compute waveform principal components.
-
-*Returns*
-
-
-* `pcs` (array)
-
-    An `(n_features, n_samples, n_channels)` array.
-
-#### Properties
-
-### phy.cluster.StatsViewModel
-
-Display cluster statistics.
-
-#### Methods
-
-##### StatsViewModel.close()
-
-Close the view.
-
-##### StatsViewModel.connect(*args, **kwargs)
-
-Connect a callback function.
-
-##### StatsViewModel.emit(*args, **kwargs)
-
-Emit an event.
-
-##### StatsViewModel.exported_params(save_size_pos=True)
-
-Return a dictionary of variables to save when the view is closed.
-
-##### StatsViewModel.get_css(cluster_ids=None, up=None)
-
-
-
-##### StatsViewModel.get_html(cluster_ids=None, up=None)
-
-Return the HTML table with the cluster statistics.
-
-##### StatsViewModel.get_params(cls, settings)
-
-Return the parameter values for the creation of the view.
-
-##### StatsViewModel.imported_params(cls)
-
-All parameter names to be imported on object creation.
-
-##### StatsViewModel.isVisible()
-
-
-
-##### StatsViewModel.on_close()
-
-Called when the model is closed.
-
-May be overriden.
-
-##### StatsViewModel.on_cluster(up)
-
-Update the view after a clustering action.
-
-##### StatsViewModel.on_open()
-
-Initialize the view after the model has been loaded.
-
-May be overriden.
-
-##### StatsViewModel.on_select(cluster_ids, **kwargs)
-
-Update the view after a new selection has been made.
-
-##### StatsViewModel.select(cluster_ids, **kwargs)
-
-Select a list of clusters.
-
-##### StatsViewModel.show()
-
-Show the view.
-
-##### StatsViewModel.update(**kwargs)
-
-Update the widget's HTML contents.
-
-#### Properties
-
-##### StatsViewModel.cluster_ids
-
-Selected clusters.
-
-##### StatsViewModel.model
-
-The model.
-
-##### StatsViewModel.n_clusters
-
-Number of selected clusters.
-
-##### StatsViewModel.name
-
-The view model's name.
-
-##### StatsViewModel.store
-
-The cluster store.
-
-##### StatsViewModel.view
-
-The underlying view.
-
-##### StatsViewModel.wizard
-
-The wizard.
-
-### phy.cluster.TraceViewModel
-
-Traces.
-
-#### Methods
-
-##### TraceViewModel.close()
-
-Close the view.
-
-##### TraceViewModel.connect(*args, **kwargs)
-
-Connect a callback function.
-
-##### TraceViewModel.emit(*args, **kwargs)
-
-Emit an event.
-
-##### TraceViewModel.exported_params(save_size_pos=True)
-
-Parameters to save automatically when the view is closed.
-
-##### TraceViewModel.get_params(cls, settings)
-
-Return the parameter values for the creation of the view.
-
-##### TraceViewModel.imported_params(cls)
-
-All parameter names to be imported on object creation.
-
-##### TraceViewModel.move(amount)
-
-Move the current interval by a given amount (in samples).
-
-##### TraceViewModel.move_left(fraction=0.05)
-
-Move the current interval to the left.
-
-##### TraceViewModel.move_right(fraction=0.05)
-
-Move the current interval to the right.
-
-##### TraceViewModel.on_close()
-
-Clear the view when the model is closed.
-
-##### TraceViewModel.on_cluster(up)
-
-Called when a clustering action occurs.
-
-May be overriden.
-
-##### TraceViewModel.on_key_press(event)
-
-Called when a key is pressed.
-
-##### TraceViewModel.on_open()
-
-Initialize the view when the model is opened.
-
-##### TraceViewModel.on_select(clusters, **kwargs)
-
-Update the view when the selection changes.
-
-##### TraceViewModel.select(cluster_ids, **kwargs)
-
-Select a set of clusters.
-
-##### TraceViewModel.show()
-
-Show the view.
-
-##### TraceViewModel.update()
-
-Update the view.
-
-##### TraceViewModel.update_spike_clusters(spikes=None, spike_clusters=None)
-
-Update the spike clusters and cluster colors.
-
-#### Properties
-
-##### TraceViewModel.channel_scale
-
-Vertical scale of the traces.
-
-##### TraceViewModel.cluster_ids
-
-Selected clusters.
-
-##### TraceViewModel.interval
-
-The interval of the view, in unit of sample.
-
-##### TraceViewModel.model
-
-The model.
-
-##### TraceViewModel.n_clusters
-
-Number of selected clusters.
-
-##### TraceViewModel.n_spikes
-
-Number of selected spikes.
-
-##### TraceViewModel.name
-
-The view model's name.
-
-##### TraceViewModel.selector
-
-A Selector instance managing the selected spikes and clusters.
-
-##### TraceViewModel.spike_ids
-
-Selected spikes.
-
-##### TraceViewModel.store
-
-The cluster store.
-
-##### TraceViewModel.view
-
-The underlying view.
-
-##### TraceViewModel.wizard
-
-The wizard.
-
-### phy.cluster.WaveformViewModel
-
-Waveforms.
-
-#### Methods
-
-##### WaveformViewModel.close()
-
-Close the view.
-
-##### WaveformViewModel.connect(*args, **kwargs)
-
-Connect a callback function.
-
-##### WaveformViewModel.emit(*args, **kwargs)
-
-Emit an event.
-
-##### WaveformViewModel.exported_params(save_size_pos=True)
-
-Parameters to save automatically when the view is closed.
-
-##### WaveformViewModel.get_params(cls, settings)
-
-Return the parameter values for the creation of the view.
-
-##### WaveformViewModel.imported_params(cls)
-
-All parameter names to be imported on object creation.
-
-##### WaveformViewModel.on_close()
-
-Clear the view when the model is closed.
-
-##### WaveformViewModel.on_cluster(up)
-
-Called when a clustering action occurs.
-
-May be overriden.
-
-##### WaveformViewModel.on_key_press(event)
-
-Called when a key is pressed.
-
-##### WaveformViewModel.on_open()
-
-Initialize the view when the model is opened.
-
-##### WaveformViewModel.on_select(clusters, **kwargs)
-
-Update the view when the selection changes.
-
-##### WaveformViewModel.select(cluster_ids, **kwargs)
-
-Select a set of clusters.
-
-##### WaveformViewModel.show()
-
-Show the view.
-
-##### WaveformViewModel.update()
-
-Update the view.
-
-##### WaveformViewModel.update_spike_clusters(spikes=None)
-
-Update the view's spike clusters.
-
-#### Properties
-
-##### WaveformViewModel.box_scale
-
-Scale of the waveforms.
-
-This is a pair of scalars.
-
-##### WaveformViewModel.cluster_ids
-
-Selected clusters.
-
-##### WaveformViewModel.model
-
-The model.
-
-##### WaveformViewModel.n_clusters
-
-Number of selected clusters.
-
-##### WaveformViewModel.n_spikes
-
-Number of selected spikes.
-
-##### WaveformViewModel.name
-
-The view model's name.
-
-##### WaveformViewModel.overlap
-
-Whether to overlap waveforms.
-
-##### WaveformViewModel.probe_scale
-
-Scale of the probe.
-
-This is a pair of scalars.
-
-##### WaveformViewModel.selector
-
-A Selector instance managing the selected spikes and clusters.
-
-##### WaveformViewModel.show_mean
-
-Whether to show mean waveforms.
-
-##### WaveformViewModel.spike_ids
-
-Selected spikes.
-
-##### WaveformViewModel.store
-
-The cluster store.
-
-##### WaveformViewModel.view
-
-The underlying view.
-
-##### WaveformViewModel.wizard
-
-The wizard.
-
-## phy.cluster.manual
-
-Manual clustering facilities.
 
 ### phy.cluster.manual.ClusterManualGUI
 
@@ -1902,6 +670,776 @@ Array of all spike ids.
 ##### Clustering.spikes_per_cluster
 
 A dictionary `{cluster: spikes}`.
+
+### phy.cluster.manual.CorrelogramViewModel
+
+Correlograms.
+
+#### Methods
+
+##### CorrelogramViewModel.change_bins(bin=None, half_width=None)
+
+Change the parameters of the correlograms.
+
+*Parameters*
+
+* `bin` (float (ms))
+
+    Bin size.
+
+* `half_width` (float (ms))
+
+    Half window size.
+
+##### CorrelogramViewModel.close()
+
+Close the view.
+
+##### CorrelogramViewModel.connect(*args, **kwargs)
+
+Connect a callback function.
+
+##### CorrelogramViewModel.emit(*args, **kwargs)
+
+Emit an event.
+
+##### CorrelogramViewModel.exported_params(save_size_pos=True)
+
+Parameters to save automatically when the view is closed.
+
+##### CorrelogramViewModel.get_params(cls, settings)
+
+Return the parameter values for the creation of the view.
+
+##### CorrelogramViewModel.imported_params(cls)
+
+All parameter names to be imported on object creation.
+
+##### CorrelogramViewModel.on_close()
+
+Clear the view when the model is closed.
+
+##### CorrelogramViewModel.on_cluster(up)
+
+Called when a clustering action occurs.
+
+May be overriden.
+
+##### CorrelogramViewModel.on_key_press(event)
+
+Called when a key is pressed.
+
+##### CorrelogramViewModel.on_open()
+
+Initialize the view after the model has been loaded.
+
+May be overriden.
+
+##### CorrelogramViewModel.on_select(clusters, **kwargs)
+
+Update the view when the selection changes.
+
+##### CorrelogramViewModel.select(cluster_ids, **kwargs)
+
+Select a set of clusters.
+
+##### CorrelogramViewModel.show()
+
+Show the view.
+
+##### CorrelogramViewModel.toggle_normalization()
+
+Change the correlogram normalization.
+
+##### CorrelogramViewModel.update()
+
+Update the view.
+
+##### CorrelogramViewModel.update_spike_clusters(spikes=None, spike_clusters=None)
+
+Update the spike clusters and cluster colors.
+
+#### Properties
+
+##### CorrelogramViewModel.cluster_ids
+
+Selected clusters.
+
+##### CorrelogramViewModel.lines
+
+
+
+##### CorrelogramViewModel.model
+
+The model.
+
+##### CorrelogramViewModel.n_clusters
+
+Number of selected clusters.
+
+##### CorrelogramViewModel.n_spikes
+
+Number of selected spikes.
+
+##### CorrelogramViewModel.name
+
+The view model's name.
+
+##### CorrelogramViewModel.normalization
+
+Correlogram normalization: `equal` or `independent`.
+
+##### CorrelogramViewModel.selector
+
+A Selector instance managing the selected spikes and clusters.
+
+##### CorrelogramViewModel.spike_ids
+
+Selected spikes.
+
+##### CorrelogramViewModel.store
+
+The cluster store.
+
+##### CorrelogramViewModel.view
+
+The underlying view.
+
+##### CorrelogramViewModel.wizard
+
+The wizard.
+
+### phy.cluster.manual.FeatureViewModel
+
+Feature view with a single subplot.
+
+#### Methods
+
+##### FeatureViewModel.add_extra_feature(name, array)
+
+Add an extra feature.
+
+*Parameters*
+
+
+* `name` (str)
+
+    The feature's name.
+
+* `array` (ndarray)
+
+    A `(n_spikes,)` array with the feature's value for every spike.
+
+##### FeatureViewModel.close()
+
+Close the view.
+
+##### FeatureViewModel.connect(*args, **kwargs)
+
+Connect a callback function.
+
+##### FeatureViewModel.dimensions_for_clusters(cluster_ids)
+
+Current dimensions.
+
+##### FeatureViewModel.emit(*args, **kwargs)
+
+Emit an event.
+
+##### FeatureViewModel.exported_params(save_size_pos=True)
+
+Parameters to save automatically when the view is closed.
+
+##### FeatureViewModel.get_params(cls, settings)
+
+Return the parameter values for the creation of the view.
+
+##### FeatureViewModel.imported_params(cls)
+
+All parameter names to be imported on object creation.
+
+##### FeatureViewModel.on_close()
+
+Clear the view when the model is closed.
+
+##### FeatureViewModel.on_cluster(up)
+
+Called when a clustering action occurs.
+
+May be overriden.
+
+##### FeatureViewModel.on_key_press(event)
+
+Handle key press events.
+
+##### FeatureViewModel.on_open()
+
+Initialize the view when the model is opened.
+
+##### FeatureViewModel.on_select(clusters, auto_update=True)
+
+Update the view when the selection changes.
+
+##### FeatureViewModel.select(cluster_ids, **kwargs)
+
+Select a set of clusters.
+
+##### FeatureViewModel.set_dimension(axis, dim, smart=True)
+
+Set a (smart) dimension.
+
+"smart" means that the dimension may be changed if it is the same
+than the other dimension, to avoid x=y.
+
+##### FeatureViewModel.show()
+
+Show the view.
+
+##### FeatureViewModel.spikes_in_lasso()
+
+Return the spike ids from the selected clusters within the lasso.
+
+##### FeatureViewModel.update()
+
+Update the view.
+
+##### FeatureViewModel.update_spike_clusters(spikes=None, spike_clusters=None)
+
+Update the spike clusters and cluster colors.
+
+#### Properties
+
+##### FeatureViewModel.cluster_ids
+
+Selected clusters.
+
+##### FeatureViewModel.lasso
+
+The spike lasso visual.
+
+##### FeatureViewModel.marker_size
+
+Marker size, in pixels.
+
+##### FeatureViewModel.model
+
+The model.
+
+##### FeatureViewModel.n_clusters
+
+Number of selected clusters.
+
+##### FeatureViewModel.n_features
+
+Number of features.
+
+##### FeatureViewModel.n_rows
+
+Number of rows.
+
+##### FeatureViewModel.n_spikes
+
+Number of selected spikes.
+
+##### FeatureViewModel.name
+
+The view model's name.
+
+##### FeatureViewModel.selector
+
+A Selector instance managing the selected spikes and clusters.
+
+##### FeatureViewModel.spike_ids
+
+Selected spikes.
+
+##### FeatureViewModel.store
+
+The cluster store.
+
+##### FeatureViewModel.view
+
+The underlying view.
+
+##### FeatureViewModel.wizard
+
+The wizard.
+
+##### FeatureViewModel.x_dim
+
+x dimension.
+
+##### FeatureViewModel.y_dim
+
+y dimension.
+
+### phy.cluster.manual.HTMLClusterViewModel
+
+HTML view model that displays per-cluster information.
+
+#### Methods
+
+##### HTMLClusterViewModel.close()
+
+Close the view.
+
+##### HTMLClusterViewModel.connect(*args, **kwargs)
+
+Connect a callback function.
+
+##### HTMLClusterViewModel.emit(*args, **kwargs)
+
+Emit an event.
+
+##### HTMLClusterViewModel.exported_params(save_size_pos=True)
+
+Return a dictionary of variables to save when the view is closed.
+
+##### HTMLClusterViewModel.get_css(**kwargs)
+
+
+
+##### HTMLClusterViewModel.get_html(**kwargs)
+
+Return the non-formatted HTML contents of the view.
+
+##### HTMLClusterViewModel.get_params(cls, settings)
+
+Return the parameter values for the creation of the view.
+
+##### HTMLClusterViewModel.imported_params(cls)
+
+All parameter names to be imported on object creation.
+
+##### HTMLClusterViewModel.isVisible()
+
+
+
+##### HTMLClusterViewModel.on_close()
+
+Called when the model is closed.
+
+May be overriden.
+
+##### HTMLClusterViewModel.on_cluster(up)
+
+Update the view after a clustering action.
+
+##### HTMLClusterViewModel.on_open()
+
+Initialize the view after the model has been loaded.
+
+May be overriden.
+
+##### HTMLClusterViewModel.on_select(cluster_ids, **kwargs)
+
+Update the view after a new selection has been made.
+
+##### HTMLClusterViewModel.select(cluster_ids, **kwargs)
+
+Select a list of clusters.
+
+##### HTMLClusterViewModel.show()
+
+Show the view.
+
+##### HTMLClusterViewModel.update(**kwargs)
+
+Update the widget's HTML contents.
+
+#### Properties
+
+##### HTMLClusterViewModel.cluster_ids
+
+Selected clusters.
+
+##### HTMLClusterViewModel.model
+
+The model.
+
+##### HTMLClusterViewModel.n_clusters
+
+Number of selected clusters.
+
+##### HTMLClusterViewModel.name
+
+The view model's name.
+
+##### HTMLClusterViewModel.store
+
+The cluster store.
+
+##### HTMLClusterViewModel.view
+
+The underlying view.
+
+##### HTMLClusterViewModel.wizard
+
+The wizard.
+
+### phy.cluster.manual.StatsViewModel
+
+Display cluster statistics.
+
+#### Methods
+
+##### StatsViewModel.close()
+
+Close the view.
+
+##### StatsViewModel.connect(*args, **kwargs)
+
+Connect a callback function.
+
+##### StatsViewModel.emit(*args, **kwargs)
+
+Emit an event.
+
+##### StatsViewModel.exported_params(save_size_pos=True)
+
+Return a dictionary of variables to save when the view is closed.
+
+##### StatsViewModel.get_css(cluster_ids=None, up=None)
+
+
+
+##### StatsViewModel.get_html(cluster_ids=None, up=None)
+
+Return the HTML table with the cluster statistics.
+
+##### StatsViewModel.get_params(cls, settings)
+
+Return the parameter values for the creation of the view.
+
+##### StatsViewModel.imported_params(cls)
+
+All parameter names to be imported on object creation.
+
+##### StatsViewModel.isVisible()
+
+
+
+##### StatsViewModel.on_close()
+
+Called when the model is closed.
+
+May be overriden.
+
+##### StatsViewModel.on_cluster(up)
+
+Update the view after a clustering action.
+
+##### StatsViewModel.on_open()
+
+Initialize the view after the model has been loaded.
+
+May be overriden.
+
+##### StatsViewModel.on_select(cluster_ids, **kwargs)
+
+Update the view after a new selection has been made.
+
+##### StatsViewModel.select(cluster_ids, **kwargs)
+
+Select a list of clusters.
+
+##### StatsViewModel.show()
+
+Show the view.
+
+##### StatsViewModel.update(**kwargs)
+
+Update the widget's HTML contents.
+
+#### Properties
+
+##### StatsViewModel.cluster_ids
+
+Selected clusters.
+
+##### StatsViewModel.model
+
+The model.
+
+##### StatsViewModel.n_clusters
+
+Number of selected clusters.
+
+##### StatsViewModel.name
+
+The view model's name.
+
+##### StatsViewModel.store
+
+The cluster store.
+
+##### StatsViewModel.view
+
+The underlying view.
+
+##### StatsViewModel.wizard
+
+The wizard.
+
+### phy.cluster.manual.TraceViewModel
+
+Traces.
+
+#### Methods
+
+##### TraceViewModel.close()
+
+Close the view.
+
+##### TraceViewModel.connect(*args, **kwargs)
+
+Connect a callback function.
+
+##### TraceViewModel.emit(*args, **kwargs)
+
+Emit an event.
+
+##### TraceViewModel.exported_params(save_size_pos=True)
+
+Parameters to save automatically when the view is closed.
+
+##### TraceViewModel.get_params(cls, settings)
+
+Return the parameter values for the creation of the view.
+
+##### TraceViewModel.imported_params(cls)
+
+All parameter names to be imported on object creation.
+
+##### TraceViewModel.move(amount)
+
+Move the current interval by a given amount (in samples).
+
+##### TraceViewModel.move_left(fraction=0.05)
+
+Move the current interval to the left.
+
+##### TraceViewModel.move_right(fraction=0.05)
+
+Move the current interval to the right.
+
+##### TraceViewModel.on_close()
+
+Clear the view when the model is closed.
+
+##### TraceViewModel.on_cluster(up)
+
+Called when a clustering action occurs.
+
+May be overriden.
+
+##### TraceViewModel.on_key_press(event)
+
+Called when a key is pressed.
+
+##### TraceViewModel.on_open()
+
+Initialize the view when the model is opened.
+
+##### TraceViewModel.on_select(clusters, **kwargs)
+
+Update the view when the selection changes.
+
+##### TraceViewModel.select(cluster_ids, **kwargs)
+
+Select a set of clusters.
+
+##### TraceViewModel.show()
+
+Show the view.
+
+##### TraceViewModel.update()
+
+Update the view.
+
+##### TraceViewModel.update_spike_clusters(spikes=None, spike_clusters=None)
+
+Update the spike clusters and cluster colors.
+
+#### Properties
+
+##### TraceViewModel.channel_scale
+
+Vertical scale of the traces.
+
+##### TraceViewModel.cluster_ids
+
+Selected clusters.
+
+##### TraceViewModel.interval
+
+The interval of the view, in unit of sample.
+
+##### TraceViewModel.model
+
+The model.
+
+##### TraceViewModel.n_clusters
+
+Number of selected clusters.
+
+##### TraceViewModel.n_spikes
+
+Number of selected spikes.
+
+##### TraceViewModel.name
+
+The view model's name.
+
+##### TraceViewModel.selector
+
+A Selector instance managing the selected spikes and clusters.
+
+##### TraceViewModel.spike_ids
+
+Selected spikes.
+
+##### TraceViewModel.store
+
+The cluster store.
+
+##### TraceViewModel.view
+
+The underlying view.
+
+##### TraceViewModel.wizard
+
+The wizard.
+
+### phy.cluster.manual.WaveformViewModel
+
+Waveforms.
+
+#### Methods
+
+##### WaveformViewModel.close()
+
+Close the view.
+
+##### WaveformViewModel.connect(*args, **kwargs)
+
+Connect a callback function.
+
+##### WaveformViewModel.emit(*args, **kwargs)
+
+Emit an event.
+
+##### WaveformViewModel.exported_params(save_size_pos=True)
+
+Parameters to save automatically when the view is closed.
+
+##### WaveformViewModel.get_params(cls, settings)
+
+Return the parameter values for the creation of the view.
+
+##### WaveformViewModel.imported_params(cls)
+
+All parameter names to be imported on object creation.
+
+##### WaveformViewModel.on_close()
+
+Clear the view when the model is closed.
+
+##### WaveformViewModel.on_cluster(up)
+
+Called when a clustering action occurs.
+
+May be overriden.
+
+##### WaveformViewModel.on_key_press(event)
+
+Called when a key is pressed.
+
+##### WaveformViewModel.on_open()
+
+Initialize the view when the model is opened.
+
+##### WaveformViewModel.on_select(clusters, **kwargs)
+
+Update the view when the selection changes.
+
+##### WaveformViewModel.select(cluster_ids, **kwargs)
+
+Select a set of clusters.
+
+##### WaveformViewModel.show()
+
+Show the view.
+
+##### WaveformViewModel.update()
+
+Update the view.
+
+##### WaveformViewModel.update_spike_clusters(spikes=None)
+
+Update the view's spike clusters.
+
+#### Properties
+
+##### WaveformViewModel.box_scale
+
+Scale of the waveforms.
+
+This is a pair of scalars.
+
+##### WaveformViewModel.cluster_ids
+
+Selected clusters.
+
+##### WaveformViewModel.model
+
+The model.
+
+##### WaveformViewModel.n_clusters
+
+Number of selected clusters.
+
+##### WaveformViewModel.n_spikes
+
+Number of selected spikes.
+
+##### WaveformViewModel.name
+
+The view model's name.
+
+##### WaveformViewModel.overlap
+
+Whether to overlap waveforms.
+
+##### WaveformViewModel.probe_scale
+
+Scale of the probe.
+
+This is a pair of scalars.
+
+##### WaveformViewModel.selector
+
+A Selector instance managing the selected spikes and clusters.
+
+##### WaveformViewModel.show_mean
+
+Whether to show mean waveforms.
+
+##### WaveformViewModel.spike_ids
+
+Selected spikes.
+
+##### WaveformViewModel.store
+
+The cluster store.
+
+##### WaveformViewModel.view
+
+The underlying view.
+
+##### WaveformViewModel.wizard
+
+The wizard.
 
 ### phy.cluster.manual.Wizard
 
@@ -3127,7 +2665,7 @@ Add a recording.
 
     The sample rate of the recording
 
-##### KwikCreator.add_spikes(group=None, spike_samples=None, spike_recordings=None, masks=None, features=None)
+##### KwikCreator.add_spikes(group=None, spike_samples=None, spike_recordings=None, masks=None, features=None, n_channels=None, n_features=None)
 
 Add spikes in the file.
 
@@ -3190,7 +2728,8 @@ Save a new clustering to the file.
 
 ##### KwikModel.close()
 
-Close the `.kwik`, `.kwx`, and `.raw.kwd` files if they are open.
+Close the `.kwik` and `.kwx` files if they are open, and cleanup
+handles to all raw data files
 
 ##### KwikModel.copy_clustering(name, new_name)
 
@@ -3218,8 +2757,20 @@ If not, the features and masks won't be available.
 
 Open a Kwik dataset.
 
-The `.kwik`, `.kwx`, and `.raw.kwd` must be in the same folder with the
+The `.kwik` and `.kwx` must be in the same folder with the
 same basename.
+
+The files containing the traces (`.raw.kwd` or `.dat` / `.bin`) are
+determined according to the following logic:
+
+- Is there a path specified to a file which exists in
+[KWIK]/recordings/[X]/raw? If so, open it.
+- If this file does not exist, does a file exist with the same name
+in the current directory? If so, open it.
+- If such a file does not exist, or no filename is specified in
+the [KWIK], then is there a `raw.kwd` with the experiment basename
+in the current directory? If so, open it.
+- If not, return with a warning.
 
 *Notes*
 
@@ -3229,10 +2780,11 @@ the channel group or clustering changes.
 
 The `.kwik` file is temporarily opened in append mode when saving.
 
-The `.kwx` and `.raw.kwd` files stay open in read-only mode as long
-as `model.close()` is not called. This is because there might be
-read accesses to `features_masks` (`.kwx`) and waveforms (`.raw.kwd`)
-while the dataset is opened.
+The `.kwx` and `.raw.kwd` or `.dat` / `.bin` files stay open in
+read-only mode as long as `model.close()` is not called. This is
+because there might be read accesses to `features_masks` (`.kwx`)
+and waveforms (`.raw.kwd` or `.dat` / `.bin`) while the dataset is
+opened.
 
 *Parameters*
 
@@ -3293,7 +2845,7 @@ this is the property you want to use, and not `model.channels`.
 The channel order is the same than the one from the PRB file.
 This order was used when generating the features and masks
 in SpikeDetekt2. The same order is used in phy when loading the
-waveforms from the `.raw.kwd` file.
+waveforms from the traces file(s).
 
 ##### KwikModel.channels
 
@@ -3465,15 +3017,16 @@ Spikes per cluster from the current channel group and clustering.
 
 ##### KwikModel.traces
 
-Raw traces as found in the `.raw.kwd` file.
+Raw traces as found in the traces file(s).
 
-This object is memory-mapped to the HDF5 file.
+This object is memory-mapped to the HDF5 file, or `.dat` / `.bin` file,
+or both.
 
 ##### KwikModel.waveforms
 
 High-passed filtered waveforms from the current channel group.
 
-This is a virtual array mapped to the `.raw.kwd` file. Filtering is
+This is a virtual array mapped to the traces file(s). Filtering is
 done on the fly.
 
 The shape is `(n_spikes, n_samples, n_channels)`.
@@ -3736,6 +3289,10 @@ Draw the waveforms.
 
 Mark data items to be prepared for GPU.
 
+##### BaseSpikeVisual.update()
+
+
+
 #### Properties
 
 ##### BaseSpikeVisual.cluster_colors
@@ -3920,6 +3477,10 @@ The coordinate system is always the world coordinate system, i.e.
 ##### FeatureVisual.set_to_bake(*bakes)
 
 Mark data items to be prepared for GPU.
+
+##### FeatureVisual.update()
+
+
 
 #### Properties
 
@@ -4305,6 +3866,10 @@ Draw the waveforms.
 
 Mark data items to be prepared for GPU.
 
+##### WaveformVisual.update()
+
+
+
 #### Properties
 
 ##### WaveformVisual.alpha
@@ -4633,18 +4198,39 @@ Utilities.
 
 Generate a debug message.
 
-##### phy.utils.download_file(url, output=None, checksum=None)
+##### phy.utils.download_file(url, output_path=None)
 
 Download a binary file from an URL.
 
-##### phy.utils.download_sample_data(name, output_dir=None, base='cortexlab')
+The checksum will be downloaded from `URL + .md5`. If this download
+succeeds, the file's MD5 will be compared to the expected checksum.
+
+*Parameters*
+
+
+* `url` (str)
+
+    The file's URL.
+
+* `output_path` (str or None)
+
+    The path where the file is to be saved.
+
+*Returns*
+
+
+* `output_path` (str)
+
+    The path where the file was downloaded.
+
+##### phy.utils.download_sample_data(filename, output_dir=None, base='cortexlab')
 
 Download a sample dataset.
 
 *Parameters*
 
 
-* `name` (str)
+* `filename` (str)
 
     Name of the sample dataset to download.
 
