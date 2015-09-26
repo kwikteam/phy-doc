@@ -2,7 +2,7 @@
 
 The manual clustering subpackage (`phy.cluster.manual`) provides a programmatic Python API as well as a lightweight graphical interface to manually refine the output of the automatic clustering algorithm.
 
-The GUI can be initialized by calling `phy cluster-manual myFile.kwik`. Using the `-i` switch (e.g. `phy cluster-manual -i myFile.kwik`) will run the GUI with an IPython terminal for more control. Alternately, you can access the GUI from IPython (terminal or notebook) directly, following the steps below. 
+The GUI can be initialized by calling `phy cluster-manual myFile.kwik`. Using the `-i` switch (e.g. `phy cluster-manual -i myFile.kwik`) will run the GUI with an IPython terminal for more control. Alternately, you can access the GUI from IPython (terminal or notebook) directly, following the steps below.
 
 ### Session
 
@@ -19,7 +19,7 @@ You can launch the clustering GUI from the session.
 Let's open a new session:
 
 ```python
->>> from phy.cluster import Session
+>>> from phy.session import Session
 ```
 
 ```python

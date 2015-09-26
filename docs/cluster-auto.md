@@ -10,7 +10,7 @@ Let's create a new session around a Kwik file (after `phy spikesort` has run):
 
 ```python
 >>> import numpy as np
->>> from phy.cluster import Session
+>>> from phy.session import Session
 ```
 
 ```python
