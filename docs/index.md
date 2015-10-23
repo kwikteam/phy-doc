@@ -18,7 +18,7 @@ This library allows you to spike-sort, analyze, and visualize your data interact
 
 The API is highly modular, and you can extend the library in many ways.
 
-Please subscribe to the [mailing list](https://groups.google.com/forum/#!forum/klustaviewas) to be kept up-to-date with new releases and changes!
+Please subscribe to the [mailing list](https://groups.google.com/forum/#!forum/phy-users) to be kept up-to-date with new releases and changes!
 
 
 ## Quick install
