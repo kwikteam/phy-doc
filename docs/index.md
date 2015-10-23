@@ -2,6 +2,7 @@
 
 _Spike sorting and ephys data analysis for 1000 channels and beyond._
 
+**Please subscribe to the [mailing list](https://groups.google.com/forum/#!forum/phy-users) to be kept up-to-date with new releases and changes!**
 
 ## Overview
 
@@ -18,8 +19,6 @@ This library allows you to spike-sort, analyze, and visualize your data interact
 
 The API is highly modular, and you can extend the library in many ways.
 
-Please subscribe to the [mailing list](https://groups.google.com/forum/#!forum/phy-users) to be kept up-to-date with new releases and changes!
-
 
 ## Quick install
 
@@ -31,7 +30,7 @@ Open Terminal (or "XTerm"), and copy-paste the following:
 wget http://phy.cortexlab.net/install/latest.sh
 bash latest.sh
 ```
-Then close and re-open the terminal before continuing.
+Then close and re-open the terminal before continuing with your own datasets or the [quick start guide](quick-start.md).
 
 If you already have a `miniconda` or full `anaconda` Python installation (e.g. for the legacy `KlustaViewa`/`Klusta-Suite`, or a previous version of `phy`) then replace the last line with `bash latest.sh -s` to **S**kip the miniconda installation. If you wish to use Klusta-Suite and phy simultaneously, then you should make sure to install at least one of them in a virtual environment (do not leave this field blank when prompted).
 
@@ -43,7 +42,7 @@ Press Command + Space, type "Terminal", press Enter, then copy-paste the followi
 curl -LO http://phy.cortexlab.net/install/latest.sh
 bash latest.sh
 ```
-Then close and re-open the terminal before continuing.
+Then close and re-open the terminal before continuing with your own datasets or the [quick start guide](quick-start.md).
 
 If you already have a `miniconda` or full `anaconda` Python installation (e.g. for the legacy `KlustaViewa`/`Klusta-Suite`, or a previous version of `phy`) then replace the last line with `bash latest.sh -s` to **S**kip the miniconda installation. If you wish to use Klusta-Suite and phy simultaneously, then you should make sure to install at least one of them in a virtual environment (do not leave this field blank when prompted).
 
@@ -67,4 +66,4 @@ iex ((new-object net.webclient).DownloadString('http://phy.cortexlab.net/install
 
 For other platforms or more detailed installation instructions - for example, if you wish to continue using an existing Python installation - see [the advanced installation page](install.md).
 
-When you've done installing, get started with the [quick start guide](quick-start.md)!
+When you're done installing, get started with the [quick start guide](quick-start.md)!
