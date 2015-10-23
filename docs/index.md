@@ -33,6 +33,8 @@ bash latest.sh
 ```
 Then close and re-open the terminal before continuing.
 
+If you already have a `miniconda` or full `anaconda` Python installation (e.g. for the legacy `KlustaViewa`/`Klusta-Suite`, or a previous version of `phy`) then replace the last line with `bash latest.sh -s` to *S*kip the miniconda installation. If you wish to use Klusta-Suite and phy simultaneously, then you should make sure to install at least one of them in a virtual environment (do not leave this field blank when prompted).
+
 Replace the last line with `bash latest.sh -h` to list the available options.
 
 ### Mac OS X:
@@ -43,6 +45,8 @@ bash latest.sh
 ```
 Then close and re-open the terminal before continuing.
 
+If you already have a `miniconda` or full `anaconda` Python installation (e.g. for the legacy `KlustaViewa`/`Klusta-Suite`, or a previous version of `phy`) then replace the last line with `bash latest.sh -s` to *S*kip the miniconda installation. If you wish to use Klusta-Suite and phy simultaneously, then you should make sure to install at least one of them in a virtual environment (do not leave this field blank when prompted).
+
 Replace the last line with `bash latest.sh -h` to list the available options.
 
 ### Windows (in "PowerShell"):
@@ -51,12 +55,16 @@ Replace the last line with `bash latest.sh -h` to list the available options.
 - [PowerShell](http://social.technet.microsoft.com/wiki/contents/articles/21016.how-to-install-windows-powershell-4-0.aspx).
 - [Microsoft Visual C++ 2010 Redistributable](https://www.microsoft.com/en-gb/download/details.aspx?id=14632)
 
+If you're trying to repair a failed installation or you tried to install before removing the old installation from your $PATH, then you might need to use the Advanced Install instructions.
+
 Open up "PowerShell" (you should be able to find this in your list of applications - if not, download it from the link above). Then copy-paste the following (in Powershell, you can paste with a right-click in the terminal):
 
 ```
 iex ((new-object net.webclient).DownloadString('http://phy.cortexlab.net/install/latest.ps1'))
 ```
 
-For other platforms or more detailed installation instructions, see [the advanced installation page](install.md).
+*Warning:*  These instructions will not work if you have another installation of Python, e.g. if you have previously installed `KlustaViewa`. For this quick installation script to work, you need to make sure that you remove all references (there might be several!) to the old Python installation, or any path with `WinPython` or `KlustaViewa` in both your system and user `$PATH`. For more information on editing your user and system `$PATH`, [see here](http://www.computerhope.com/issues/ch000549.htm). Once you've done this and closed/opened a new instance of PowerShell, you'll be able to use the quick-install script and run `KlustaViewa` and `phy` simultaneously.
+
+For other platforms or more detailed installation instructions - for example, if you wish to continue using an existing Python installation - see [the advanced installation page](install.md).
 
 When you've done installing, get started with the [quick start guide](quick-start.md)!
