@@ -13,7 +13,7 @@ We assume that *phy* has been correctly installed on your computer (see the [qui
 $ phy -v
 ```
 
-`0.2.0` should be displayed (sometimes followed by other characters). If this is not the case, please make sure you have activated your virtual environment (if created), follow the installation instructions again, or [file an issue](http://github.com/kwikteam/phy/issues/).
+`0.2.2` should be displayed (sometimes followed by other characters). If this is not the case, please make sure you have activated your virtual environment (if created), follow the installation instructions again, or [file an issue](http://github.com/kwikteam/phy/issues/).
 
 ## Download a sample dataset
 
