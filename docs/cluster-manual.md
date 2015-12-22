@@ -12,7 +12,7 @@ You can launch the clustering GUI from the session.
 
 ```python
 >>> import phy
->>> phy.enable_qt()
+>>> phy.gui.enable_qt()
 12:52:52 [I] Qt event loop activated.
 ```
 
